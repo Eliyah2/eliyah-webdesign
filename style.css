@@ -1,300 +1,121 @@
-:root {
-  --bg: #05060a;
-  --bg-alt: #0c0f16;
-  --card-bg: #111623;
-  --text: #f5f7ff;
-  --muted: #9aa0b5;
-  --accent: #4f8cff;
-  --accent2: #7b5cff;
-  --accent-soft: rgba(79, 140, 255, 0.15);
-  --border: #1c2233;
-  --radius: 14px;
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-  --transition: 0.25s ease;
-  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+/* ----------------------------- */
+/* RESPONSIVE AFBEELDINGEN       */
+/* ----------------------------- */
 
-body {
-  margin: 0;
-  font-family: var(--font);
-  background: radial-gradient(circle at top, #151b2f 0, #05060a 55%);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* HERO */
-
-.hero {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 4rem 1.5rem;
-  animation: fadeIn 1.2s ease forwards;
-}
-
-.hero h1 {
-  font-size: clamp(2.8rem, 5vw, 4rem);
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.subtitle {
-  color: var(--muted);
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.btn-primary {
-  padding: 0.9rem 2rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 12px 30px rgba(79, 140, 255, 0.45);
-  transition: var(--transition);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(79, 140, 255, 0.6);
-}
-
-/* LOGO */
-
-.logo img {
-  height: 55px;
-  width: auto;
+img,
+.project-card img,
+.project-full {
+  width: 100%;
+  height: auto;
   display: block;
-  margin: 0 auto 1rem;
-  animation: fadeIn 1.2s ease forwards;
+  border-radius: var(--radius);
+  object-fit: cover;
 }
 
-@media (min-width: 768px) {
-  .logo img {
-    height: 65px;
-  }
-}
+/* ----------------------------- */
+/* PROJECT GRID RESPONSIVE       */
+/* ----------------------------- */
 
-/* NAV */
-
-.top-nav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  padding: 0.8rem 1.5rem;
-  background: rgba(5, 6, 10, 0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.top-nav a {
-  color: var(--muted);
-  text-decoration: none;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  transition: var(--transition);
-}
-
-.top-nav a:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.theme-toggle {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--muted);
-  border-radius: 999px;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-}
-
-/* SECTIONS */
-
-.section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 3.5rem 1.5rem;
-}
-
-.section h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  margin-bottom: 2rem;
-}
-
-/* GRID & CARDS */
-
-.grid {
+.project-grid {
   display: grid;
   gap: 1.8rem;
 }
 
-@media (min-width: 768px) {
-  .grid {
+/* Desktop */
+@media (min-width: 900px) {
+  .project-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.card {
+/* Tablet */
+@media (max-width: 899px) and (min-width: 600px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobiel */
+@media (max-width: 599px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------- */
+/* PROJECT CARDS                 */
+/* ----------------------------- */
+
+.project-card {
   background: var(--card-bg);
-  padding: 1.6rem;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
   transition: var(--transition);
 }
 
-.card:hover {
+.project-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent-soft);
 }
 
-.tag {
-  font-size: 0.85rem;
-  color: var(--muted);
+/* ----------------------------- */
+/* SECTIONS MOBIEL               */
+/* ----------------------------- */
+
+@media (max-width: 600px) {
+  .section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
 }
 
-/* PRICING */
+/* ----------------------------- */
+/* NAVIGATIE MOBIEL              */
+/* ----------------------------- */
 
-.price-card {
-  text-align: center;
+@media (max-width: 700px) {
+  .top-nav {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .top-nav a {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .theme-toggle {
+    padding: 0.3rem 0.7rem;
+  }
 }
 
-.price {
-  font-size: 2.4rem;
-  font-weight: 700;
-  margin: 0.5rem 0 1rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  color: transparent;
+/* ----------------------------- */
+/* PROJECT PAGINA'S              */
+/* ----------------------------- */
+
+.project-full {
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
 }
 
-.price-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.price-card li {
-  margin: 0.4rem 0;
-  color: var(--muted);
-}
-
-/* CONTACT */
-
-.contact-box {
-  background: var(--card-bg);
-  padding: 1.6rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  max-width: 420px;
-}
-
-.contact-box a {
-  color: var(--accent);
-}
-
-/* FOOTER */
-
-.footer {
-  text-align: center;
-  padding: 1.5rem;
-  color: var(--muted);
-}
-
-/* LIGHT MODE */
-
-body.light {
-  --bg: #f5f7ff;
-  --text: #111623;
-  --muted: #6b7280;
-  --card-bg: #ffffff;
-  --border: #e5e7eb;
-  background: #f5f7ff;
-}
-
-/* ANIMATIONS */
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- PRICING CARDS UPGRADE --- */
-
-.price-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.35s ease;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.price-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.price-card .price {
-  font-size: 2.4rem;
-  font-weight: 700;
-  margin: 0.5rem 0 1.5rem;
-  color: var(--accent, #4da3ff);
-}
-
-.price-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.price-card ul li {
-  margin: 0.6rem 0;
-  opacity: 0.9;
-}
-
-/* Hover effect */
-.price-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent, #4da3ff);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* Highlighted middle card */
-.price-card.highlight {
-  border: 2px solid var(--accent, #4da3ff);
-  transform: scale(1.05);
-}
-
-.price-card.highlight:hover {
-  transform: scale(1.08) translateY(-6px);
-}
-
-/* Glow behind highlight card */
-.price-card.highlight::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at top,
-    rgba(77, 163, 255, 0.25),
-    transparent 70%
-  );
-  z-index: -1;
+@media (max-width: 600px) {
+  .project-full {
+    margin: 1rem 0;
+  }
 }
