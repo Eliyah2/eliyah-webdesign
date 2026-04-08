@@ -1,6 +1,38 @@
+/* PROJECT DETAIL PAGES */
+.project-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.project-page .section {
+  max-width: 900px;
+}
+
+.project-page h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.project-page h2 {
+  font-size: 1.6rem;
+  margin: 2rem 0 1rem;
+  text-align: left;
+}
+
 .project-full {
   width: 100%;
   border-radius: var(--radius);
-  margin: 1.5rem 0;
   box-shadow: var(--shadow);
+  margin: 1.5rem 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 1.5rem;
+  text-decoration: none;
 }
