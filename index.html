@@ -1,185 +1,93 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eliyah Webdesign – Moderne Websites op Maat</title>
-  <meta name="description" content="Professionele websites op maat. Modern, snel en betaalbaar webdesign voor ondernemers en kleine bedrijven. Vaste prijzen en persoonlijk contact.">
-  <meta name="theme-color" content="#4f46e5">
-  <meta property="og:title" content="Eliyah Webdesign – Moderne Websites op Maat">
-  <meta property="og:description" content="Moderne, snelle en op maat gemaakte websites voor ondernemers. Vaste prijzen en persoonlijk contact.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://eliyah2.github.io/eliyah-webdesign">
-  <meta property="og:image" content="projects/img/project1.jpg">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Eliyah Webdesign bouwt moderne, snelle en overtuigende websites die voelen als een merk – niet als een template.">
+  <meta name="author" content="Eliyah Webdesign">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-content">
-    <div class="logo">
-      <img src="logo.svg" alt="Eliyah Webdesign Logo" loading="lazy">
-    </div>
-    <h1>Moderne Websites op Maat</h1>
-    <p class="subtitle">Professioneel webdesign voor ondernemers die online willen groeien</p>
-    <button id="contactBtn" class="btn-primary">Gratis kennismaking</button>
+<body class="no-anim">
+
+<header class="top-nav will-animate">
+  <div class="nav-inner">
+    <div class="nav-logo">Eliyah Webdesign</div>
+    <nav class="nav-links">
+      <a href="#services">Diensten</a>
+      <a href="#projects">Projecten</a>
+      <a href="#process">Werkwijze</a>
+      <a href="#about">Over</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle" class="theme-toggle" aria-label="Schakel dark mode">🌙</button>
   </div>
 </header>
 
-<!-- NAV -->
-<nav class="top-nav" aria-label="Hoofdmenu">
-  <a href="#about">Over mij</a>
-  <a href="#services">Diensten</a>
-  <a href="#pricing">Pakketten</a>
-  <a href="#workflow">Werkwijze</a>
-  <a href="#projects">Projecten</a>
-  <a href="#contact">Contact</a>
-  <button id="themeToggle" class="theme-toggle" aria-label="Thema wisselen">🌙</button>
-</nav>
-
-<main>
-
-<!-- OVER MIJ -->
-<section id="about" class="section">
-  <h2>Over mij</h2>
-  <p>
-    Ik ben <strong>Eliyah Impelmans</strong>, webdeveloper gespecialiseerd in 
-    <strong>webdesign, UI/UX en maatwerk websites</strong>. Ik bouw moderne, snelle en volledig op maat gemaakte websites voor ondernemers die online professioneel willen overkomen.
-  </p>
-</section>
-
-<!-- USP's -->
-<section class="section">
-  <h2>Waarom klanten voor mij kiezen</h2>
-  <div class="grid">
-    <div class="card"><h3>✔ Persoonlijk contact</h3><p>Je spreekt direct met mij — geen tussenpersonen.</p></div>
-    <div class="card"><h3>✔ Vaste prijzen</h3><p>Altijd duidelijkheid vooraf, zonder verrassingen.</p></div>
-    <div class="card"><h3>✔ Modern & snel</h3><p>Professionele websites met optimale prestaties.</p></div>
+<section class="hero will-animate">
+  <div class="hero-inner">
+    <p class="eyebrow">Webdesign & Development</p>
+    <h1>Websites die voelen als een merk, niet als een template.</h1>
+    <p class="hero-sub">
+      Ik ontwerp en bouw moderne, snelle en overtuigende websites die jouw bedrijf laten groeien.
+      Perfect voor ondernemers die professioneel willen overkomen en online resultaat willen behalen.
+    </p>
+    <div class="hero-actions">
+      <button id="contactBtn" class="btn-primary">Plan een gratis kennismaking</button>
+      <a href="#projects" class="btn-ghost">Bekijk recente projecten</a>
+    </div>
+    <div class="hero-meta">
+      <span>⚡ Supersnelle laadtijden</span>
+      <span>🎯 Gericht op conversie</span>
+      <span>📱 Pixel‑perfect op mobiel</span>
+    </div>
   </div>
 </section>
 
-<!-- TECH STACK -->
-<section class="section" id="tech">
-  <h2>Technologieën</h2>
-  <p class="section-sub">De tools en technologieën die ik dagelijks gebruik</p>
-
-  <div class="tech-grid">
-    <span>HTML5</span>
-    <span>CSS3</span>
-    <span>JavaScript (ES6+)</span>
-    <span>UI/UX Design</span>
-    <span>API‑integraties</span>
-    <span>Responsive Design</span>
-    <span>Node.js</span>
-    <span>Git / GitHub</span>
-  </div>
-</section>
-
-<!-- DIENSTEN -->
-<section id="services" class="section">
+<section id="services" class="section will-animate">
   <h2>Diensten</h2>
+  <p class="section-sub">Alles wat je nodig hebt om online professioneel over te komen.</p>
   <div class="grid">
-    <div class="card"><h3>Maatwerk Websites</h3><p>Volledig op maat ontworpen websites.</p></div>
-    <div class="card"><h3>Responsive Design</h3><p>Perfect op mobiel, tablet en desktop.</p></div>
-    <div class="card"><h3>UI/UX Ontwerp</h3><p>Moderne, gebruiksvriendelijke interfaces.</p></div>
-    <div class="card"><h3>Webshops</h3><p>Professionele webshops voor kleine bedrijven.</p></div>
-    <div class="card"><h3>Dashboards</h3><p>Interactieve webapps en automatisering.</p></div>
-    <div class="card"><h3>Vaste Prijzen</h3><p>Altijd vooraf een duidelijke prijsafspraak.</p></div>
+    <article class="card will-animate">
+      <h3>Maatwerk Websites</h3>
+      <p>Geen standaard templates, maar een ontwerp dat past bij jouw merk, doelgroep en doelen.</p>
+    </article>
+    <article class="card will-animate">
+      <h3>Conversie‑gerichte Landingspagina’s</h3>
+      <p>Pagina’s die niet alleen mooi zijn, maar bezoekers omzetten in klanten.</p>
+    </article>
+    <article class="card will-animate">
+      <h3>Webapps & Dashboards</h3>
+      <p>Op maat gemaakte tools die processen automatiseren en tijd besparen.</p>
+    </article>
   </div>
 </section>
 
-<!-- PRIJZEN -->
-<section id="pricing" class="section">
-  <h2>Pakketten</h2>
-  <p class="section-sub">Introductieprijzen – tijdelijk beschikbaar</p>
-  <div class="grid">
-    <div class="card price-card">
-      <h3>Starter</h3>
-      <p class="price">€175</p>
-      <ul>
-        <li>One‑page website</li>
-        <li>Responsive design</li>
-        <li>Contactformulier</li>
-        <li>Basis SEO</li>
-      </ul>
-    </div>
-
-    <div class="card price-card">
-      <h3>Business</h3>
-      <p class="price">€350</p>
-      <ul>
-        <li>3–5 pagina’s</li>
-        <li>Modern UI/UX ontwerp</li>
-        <li>Google Maps + formulier</li>
-        <li>Snelle laadtijden</li>
-      </ul>
-    </div>
-
-    <div class="card price-card">
-      <h3>Premium</h3>
-      <p class="price">€650</p>
-      <ul>
-        <li>6+ pagina’s</li>
-        <li>Volledig custom design</li>
-        <li>Webshop of dashboard</li>
-        <li>Premium animaties</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- UITGEBREIDE WERKWIJZE -->
-<section class="section" id="workflow">
-  <h2>Hoe ik werk</h2>
-
-  <div class="timeline">
-    <div class="step">
-      <h3>1. Kennismaking</h3>
-      <p>We bespreken jouw doelen, stijl en gewenste functionaliteiten.</p>
-    </div>
-
-    <div class="step">
-      <h3>2. Ontwerp</h3>
-      <p>Ik maak een visueel ontwerp dat past bij jouw merk en doelgroep.</p>
-    </div>
-
-    <div class="step">
-      <h3>3. Ontwikkeling</h3>
-      <p>Ik bouw de website pixel‑perfect, snel en volledig responsive.</p>
-    </div>
-
-    <div class="step">
-      <h3>4. Oplevering & Support</h3>
-      <p>Je krijgt hosting‑hulp, uitleg en 30 dagen gratis support.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTEN -->
-<section id="projects" class="section">
+<section id="projects" class="section will-animate">
   <h2>Projecten</h2>
+  <p class="section-sub">
+    Een selectie van projecten die laten zien hoe Eliyah Webdesign bedrijven helpt
+    met moderne, schaalbare en gebruiksvriendelijke oplossingen.
+  </p>
   <div class="project-grid">
-    <a href="projects/greenhouse.html" class="project-card">
+    <a href="projects/greenhouse.html" class="project-card will-animate">
       <img src="projects/img/project1.jpg" alt="Greenhouse Dashboard" loading="lazy">
       <div class="project-info">
         <h3>Greenhouse Dashboard</h3>
         <p>Automatisering & monitoring voor kasventilatie.</p>
       </div>
     </a>
-
-    <a href="projects/widgets.html" class="project-card">
+    <a href="projects/widgets.html" class="project-card will-animate">
       <img src="projects/img/project2.jpg" alt="Portfolio Widgets" loading="lazy">
       <div class="project-info">
         <h3>Portfolio Widgets</h3>
         <p>Light & dark mode UI‑widgets met API‑data.</p>
       </div>
     </a>
-
-    <a href="projects/funkyfries.html" class="project-card">
+    <a href="projects/funkyfries.html" class="project-card will-animate">
       <img src="projects/img/project3.jpg" alt="Funky Fries Website" loading="lazy">
       <div class="project-info">
         <h3>Funky Fries Website</h3>
@@ -189,111 +97,68 @@
   </div>
 </section>
 
-<!-- MINI CASE STUDIES -->
-<section class="section">
-  <h2>Project Resultaten</h2>
-
+<section id="process" class="section will-animate">
+  <h2>Werkwijze</h2>
+  <p class="section-sub">Duidelijke stappen, geen gedoe.</p>
   <div class="grid">
-    <div class="card">
-      <h3>Greenhouse Dashboard</h3>
-      <ul>
-        <li><strong>Doel:</strong> Automatisering & realtime monitoring</li>
-        <li><strong>Rol:</strong> UI/UX + front‑end ontwikkeling</li>
-        <li><strong>Resultaat:</strong> 40% snellere workflows</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Portfolio Widgets</h3>
-      <ul>
-        <li><strong>Doel:</strong> Interactieve widgets voor portfolio</li>
-        <li><strong>Rol:</strong> Design + JavaScript</li>
-        <li><strong>Resultaat:</strong> 100% dark‑mode compatibel</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Funky Fries Website</h3>
-      <ul>
-        <li><strong>Doel:</strong> Moderne restaurantwebsite</li>
-        <li><strong>Rol:</strong> Branding + webdesign</li>
-        <li><strong>Resultaat:</strong> 3× hogere klantinteractie</li>
-      </ul>
-    </div>
+    <article class="card will-animate">
+      <h3>1. Kennismaking</h3>
+      <p>We bespreken jouw doelen, doelgroep en wensen. Helder, zonder technisch gedoe.</p>
+    </article>
+    <article class="card will-animate">
+      <h3>2. Design & Concept</h3>
+      <p>Ik ontwerp een unieke website die past bij jouw merk en laat het concept aan je zien voordat er gebouwd wordt.</p>
+    </article>
+    <article class="card will-animate">
+      <h3>3. Bouw & Oplevering</h3>
+      <p>Ik bouw de website met oog voor detail, snelheid en gebruiksvriendelijkheid. Na oplevering kun je alles eenvoudig zelf beheren.</p>
+    </article>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section faq" id="faq">
-  <h2>Veelgestelde vragen</h2>
-
-  <details>
-    <summary>Hoe lang duurt het bouwen van een website?</summary>
-    <p>Gemiddeld 1–3 weken, afhankelijk van het pakket en de functionaliteiten.</p>
-  </details>
-
-  <details>
-    <summary>Zijn er verborgen kosten?</summary>
-    <p>Nee. Je betaalt alleen voor het pakket + hosting/domein.</p>
-  </details>
-
-  <details>
-    <summary>Kan ik later pagina’s laten toevoegen?</summary>
-    <p>Ja, uitbreidingen zijn altijd mogelijk.</p>
-  </details>
-
-  <details>
-    <summary>Kan ik zelf teksten en foto’s aanleveren?</summary>
-    <p>Ja, maar ik kan ook helpen met content en optimalisatie.</p>
-  </details>
+<section id="about" class="section will-animate">
+  <h2>Over Eliyah Webdesign</h2>
+  <p class="section-sub">
+    Eén aanspreekpunt, korte lijnen, en een focus op kwaliteit in plaats van volume.
+  </p>
+  <div class="grid">
+    <article class="card will-animate">
+      <h3>Wie</h3>
+      <p>
+        Ik ben Eliyah, webdesigner en developer. Ik combineer techniek met design, zodat jouw website
+        niet alleen mooi is, maar ook logisch werkt en resultaat oplevert.
+      </p>
+    </article>
+    <article class="card will-animate">
+      <h3>Waarom klanten voor mij kiezen</h3>
+      <ul>
+        <li>⚡ Supersnelle laadtijden</li>
+        <li>🎯 Gericht op conversie en resultaat</li>
+        <li>📱 Pixel‑perfect op mobiel</li>
+        <li>🧩 Maatwerk design — geen templates</li>
+        <li>🤝 Persoonlijk contact en helder proces</li>
+      </ul>
+    </article>
+  </div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-  <h2>Klaar voor een professionele website?</h2>
-  <p>Ik bouw jouw website volledig op maat, met vaste prijzen en modern design.</p>
-  <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-    Neem contact op
-  </button>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section">
+<section id="contact" class="section will-animate">
   <h2>Contact</h2>
-  <p>Wil je een website laten maken of vrijblijvend kennismaken?</p>
-  <div class="contact-box">
-    <p><strong>Instagram: eliyah.0475</strong></p>
-    <p><strong>E‑mail:</strong> <a href="mailto:eliyahimpelmans9@gmail.com">eliyahimpelmans9@gmail.com</a></p>
-    <p><strong>Locatie:</strong> Roermond, Nederland</p>
-  </div>
-</section>
-
-<!-- CONTACT FORM -->
-<section class="section" id="contactform">
-  <h2>Stuur een bericht</h2>
-  <p>Ik reageer meestal binnen 24 uur.</p>
-
-  <form class="contact-form" action="https://formspree.io/f/xxxxxx" method="POST">
-    <input type="text" name="name" placeholder="Naam" required>
-    <input type="email" name="email" placeholder="E‑mail" required>
-    <textarea name="message" placeholder="Bericht" required></textarea>
-    <button type="submit" class="btn-primary">Versturen</button>
+  <p class="section-sub">
+    Klaar voor een website die professioneel voelt en klanten overtuigt?
+    Laat van je horen — ik denk graag met je mee.
+  </p>
+  <form class="contact-form will-animate">
+    <input type="text" placeholder="Naam" required>
+    <input type="email" placeholder="E‑mail" required>
+    <textarea placeholder="Vertel kort wat je zoekt" required></textarea>
+    <button type="submit" class="btn-primary">Verstuur bericht</button>
   </form>
 </section>
 
-</main>
-
-<footer class="footer" role="contentinfo">
-  <p>© <span id="year"></span> Eliyah Webdesign</p>
+<footer class="footer will-animate">
+  <p>© <span id="year"></span> Eliyah Webdesign. Alle rechten voorbehouden.</p>
 </footer>
-
-<!-- MOBILE BOTTOM NAV -->
-<nav class="bottom-nav" aria-label="Snelle navigatie">
-  <button data-target="#about">Over</button>
-  <button data-target="#services">Diensten</button>
-  <button data-target="#projects">Projecten</button>
-  <button data-target="#contact">Contact</button>
-</nav>
 
 <script src="script.js"></script>
 </body>

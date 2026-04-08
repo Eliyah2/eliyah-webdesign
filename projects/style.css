@@ -1,38 +1,112 @@
-/* PROJECT DETAIL PAGES */
+/* ===========================
+   PROJECT DETAIL PAGES
+=========================== */
+
 .project-page {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 5rem;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  background: var(--color-bg);
 }
 
+/* Hero bovenaan projectpagina */
+.project-page .hero {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-soft));
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.project-page .hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  margin-bottom: var(--space-sm);
+  color: white;
+}
+
+.project-page .hero .hero-sub {
+  max-width: 700px;
+  color: rgba(255,255,255,0.85);
+  margin: 0 auto;
+}
+
+/* Main content */
 .project-page .section {
   max-width: 900px;
-}
-
-.project-page h1 {
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  padding: var(--space-xl) var(--space-lg);
 }
 
 .project-page h2 {
-  font-size: 1.6rem;
-  margin: 2rem 0 1rem;
+  font-size: 1.8rem;
+  margin: 2.4rem 0 1.2rem;
   text-align: left;
+  color: var(--color-text);
 }
 
+/* Case blocks */
+.case-block {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.case-block h3 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-sm);
+}
+
+.case-block ul {
+  padding-left: 1.2rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* Full-width images */
 .project-full {
   width: 100%;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin: 1.5rem 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  margin: 2rem 0;
+  object-fit: cover;
 }
 
+/* Back link */
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: .4rem;
-  margin-top: 1.5rem;
+  gap: .5rem;
+  margin-top: 2rem;
   text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: opacity .2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .project-page {
+    padding-top: 4rem;
+  }
+
+  .project-page .hero {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .project-page .section {
+    padding: var(--space-lg) var(--space-md);
+  }
 }
