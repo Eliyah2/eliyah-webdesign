@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glanzza — boekingen zonder no-shows · Eliyah Webdesign</title>
+  <meta name="description" content="Case: Glanzza, een boekings- en no-show-tool voor afspraakbedrijven. Eigen boekingspagina per bedrijf, Wero-aanbetaling en een centrale backend." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — Webapp · 2026</p>
+        <h1>Glanzza</h1>
+        <p class="lead">
+          Een boekings- en no-show-tool voor afspraakbedrijven. Elke zaak krijgt een
+          eigen boekingspagina met eigen diensten, prijzen en een aanbetaling via Wero —
+          zodat klanten komen opdagen of de plek netjes vrijgeven.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>Boekingssysteem</li><li>Wero-aanbetaling</li><li>Multi-tenant</li><li>Agenda-koppeling</li>
+        </ul>
+
+        <img class="project-full" src="img/glanzza-cover.svg" width="1200" height="630" decoding="async" alt="Glanzza landingspagina met de belofte: stop met no-shows, start met Wero" />
+
+        <h2>Het probleem</h2>
+        <p>
+          Afspraakbedrijven — kappers, nagelstudio's, schoonheidssalons — verliezen
+          omzet aan klanten die niet komen opdagen. Bestaande boekingssoftware is vaak
+          duur, Engelstalig of vol functies die je niet gebruikt.
+        </p>
+
+        <h2>Wat er is gebouwd</h2>
+        <ul class="ticks">
+          <li>Landingspagina die het probleem en de oplossing in één oogopslag uitlegt</li>
+          <li>Onboarding waarin een bedrijf zich zelf aanmeldt en een eigen boekingslink krijgt</li>
+          <li>Boekingspagina per bedrijf met eigen diensten, prijzen en beschikbaarheid</li>
+          <li>Aanbetaling via Wero, zodat een afspraak iets waard is</li>
+          <li>Centrale backend die boekingen wegschrijft en de agenda bijhoudt</li>
+          <li>Gegevens strikt gescheiden: elk bedrijf ziet alleen het zijne</li>
+        </ul>
+
+        <h2>Details waar het op aankomt</h2>
+        <p>
+          Formulieren controleren verplichte velden, e-mail, telefoonnummer en of de
+          datum niet in het verleden ligt. Dubbele bedrijfsnamen worden geblokkeerd,
+          bestaande bedrijven kunnen niet overschreven worden en onzin-diensten worden
+          eruit gefilterd. Verder: skip-link, aria-labels, aria-live meldingen,
+          zichtbare focusringen en respect voor <em>prefers-reduced-motion</em>.
+        </p>
+
+        <h2>Resultaat</h2>
+        <p>
+          Eén tool die een zaak in ongeveer tien minuten live heeft: geen account per
+          medewerker, geen maandelijkse licentiekosten en geen Engelse software waarin
+          je moet zoeken naar de basis.
+        </p>
+
+        <h2>Iets vergelijkbaars nodig?</h2>
+        <p>
+          Of het nu gaat om boekingen, reserveringen of een klantportaal: ik bouw het
+          zo dat het past bij hoe jouw bedrijf werkt.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Bespreek jouw systeem →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>

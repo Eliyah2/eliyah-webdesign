@@ -1002,6 +1002,18 @@ body.has-cursor summary { cursor: none; }
 }
 [data-theme="light"] .project__media img { filter: drop-shadow(0 16px 28px rgba(17, 17, 25, 0.18)); }
 .project:hover .project__media img { transform: scale(1.045); }
+/* Merkbeeld-kaart: het logo op een vlak in de huisstijlkleur van het merk zelf */
+.project__media--logo {
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(255, 106, 43, 0.3), transparent 72%),
+    var(--bg-soft);
+}
+.project__media--logo img {
+  width: min(56%, 210px);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(255, 106, 43, 0.22));
+}
+
 .project__index {
   position: absolute;
   top: clamp(0.7rem, 1.6vw, 1.1rem);
@@ -1043,36 +1055,41 @@ body.has-cursor summary { cursor: none; }
 .project__link span { transition: transform var(--dur) var(--ease); }
 .project:hover .project__link span { transform: translateX(5px); }
 
-/* Unieke, redactionele projectopstelling op brede schermen */
+/* Unieke, redactionele projectopstelling op brede schermen.
+   Oneven kaarten breed, even kaarten smaller en wat lager, en het laatste
+   project loopt als breed sluitstuk over de volle breedte — dat patroon
+   herhaalt zich netjes bij elk aantal projecten. */
 @media (min-width: 1080px) {
   .projects {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 1.6rem;
+    align-items: start;
   }
   .project { grid-column: span 7; }
-  .project:nth-child(2) { grid-column: span 5; margin-top: 3.5rem; }
-  .project--wide {
+  .project:nth-child(even) { grid-column: span 5; margin-top: 3.5rem; }
+  .project:last-child {
     grid-column: 1 / -1;
     flex-direction: row;
     align-items: stretch;
+    margin-top: 0;
   }
-  .project--wide .project__media {
+  .project:last-child .project__media {
     flex: 0 0 55%;
     aspect-ratio: auto;
     min-height: 360px;
     border-bottom: 0;
     border-right: 1px solid var(--line-soft);
   }
-  .project--wide .project__body { flex: 1; justify-content: center; }
+  .project:last-child .project__body { flex: 1; justify-content: center; }
 
   /* Gefilterd: rustige, gelijkwaardige kaarten zonder gaten in het grid */
   .projects.is-filtered .project,
-  .projects.is-filtered .project--wide {
+  .projects.is-filtered .project:last-child {
     grid-column: span 6;
     margin-top: 0;
     flex-direction: column;
   }
-  .projects.is-filtered .project--wide .project__media {
+  .projects.is-filtered .project:last-child .project__media {
     flex: none;
     aspect-ratio: 4 / 3;
     min-height: 0;
@@ -1411,6 +1428,21 @@ body.page-project p { color: var(--text-soft); }
   border: 1px solid var(--line);
   margin: 1.5rem 0;
   box-shadow: var(--shadow);
+}
+
+/* Merkbeeld in plaats van schermafdruk (bijv. een logo dat transparant is) */
+.project-full--logo {
+  display: grid;
+  place-items: center;
+  padding: clamp(2.2rem, 7vw, 4rem);
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(255, 106, 43, 0.26), transparent 70%),
+    var(--bg-soft);
+}
+.project-full--logo img {
+  width: min(260px, 46%);
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
 }
 .back-link {
   display: inline-flex;

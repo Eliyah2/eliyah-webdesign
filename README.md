@@ -22,12 +22,28 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── script.js             # Interactie (thema, cursor, reveals, tellers, filter, formulier)
 ├── logo.svg              # Logo
 └── projects/
+    ├── glanzza.html      # Case: boekingsplatform met Wero-aanbetaling
+    ├── menuapp.html      # Case: tafelbestelsysteem Las Tapas
+    ├── hairshop.html     # Case: website John's Hairshop (live)
+    ├── funforest.html    # Case: FunForest Seizoenskaart (mobiele app)
     ├── greenhouse.html   # Case: kas-dashboard
     ├── widgets.html      # Case: UI-widgets
     ├── funkyfries.html   # Case: restaurantwebsite
     ├── style.css         # Aanvullende projectpagina-styling
-    └── img/              # Projectafbeeldingen
+    └── img/              # Beelden per project
 ```
+
+## Projecten
+
+| Project | Wat het is | Techniek |
+| --- | --- | --- |
+| [Glanzza](projects/glanzza.html) | Boekings- en no-show-tool: eigen boekingspagina per bedrijf, Wero-aanbetaling, centrale backend | Vanilla JS, Apps Script, Sheets |
+| [Tafelbestelsysteem Las Tapas](projects/menuapp.html) | QR-bestellen aan tafel, keukenscherm, uitgifte met goedkeuring en voorraadbeheer | Next.js, API-routes |
+| [John's Hairshop](projects/hairshop.html) | Website voor een kapsalon in Venlo en Blerick — live op Vercel | HTML/CSS, live |
+| [FunForest Seizoenskaart](projects/funforest.html) | Mobiele app met digitale seizoenkaart, QR-check-in en reserveringen | React Native (Expo), Supabase |
+| [Greenhouse Dashboard](projects/greenhouse.html) | Realtime monitoring en automatisering voor kasventilatie | Dashboard, realtime data |
+| [Portfolio Widgets](projects/widgets.html) | Interactieve UI-widgets met API-data en dark mode | Vanilla JS, API |
+| [Funky Fries](projects/funkyfries.html) | Restaurantwebsite met eigen branding | HTML/CSS, branding |
 
 ## Diensten & pakketten
 

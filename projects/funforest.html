@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FunForest Seizoenskaart — mobiele app · Eliyah Webdesign</title>
+  <meta name="description" content="Case: een mobiele app voor klimbos FunForest met een digitale seizoenkaart inclusief QR-code, check-in, bezoekenteller en reserveringen." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — Mobiele app · React Native / Expo · 2026</p>
+        <h1>FunForest Seizoenskaart</h1>
+        <p class="lead">
+          Een mobiele app voor het klimbos FunForest: je digitale seizoenkaart met
+          QR-code op je telefoon, je bezoeken bijhouden, reserveren en in één oogopslag
+          zien of het park vandaag open is.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>React Native</li><li>QR-check-in</li><li>Reserveringen</li><li>Supabase</li>
+        </ul>
+
+        <div class="project-full project-full--logo">
+          <img src="img/funforest-logo.png" width="400" height="400" decoding="async" alt="Logo van FunForest klimbos" />
+        </div>
+
+        <h2>De aanleiding</h2>
+        <p>
+          Bezoekers met een seizoenkaart hebben een fysiek pasje nodig, willen weten of
+          het park open is en moeten los reserveren. Alles wat op een kaartje of in een
+          mailtje staat, hoort gewoon in een app te zitten.
+        </p>
+
+        <h2>Wat de app doet</h2>
+        <ul class="ticks">
+          <li>Inloggen en registreren met een activatiecode van de seizoenkaart</li>
+          <li>Digitale seizoenkaart met een echte QR-code voor de scantoonbank</li>
+          <li>Uniek pasnummer (FF-######), geldig tot en met 31 december van het lidmaatschapsjaar</li>
+          <li>Dashboard met de vandaag-kaart: open of dicht, tot hoe laat, en de volgende open dag</li>
+          <li>Reserveringen maken en je aankomende bezoeken zien</li>
+          <li>Bezoekenteller, openingstijden en alle vier de klimbossen met locatie</li>
+        </ul>
+
+        <h2>Zonder losse tickets door de poort</h2>
+        <p>
+          De kaart in de app is dezelfde kaart als in je portemonnee, maar dan met een
+          QR-code die verwijst naar de scantoonbank. Je check-in-status van vandaag staat
+          er direct bij, zodat je niet hoeft te twijfelen of je al binnen bent.
+        </p>
+
+        <h2>Veilig met activatiecodes</h2>
+        <p>
+          Alleen vaste abonnementhouders kunnen een account activeren. De codes worden
+          centraal uitgegeven en zijn standaard één keer geldig. De app kan de lijst met
+          codes niet uitlezen: de controle gebeurt buiten de app, in de database. Zonder
+          code sluit inschrijven automatisch, zodat er alleen nog kan worden ingelogd.
+        </p>
+
+        <h2>Details</h2>
+        <ul class="ticks">
+          <li>Werkt op iOS en Android, en ook in de browser</li>
+          <li>Eigen 404-scherm met een weg terug naar het dashboard of de openingstijden</li>
+          <li>Accounts en bezoeken blijven bewaard, dus je blijft ingelogd na verversen</li>
+          <li>Meldingenbel met het aantal aankomende reserveringen</li>
+        </ul>
+
+        <h2>Resultaat</h2>
+        <p>
+          Het papieren pasje is vervangen door iets dat gasten altijd bij zich hebben.
+          De balie hoeft geen kaarten meer te checken en gasten hoeven nergens meer naar
+          te zoeken.
+        </p>
+
+        <h2>Ook een app of ledensysteem nodig?</h2>
+        <p>
+          Van digitale pas tot klantportaal: ik bouw het zo dat het werkt op de telefoon
+          waar jouw klant hem al in heeft zitten.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Bespreek jouw app →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>

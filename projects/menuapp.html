@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tafelbestelsysteem Las Tapas — case · Eliyah Webdesign</title>
+  <meta name="description" content="Case: een tafelbestelsysteem waarin gasten via een QR-code bestellen, de keuken meeleest en de voorraad automatisch klopt." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — Opleidingsproject · team · 2026</p>
+        <h1>Tafelbestelsysteem Las&nbsp;Tapas</h1>
+        <p class="lead">
+          Gasten bestellen vanuit hun stoel via een QR-code op tafel, de keuken ziet de
+          bestelling direct op een eigen scherm en de voorraad loopt automatisch mee.
+          Geen glaasje water meer dat iemand moet komen opnemen.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>Next.js</li><li>QR-bestellen</li><li>Keukenscherm</li><li>Voorraadbeheer</li>
+        </ul>
+
+        <img class="project-full" src="img/menuapp-keuken.png" width="1440" height="1250" decoding="async" alt="Keukenscherm met openstaande bestellingen per tafel" />
+
+        <h2>De opdracht</h2>
+        <p>
+          Een restaurant waar de bediening heen en weer loopt voor elke bestelling.
+          De vraag: kan een gast zelf bestellen, zonder dat de keuken het overzicht
+          verliest en zonder dat de voorraad stilletjes wegsmelt?
+        </p>
+
+        <h2>Wat er in zit</h2>
+        <ul class="ticks">
+          <li>QR-code per tafel: gasten bestellen op hun eigen telefoon</li>
+          <li>Keukenscherm met wat er klaarstaat, per tafel en op tijd</li>
+          <li>Uitgifte met goedkeuring: grote uitgiftes moeten worden afgetekend</li>
+          <li>Voorraad per gerecht en per ingrediënt, met eigen beheerscherm</li>
+          <li>Ingrediënten opzoeken via de Open Food Facts-API</li>
+          <li>Rollen voor keuken, bediening en beheer, elk met eigen rechten</li>
+        </ul>
+
+        <h2>Uitgifte en voorraad</h2>
+        <p>
+          Elke uitgifte gaat door de voorraad heen. Bij grote hoeveelheden vraagt het
+          systeem eerst om goedkeuring, zodat één verkeerde tik geen avond aan
+          voorraad kost. De voorraadgegevens staan in een eigen datamodel, zodat het
+          overzicht klopt zonder zwaar databasesysteem.
+        </p>
+
+        <img class="project-full" src="img/menuapp-uitgifte.png" width="1440" height="1228" decoding="async" loading="lazy" alt="Overzicht van gerechten en ingrediënten tijdens het uitgifteproces" />
+
+        <h2>Menu en QR</h2>
+        <p>
+          De menukaart is zelf te beheren en kan een gerecht als uitverkocht tonen —
+          de gast ziet dat meteen op de telefoon. De QR-codes worden per tafel
+          gegenereerd, dus uitbreiden naar een nieuwe zaal is een kwestie van
+          printen.
+        </p>
+
+        <img class="project-full" src="img/menuapp-menu.png" width="1440" height="2432" decoding="async" loading="lazy" alt="Beheerscherm van de menukaart met gerechten en prijzen" />
+        <img class="project-full" src="img/menuapp-qr.png" width="1440" height="900" decoding="async" loading="lazy" alt="QR-codes genereren per tafel" />
+
+        <h2>Resultaat</h2>
+        <p>
+          Een compleet systeem van bestelling tot voorraad, met een eigen huisstijl:
+          vast kleurenpalet, doordachte typografie en één consequent vormelement dat
+          overal terugkomt. Alles werkt op mobiel én desktop.
+        </p>
+
+        <h2>Ook zoiets in gedachten?</h2>
+        <p>
+          Bestelsystemen, planningsborden, klantportalen: als het proces vastloopt op
+          heen-en-weer lopen of overtypen, kan het vaak in een eigen systeem.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Bespreek jouw systeem →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
