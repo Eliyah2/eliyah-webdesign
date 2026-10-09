@@ -186,6 +186,9 @@ adres, geen dubbele inhoud in Google. Elke push gaat automatisch naar allebei.
 - `404.html` gebruikt root-paden (`/style.css`) en zet er zelf
   `/eliyah-webdesign` voor als de pagina onder de GitHub Pages-projectmap
 draait. Daardoor werkt dezelfde pagina op beide hosts, zonder duplicatie.
+  Eén verschil: op de spiegel vraagt de browser eerst `/style.css` op het
+domein zelf (dat bestaat daar niet) voordat de padvoorziening het rechtzet.
+  Op Vercel gebeurt dat niet — daar laden alle onderdelen meteen.
 
 ## Eigen domein
 
