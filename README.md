@@ -56,6 +56,23 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 Onderhoudspakketten zijn maandelijks opzegbaar: updates, back-ups, monitoring
 en support. Losse aanpassing zonder pakket: €45 per uur.
 
+## Aanpassen
+
+**WhatsApp aanzetten.** Zet je nummer één keer in `script.js` bij
+`WHATSAPP_NUMBER` (landcode zonder `+` of `00`, bijvoorbeeld `31612345678`).
+Dan verschijnen automatisch de WhatsApp-links in de contactlijst, bij het
+contactformulier en in de footer. Laat je het leeg, dan blijven die knoppen
+verborgen in plaats van dat er een dode link op de site staat.
+
+**Resultaat per project.** Elke projectkaart heeft een regel
+`<p class="project__result">` met de opbrengst van dat project. Vervang die
+tekst door een echt cijfer of een quote zodra je die hebt — dat overtuigt
+meer dan een beschrijving.
+
+**Toegankelijkheid.** Elke pagina begint met een skip-link naar de inhoud,
+heeft `tabindex="-1"` op de hoofdinhoud en verstuurt formulieren met
+`autocomplete` zodat browsers en wachtwoordmanagers kunnen invullen.
+
 ## Lokaal bekijken
 
 Geen installatie nodig. Open `index.html` in de browser, of start een simpele server:

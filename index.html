@@ -87,6 +87,9 @@
 </head>
 <body>
 
+  <!-- Toetsenbordgebruikers kunnen de navigatie overslaan -->
+  <a class="skip-link" href="#top">Direct naar de inhoud</a>
+
   <!-- ============ PRELOADER ============ -->
   <div class="loader" id="loader" aria-hidden="true">
     <div class="loader__mark">ELIYAH</div>
@@ -156,7 +159,7 @@
     <a class="btn btn--primary btn--block" href="#contact">Gratis kennismaking</a>
   </div>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
 
     <!-- ============ HERO ============ -->
     <section class="hero">
@@ -436,6 +439,7 @@
               </div>
               <p>Boekings- en no-show-tool voor afspraakbedrijven: een eigen boekingspagina per zaak, aanbetaling via Wero en een centrale backend.</p>
               <ul class="chips"><li>Boekingen</li><li>Wero</li><li>Backend</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Een zaak staat in ongeveer tien minuten live met een eigen boekingslink</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -453,6 +457,7 @@
               </div>
               <p>Gasten bestellen via een QR-code op tafel, de keuken leest mee op een eigen scherm en de voorraad loopt automatisch mee.</p>
               <ul class="chips"><li>Next.js</li><li>Keukenscherm</li><li>Voorraad</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Van bestelling tot voorraad in één systeem, zonder heen en weer lopen</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -470,6 +475,7 @@
               </div>
               <p>Website voor een kapsalon met dertig jaar ervaring in Venlo en Blerick: dienstverlening, tarieven en direct een afspraak maken.</p>
               <ul class="chips"><li>Klantwerk</li><li>Afspraken</li><li>Lokale SEO</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Live op Vercel, met dienstverlening en tarieven direct leesbaar</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -487,6 +493,7 @@
               </div>
               <p>Mobiele app voor het klimbos: een digitale seizoenkaart met QR-check-in, bezoekenteller en reserveringen.</p>
               <ul class="chips"><li>React Native</li><li>QR-check-in</li><li>Reserveringen</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Het fysieke pasje vervangen door een digitale kaart met QR-check-in</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -504,6 +511,7 @@
               </div>
               <p>Realtime monitoring en automatisering voor kasventilatie, met sensordata en verbruiksgrafieken.</p>
               <ul class="chips"><li>Dashboard</li><li>Realtime</li><li>UI/UX</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Ventilatie en verbruik realtime in beeld, met automatische bijsturing</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -521,6 +529,7 @@
               </div>
               <p>Interactieve UI-widgets met klok, weer-API en UV-index — inclusief volledige dark mode.</p>
               <ul class="chips"><li>API</li><li>Dark mode</li><li>Componenten</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Dezelfde componenten werken in licht én donker</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -538,6 +547,7 @@
               </div>
               <p>Een moderne restaurantwebsite met unieke branding voor een hotspot in Roermond.</p>
               <ul class="chips"><li>Branding</li><li>Menu</li><li>Horeca</li></ul>
+              <p class="project__result"><span aria-hidden="true">✓</span> Eigen branding met een menukaart die zelf te beheren is</p>
               <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
             </div>
           </a>
@@ -840,20 +850,31 @@
               <a href="https://instagram.com/eliyah.0475" target="_blank" rel="noopener">@eliyah.0475</a>
             </li>
             <li>
+              <span class="contact__label">WhatsApp</span>
+              <a class="js-whatsapp" data-whatsapp href="#" hidden>Stuur direct een bericht</a>
+            </li>
+            <li>
               <span class="contact__label">Locatie</span>
               <strong>Roermond, Nederland</strong>
             </li>
           </ul>
+
+          <div class="contact__quick" hidden>
+            <a class="btn btn--ghost magnetic js-whatsapp" data-whatsapp href="#" hidden>
+              WhatsApp
+              <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
+            </a>
+          </div>
         </div>
 
         <form class="contact__form glass reveal" id="contactForm" data-delay="120" novalidate>
           <div class="field">
             <label for="name">Naam</label>
-            <input id="name" name="name" type="text" placeholder="Jouw naam" required />
+            <input id="name" name="name" type="text" placeholder="Jouw naam" autocomplete="name" enterkeyhint="next" required />
           </div>
           <div class="field">
             <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
+            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" autocomplete="email" inputmode="email" enterkeyhint="next" required />
           </div>
           <div class="field">
             <label for="subject">Waar gaat het over?</label>
@@ -867,7 +888,7 @@
           </div>
           <div class="field">
             <label for="message">Bericht</label>
-            <textarea id="message" name="message" rows="5" placeholder="Vertel kort over je bedrijf en wat je zoekt…" required></textarea>
+            <textarea id="message" name="message" rows="5" placeholder="Vertel kort over je bedrijf en wat je zoekt…" autocomplete="off" enterkeyhint="send" required></textarea>
           </div>
           <button class="btn btn--primary btn--block magnetic" type="submit">
             Verstuur bericht
@@ -905,6 +926,7 @@
         <a href="mailto:eliyahimpelmans9@gmail.com" aria-label="E-mail">E-mail</a>
         <a href="https://instagram.com/eliyah.0475" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
         <a href="https://github.com/Eliyah2/eliyah-webdesign" target="_blank" rel="noopener" aria-label="GitHub repository">GitHub</a>
+        <a class="js-whatsapp" data-whatsapp href="#" hidden aria-label="WhatsApp">WhatsApp</a>
       </div>
     </div>
     <div class="shell footer__bottom">

@@ -661,7 +661,37 @@
     });
   }
 
-  /* ---------- 14. Overige ---------- */
+  /* ---------- 14. WhatsApp ---------- */
+  // Zet hier één keer het nummer neer (landcode zonder +, dus 31612345678).
+  // Staat het leeg, dan blijven de WhatsApp-knoppen verborgen in plaats van
+  // dat er een dode link op de site staat.
+  const WHATSAPP_NUMBER = "31639799965";
+
+  function initWhatsApp() {
+    const links = $$("[data-whatsapp]");
+    if (!links.length) return;
+
+    const digits = WHATSAPP_NUMBER.replace(/\D/g, "");
+    if (!digits) return;
+
+    const url =
+      "https://wa.me/" +
+      digits +
+      "?text=" +
+      encodeURIComponent("Hoi Eliyah, ik heb een vraag over een website.");
+
+    links.forEach((link) => {
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.hidden = false;
+    });
+
+    const wrap = $(".contact__quick");
+    if (wrap) wrap.hidden = false;
+  }
+
+  /* ---------- 15. Overige ---------- */
   function initMisc() {
     const year = $("#year");
     if (year) year.textContent = new Date().getFullYear();
@@ -673,6 +703,8 @@
         if (id === "#" || id.length < 2) return;
         const target = document.getElementById(id.slice(1));
         if (!target) return;
+        // De skip-link laten we aan de browser: die zet ook de focus meteen goed.
+        if (link.classList.contains("skip-link")) return;
         e.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - 90;
         window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
@@ -699,6 +731,7 @@
     initFilters();
     initAccordion();
     initForm();
+    initWhatsApp();
     initMisc();
   }
 
