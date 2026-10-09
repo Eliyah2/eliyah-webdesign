@@ -103,8 +103,8 @@ contactformulier en in de footer. Laat je het leeg, dan blijven die knoppen
 verborgen in plaats van dat er een dode link op de site staat.
 
 **Geen reviews op de site.** Er staan bewust geen beoordelingen of sterren op de
-homepage zolang die niet van een echte klant met naam en bedrijf komen. Vraagt
-John's Hairshop er een, zet die quote dan in de sectie onder *Pakketten* — een
+homepage zolang die niet van een echte klant met naam en bedrijf komen. Vraagt je eerste klant er
+later een, zet die quote dan in de sectie onder *Pakketten* — een
 voorbeeld van de oude opmaak staat in de git-geschiedenis (`git show ff343a1`).
 
 **Resultaat per project.** Elke projectkaart heeft een regel
