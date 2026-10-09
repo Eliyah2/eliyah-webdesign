@@ -5,30 +5,34 @@
    - Het telt de klikken die geld opleveren: WhatsApp, "Kennismaken"
      (elke knop die naar #contact wijst), e-mail, de case-kaarten en het
      contactformulier (start, fout, verzonden).
+   - Het telt ook hoe ver bezoekers lezen (25/50/75/100%) en welke secties
+     ze echt gezien hebben, zodat je ziet wat aandacht krijgt en wat niet.
    - Het stuurt die gebeurtenissen naar één provider die jij kiest.
      Staat de provider op "none", dan wordt er NIETS verstuurd — er gaat
-     geen enkel verzoek het internet op. Zetten is dus jouw keuze.
+     geen enkel verzoek het internet op.
+
+   Waar de cijfers nu naartoe gaan:
+     Naar je eigen verzamelpunt (map meting/, Worker + D1-database op
+     site-a007329577464ef5b5cebd3eb85a2874.freebuff.page). Het dashboard staat
+     op /stats met een token; dat token staat NIET in deze repository maar in
+     .freebuff/meting-token.txt in je projectmap (zie README).
+     Liever een kant-en-klare dienst? Zet dan provider op "umami" en plak in
+     elke pagina vóór analytics.js:
+       <script defer src="https://cloud.umami.is/script.js" data-website-id="JOUW-ID"></script>
+     Niets meer meten? Zet provider terug op "none".
 
    Privacy (bewust zo gebouwd):
    - Geen cookies, geen localStorage, geen bezoekers-ID, geen vingerafdruk.
    - Geen inhoud van het formulier: alleen dát er verzonden is en welke
      keuzelijst-optie er stond (bijv. "Webshop"). Nooit naam, e-mail of bericht.
+   - Geen IP-adressen of user-agents in de database.
    - Bezoekers met "Do Not Track" of Global Privacy Control worden volledig
      overgeslagen (zie respectDnt hieronder).
 
-   Aanzetten (kies er één):
-     Umami Cloud (gratis tier, cookieless) →
-       1. maak een account op https://cloud.umami.is en voeg je site toe
-       2. plak in elke pagina, vóór analytics.js:
-          <script defer src="https://cloud.umami.is/script.js" data-website-id="JOUW-ID"></script>
-       3. zet hieronder provider op "umami"
-     Eigen verzamelpunt (bijv. een Vercel- of Cloudflare-functie) →
-       provider op "endpoint" en endpoint op de volledige URL.
-     Niets meten → laat provider op "none" staan.
-
-   Controleren of het werkt:
-     Open een pagina met ?meting=1 achter de URL (bijv. index.html?meting=1).
-     Rechtsonder verschijnt een paneel met elke gebeurtenis die afgaat.
+   Controleren of het werkt (alleen op je eigen machine):
+     Open op localhost een pagina met ?meting=1 erachter. Rechtsonder verschijnt
+     dan een paneel met elke gebeurtenis die afgaat. Op de echte site gebeurt
+     dat nooit: daar is de meting onzichtbaar voor bezoekers.
      In de console: eliyahGoals.events  ·  eliyahGoals.summary()
    ============================================================ */
 
@@ -37,8 +41,8 @@
 
   /* ---------- Instellingen: alleen dit blok hoef je aan te passen ---------- */
   var CONFIG = {
-    provider: "none", // "none" | "umami" | "plausible" | "endpoint"
-    endpoint: "", // volledige URL, alleen bij provider "endpoint"
+    provider: "endpoint", // "none" | "umami" | "plausible" | "endpoint"
+    endpoint: "https://site-a007329577464ef5b5cebd3eb85a2874.freebuff.page/collect",
     debug: false, // true = altijd het meetpaneel; ?meting=1 werkt ook
     respectDnt: true, // bezoekers met Do Not Track / GPC overslaan
     sampleRate: 1 // 1 = alles meten, 0.5 = de helft (voor drukke sites)
@@ -60,7 +64,10 @@
   } catch (e) {
     params = null;
   }
-  var showPanel = CONFIG.debug || (params && params.get("meting") === "1");
+  // Het meetpaneel is er alleen voor jou: op localhost (of met debug:true in
+  // de configuratie). Bezoekers van de site zien nooit iets van de meting.
+  var isLokaal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) || window.location.protocol === "file:";
+  var showPanel = CONFIG.debug === true || (isLokaal && params && params.get("meting") === "1");
 
   /* ---------- Uitval: respecteer de keuze van de bezoeker ---------- */
   var dnt =
@@ -342,6 +349,82 @@
     if (CONFIG.provider === "endpoint") {
       track("pageview", { label: document.title.slice(0, 60) });
     }
+
+    initScroll();
+    initSectionViews();
+  }
+
+  /* ---------- Hoe ver wordt er gelezen? ---------- */
+  // Vijf seconden niets vragen: scrollen mag geen werk voor de browser worden.
+  function initScroll() {
+    var stappen = [25, 50, 75, 100];
+    var gehad = {};
+    var wacht = false;
+
+    var meet = function () {
+      var hoogte = document.documentElement.scrollHeight - window.innerHeight;
+      var y = window.scrollY || document.documentElement.scrollTop;
+      // Helemaal onderaan telt als 100%, ook als de laatste pixel door
+      // afronding net niet gehaald wordt.
+      var onderaan = window.innerHeight + y >= document.documentElement.scrollHeight - 4;
+      var deel = onderaan ? 100 : hoogte > 0 ? (y / hoogte) * 100 : 100;
+      for (var i = 0; i < stappen.length; i++) {
+        var s = stappen[i];
+        if (deel >= s && !gehad[s]) {
+          gehad[s] = true;
+          track("scroll_" + s);
+        }
+      }
+    };
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (wacht) return;
+        wacht = true;
+        window.setTimeout(function () {
+          wacht = false;
+          meet();
+        }, 250);
+      },
+      { passive: true }
+    );
+    meet();
+  }
+
+  /* ---------- Welke secties worden echt gezien? ---------- */
+  // Alleen op pagina's met secties die een id hebben (de homepage dus).
+  function initSectionViews() {
+    var secties = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
+    if (!secties.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      secties.forEach(function (s) {
+        track("section_view", { section: s.id });
+      });
+      return;
+    }
+
+    var gezien = {};
+    var kijker = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var id = entry.target.id;
+          if (!id || gezien[id]) return;
+          gezien[id] = true;
+          track("section_view", { section: id });
+          kijker.unobserve(entry.target);
+        });
+      },
+      // Zodra de sectie de middenband van het scherm raakt telt hij als gezien.
+      // Dat werkt ook voor secties die hoger zijn dan het scherm zelf.
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    secties.forEach(function (s) {
+      if (s.id) kijker.observe(s);
+    });
   }
 
   /* ---------- Meetpaneel (?meting=1) ---------- */

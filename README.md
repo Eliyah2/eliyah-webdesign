@@ -10,8 +10,8 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 - **Micro-interacties** — scroll-reveals, 3D-tilt, magnetische knoppen, custom cursor (alleen desktop)
 - **Volledig responsive** — van 320px tot breedbeeld, met een eigen mobiel menu
 - **Toegankelijk** — semantische HTML, toetsenbordnavigatie, focus-states en `prefers-reduced-motion`
-- **Meetbaar (maar standaard uit)** — `analytics.js` telt de klikken op WhatsApp, "Kennismaken"
-  en het formulier; met provider `none` stuurt het niets en gebruikt het geen cookies
+- **Meetbaar** — cookieloze doelmeting naar een eigen verzamelpunt: kliks, secties en
+  leesdiepte, zonder cookies en zonder bezoekersgegevens (zie *Doelmeting* onderaan)
 
 ## Structuur
 
@@ -22,7 +22,7 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── 404.html                # Eigen foutpagina (absolute paden, want een 404 kan overal opduiken)
 ├── style.css               # Design system + alle componenten
 ├── script.js               # Interactie (thema, cursor, reveals, tellers, filter, formulier, WhatsApp)
-├── analytics.js            # Cookieloze doelmeting (staat uit tot je een provider kiest)
+├── analytics.js            # Cookieloze doelmeting (stuurt naar het eigen verzamelpunt)
 ├── logo.svg                # Logo (ook favicon)
 ├── apple-touch-icon.png    # Icoon voor "zet op beginscherm" (180x180)
 ├── icon-512.png            # Icoon voor het webmanifest
@@ -33,6 +33,7 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── tools/
 │   ├── og-card.html        # Generator-template voor de previewkaarten
 │   └── icon.html           # Generator-template voor de pictogrammen
+├── meting/                 # Verzamelpunt + dashboard van de doelmeting (geen website)
 └── projects/
     ├── glanzza.html        # Case: boekingsplatform met Wero-aanbetaling
     ├── menuapp.html        # Case: tafelbestelsysteem Las Tapas
@@ -81,6 +82,11 @@ Dan verschijnen automatisch de WhatsApp-links in de contactlijst, bij het
 contactformulier en in de footer. Laat je het leeg, dan blijven die knoppen
 verborgen in plaats van dat er een dode link op de site staat.
 
+**Geen reviews op de site.** Er staan bewust geen beoordelingen of sterren op de
+homepage zolang die niet van een echte klant met naam en bedrijf komen. Vraagt
+John's Hairshop er een, zet die quote dan in de sectie onder *Pakketten* — een
+voorbeeld van de oude opmaak staat in de git-geschiedenis (`git show ff343a1`).
+
 **Resultaat per project.** Elke projectkaart heeft een regel
 `<p class="project__result">` met de opbrengst van dat project. Vervang die
 tekst door een echt cijfer of een quote zodra je die hebt — dat overtuigt
@@ -102,26 +108,51 @@ link, niet vier — een lege of half gevulde socialrij valt meer op dan geen rij
 
 ## Doelmeting (cookieloos)
 
-`analytics.js` telt de klikken die geld opleveren: WhatsApp, elke knop die naar
-`#contact` leidt (met een label als "Start met Business"), e-mail, de case-kaarten,
-en het formulier (start, fout, verzonden). Er worden géén cookies, geen
-bezoekers-ID's en geen formulierinhoud verstuurd — alleen de gebeurtenis zelf.
+`analytics.js` telt wat er op de site gebeurt, zonder cookies en zonder
+bezoekersgegevens:
 
-**Het staat nu uit.** In `analytics.js` staat `provider: "none"`, en dan gaat er
-geen enkel verzoek het internet op. Aanzetten kan met een gratis, cookieloze
-dienst:
+| Wat | Gebeurtenis | Waarom |
+| --- | --- | --- |
+| Bezoek per pagina | `pageview` | welke pagina's en cases gelezen worden |
+| Klik op een knop naar het formulier | `kennismaken_click` | met label ("Start met Business") en sectie ("pakketten") |
+| WhatsApp, e-mail, bellen | `whatsapp_click`, `email_click`, `call_click` | welk kanaal klanten kiezen |
+| Case openen | `case_open` | welke case het meest wordt bekeken |
+| Formulier | `form_start`, `form_submit`, `form_error` | waar het formulier afhaakt |
+| Hoe ver men leest | `scroll_25/50/75/100` | waar bezoekers afhaken |
+| Secties gezien | `section_view` | welk deel van de homepage aandacht krijgt |
+
+**Waar het naartoe gaat.** Naar je eigen verzamelpunt: de Worker in `meting/`
+met een D1-database. Geen account, geen abonnement, geen cookiebanner.
+
+**Het dashboard** staat op:
+
+```
+https://site-a007329577464ef5b5cebd3eb85a2874.freebuff.page/stats?token=JOUW-TOKEN
+```
+
+Het token staat **niet** in deze repository maar in `.freebuff/meting-token.txt`
+in de projectmap (die map staat in `.gitignore`). Zonder dat token geeft het
+dashboard 404 — ook voor wie het adres raadt. Bewaar de link als bookmark; hij
+is alleen voor jou.
+
+**Bezoekers merken niets van de meting.** Geen balk, geen paneel, geen
+verzoek van een andere partij. Het meetpaneel met `?meting=1` werkt alleen op
+`localhost` (of met `debug: true` in de configuratie), dus op de echte site is er
+niets te zien. Bezoekers met Do Not Track of Global Privacy Control worden
+volledig overgeslagen.
+
+**Uitzetten of verhuizen.** Zet in `analytics.js` `provider: "none"` en er gaat
+geen enkel verzoek meer het internet op. Liever een kant-en-klare dienst? Zet
+`provider: "umami"` en plak in elke pagina vóór `analytics.js`:
 
 ```html
-<!-- in elke pagina, vóór analytics.js -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="JOUW-ID"></script>
 ```
 
-Zet daarna in `analytics.js` `provider: "umami"`. Eigen verzamelpunt nodig?
-Dan `provider: "endpoint"` met je eigen URL.
-
-**Zelf controleren of het werkt:** open een pagina met `?meting=1` achter de URL.
-Rechtsonder verschijnt een paneel met elke gebeurtenis die afgaat. In de console
-geeft `eliyahGoals.summary()` hetzelfde in cijfers.
+**Zelf controleren.** Open op je eigen machine een pagina met `?meting=1`
+(bijvoorbeeld `http://localhost:8000/index.html?meting=1`): rechtsonder verschijnt
+een paneel met elke gebeurtenis die afgaat. In de console geeft
+`eliyahGoals.summary()` hetzelfde in cijfers.
 
 ## Social preview, pictogrammen en crawlbasis
 

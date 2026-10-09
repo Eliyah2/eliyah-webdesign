@@ -4,4 +4,7 @@ Allow: /
 # De generator voor de social-previewkaarten hoeft niet in de index
 Disallow: /tools/
 
+# Het verzamelpunt van de meting is geen onderdeel van de website
+Disallow: /meting/
+
 Sitemap: https://eliyah2.github.io/eliyah-webdesign/sitemap.xml
