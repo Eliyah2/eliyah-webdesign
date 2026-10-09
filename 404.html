@@ -7,10 +7,10 @@
   <meta name="description" content="Deze pagina bestaat niet (meer). Ga terug naar de homepage of bekijk het werk." />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#08080c" />
-  <!-- Let op: absolute paden met de projectmap erin, omdat een 404 op elke
-       diepte kan opduiken. Op een eigen domein wordt dit /style.css. -->
-  <link rel="icon" href="/eliyah-webdesign/logo.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/eliyah-webdesign/apple-touch-icon.png" />
+  <!-- Deze pagina staat op elke diepte, dus alle paden zijn absoluut vanaf de
+       root (/style.css). Dat is correct op Vercel en op een eigen domein. -->
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
@@ -37,14 +37,45 @@
     .vlag h2 { font-size: 1.05rem; margin: 2rem 0 0.8rem; }
     .vlag ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
     .vlag ul a { color: var(--text-soft, #c9c9d3); text-decoration: none; border-bottom: 1px solid var(--line-soft, rgba(255,255,255,0.18)); }
+    /* Zonder JavaScript moet deze pagina er ook goed uitzien */
+    .js-alleen { display: none; }
   </style>
-  <link rel="stylesheet" href="/eliyah-webdesign/style.css" />
+  <link rel="stylesheet" href="/style.css?v=3" />
   <script>
+    // Thema meteen goed zetten (voorkomt flikkering), en de jaarregel vullen
+    // zonder dat daar script.js voor nodig is.
     (function () {
       try {
         var t = localStorage.getItem("theme");
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch (e) {}
+      document.addEventListener("DOMContentLoaded", function () {
+        var jaar = document.getElementById("year");
+        if (jaar) jaar.textContent = new Date().getFullYear();
+      });
+    })();
+
+    // Draait de site onder de GitHub Pages-projectmap (/eliyah-webdesign/), dan
+    // krijgen alle root-paden die map ervoor. Op Vercel en op een eigen domein
+    // is dit stukje code werkloos: daar staan de paden al goed.
+    (function () {
+      var prefix = location.pathname.indexOf("/eliyah-webdesign/") === 0 ? "/eliyah-webdesign" : "";
+      if (!prefix) return;
+      function herstel() {
+        var nodes = document.querySelectorAll('[href^="/"], [src^="/"]');
+        for (var i = 0; i < nodes.length; i++) {
+          (function (el) {
+            ["href", "src"].forEach(function (attr) {
+              var pad = el.getAttribute(attr);
+              if (pad && pad.charAt(0) === "/" && pad.indexOf("/eliyah-webdesign/") !== 0) {
+                el.setAttribute(attr, prefix + pad);
+              }
+            });
+          })(nodes[i]);
+        }
+      }
+      herstel();
+      document.addEventListener("DOMContentLoaded", herstel);
     })();
   </script>
 </head>
@@ -61,12 +92,12 @@
 
   <header class="nav is-stuck">
     <div class="nav__inner">
-      <a class="brand" href="/eliyah-webdesign/index.html" aria-label="Eliyah Webdesign — home">
+      <a class="brand" href="/index.html" aria-label="Eliyah Webdesign — home">
         <span class="brand__mark">E</span>
         <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
       </a>
       <div class="nav__actions">
-        <a class="btn btn--primary btn--sm magnetic" href="/eliyah-webdesign/index.html#contact">Kennismaken</a>
+        <a class="btn btn--primary btn--sm magnetic" href="/index.html#contact">Kennismaken</a>
       </div>
     </div>
   </header>
@@ -84,20 +115,20 @@
         </p>
 
         <div class="hero__cta knoppen">
-          <a class="btn btn--primary magnetic eerste" href="/eliyah-webdesign/index.html">
+          <a class="btn btn--primary magnetic eerste" href="/index.html">
             Naar de homepage
             <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
           </a>
-          <a class="btn btn--ghost magnetic" href="/eliyah-webdesign/index.html#projecten">Bekijk het werk</a>
-          <a class="btn btn--ghost magnetic" href="/eliyah-webdesign/index.html#contact">Contact opnemen</a>
+          <a class="btn btn--ghost magnetic" href="/index.html#projecten">Bekijk het werk</a>
+          <a class="btn btn--ghost magnetic" href="/index.html#contact">Contact opnemen</a>
         </div>
 
         <h2 class="h3">Populaire pagina's</h2>
         <ul class="ticks">
-          <li><a class="link-arrow" href="/eliyah-webdesign/projects/glanzza.html">Glanzza — boekingen zonder no-shows</a></li>
-          <li><a class="link-arrow" href="/eliyah-webdesign/projects/menuapp.html">Tafelbestelsysteem Las Tapas</a></li>
-          <li><a class="link-arrow" href="/eliyah-webdesign/projects/hairshop.html">John's Hairshop</a></li>
-          <li><a class="link-arrow" href="/eliyah-webdesign/index.html#pakketten">Pakketten en prijzen</a></li>
+          <li><a class="link-arrow" href="/projects/glanzza.html">Glanzza — boekingen zonder no-shows</a></li>
+          <li><a class="link-arrow" href="/projects/menuapp.html">Tafelbestelsysteem Las Tapas</a></li>
+          <li><a class="link-arrow" href="/projects/hairshop.html">John's Hairshop</a></li>
+          <li><a class="link-arrow" href="/index.html#pakketten">Pakketten en prijzen</a></li>
         </ul>
       </div>
     </section>
@@ -106,10 +137,10 @@
   <footer class="footer">
     <div class="shell footer__bottom">
       <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
-      <a href="/eliyah-webdesign/index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+      <a href="/index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
     </div>
   </footer>
 
-  <script src="/eliyah-webdesign/script.js" defer></script>
+  <script src="/analytics.js?v=3" defer></script>
 </body>
 </html>

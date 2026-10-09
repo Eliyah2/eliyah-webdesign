@@ -168,13 +168,40 @@ node -e "const p=require('puppeteer-core');(async()=>{const b=await p.launch({ex
 Pictogrammen vernieuw je op dezelfde manier via `tools/icon.html?s=180`
 (apple-touch-icon) en `?s=512` (webmanifest).
 
+## Waar de site draait
+
+**Vercel is de live site** (`https://eliyah-webdesign.vercel.app`). Dat adres
+staat in `canonical`, `og:url`, `og:image`, het JSON-LD-blok, `sitemap.xml`,
+`robots.txt` en `site.webmanifest`.
+
+**GitHub Pages is een spiegel** (`https://eliyah2.github.io/eliyah-webdesign/`).
+Die blijft werken, maar verwijst met zijn `canonical` naar Vercel: één echte
+adres, geen dubbele inhoud in Google. Elke push gaat automatisch naar allebei.
+
+**Twee bestanden regelen het verschil tussen de hosts:**
+
+- `vercel.json` — beveiligingskopregels op Vercel (nosniff, referrer-policy,
+  frame-opties, HSTS, permissions-policy).
+- `.vercelignore` — houdt `meting/` en `.freebuff/` buiten de deployment.
+- `404.html` gebruikt root-paden (`/style.css`) en zet er zelf
+  `/eliyah-webdesign` voor als de pagina onder de GitHub Pages-projectmap
+draait. Daardoor werkt dezelfde pagina op beide hosts, zonder duplicatie.
+
 ## Eigen domein
 
-De site gebruikt nu `https://eliyah2.github.io/eliyah-webdesign` als basis in
-`canonical`, `og:url`, `og:image`, het JSON-LD-blok, `sitemap.xml`,
-`robots.txt`, `site.webmanifest` en de absolute paden in `404.html`. Gaat de
-site naar een eigen domein, vervang die basis dan overal — anders wijzen de
-previews en de sitemap nog naar het oude adres.
+Koop je een domein, dan zijn dit de stappen:
+
+```bash
+# 1. alle absolute URL's omzetten (canonical, og, sitemap, robots, JSON-LD)
+node tools/switch-host.js https://jouwdomein.nl       # of met de hand zoeken
+# 2. domein koppelen in Vercel (Settings → Domains) en de DNS-records volgen
+# 3. het nieuwe adres toevoegen aan de meting, anders stopt die stil:
+#    Freebuff → Sites → variabele ALLOWED_ORIGINS = https://jouwdomein.nl
+```
+
+`404.html` hoef je daarbij niet aan te raken: dat rekent zelf uit welk pad het
+nodig heeft. Vergeet niet het oude adres op GitHub Pages uit te zetten als je
+volledig overstapt, anders bestaan er twee versies naast elkaar.
 
 ## Lokaal bekijken
 

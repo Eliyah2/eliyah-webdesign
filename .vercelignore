@@ -1,0 +1,5 @@
+# Deze bestanden horen niet bij de website en hoeven dus niet op Vercel te staan.
+# (De site op GitHub Pages negeert dit bestand; daar staan ze wel, maar niet in
+# de sitemap en niet in de zoekmachines.)
+meting/
+.freebuff/
