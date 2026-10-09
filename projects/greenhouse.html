@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greenhouse Dashboard — Project · Eliyah Webdesign</title>
+  <meta name="description" content="Case: een op maat gemaakt dashboard voor kasventilatie met realtime sensordata, automatisering en verbruiksmonitoring." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — Webapp · 2026</p>
+        <h1>Greenhouse Dashboard</h1>
+        <p class="lead">
+          Een volledig op maat gemaakt dashboard voor kasventilatie: realtime sensordata,
+          automatisering en monitoring in één overzicht dat ook op een tablet in de kas werkt.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>Dashboard</li><li>Realtime data</li><li>Automatisering</li><li>UI/UX</li>
+        </ul>
+
+        <img class="project-full" src="img/project1.jpg" width="539" height="249" decoding="async" alt="Greenhouse Dashboard met sensordata en grafieken" />
+
+        <h2>De uitdaging</h2>
+        <p>
+          De kas werd handmatig in de gaten gehouden: temperatuur lezen, ventilator
+          bijstellen, verbruik bijhouden. Dat kostte tijd en leverde onnodige risico's op
+          bij plotselinge temperatuurschommelingen.
+        </p>
+
+        <h2>Wat het dashboard doet</h2>
+        <ul class="ticks">
+          <li>Realtime temperatuur, luchtvochtigheid en ventilatorstatus</li>
+          <li>Automatische regels die ventilatie bijsturen op basis van drempelwaarden</li>
+          <li>Verbruik en cyclustijden per dag, week en seizoen</li>
+          <li>Meldingen bij afwijkingen, zodat ingrijpen vóór schade gebeurt</li>
+        </ul>
+
+        <h2>Resultaat</h2>
+        <p>
+          Eén scherm vervangt handmatig rondlopen en losse notities. De kas draait
+          stabieler, het verbruik is inzichtelijk en storingen worden eerder gezien dan
+          gevoeld.
+        </p>
+
+        <h2>Ook zoiets nodig?</h2>
+        <p>
+          Of het nu om een kas, werkplaats of administratie gaat: ik bouw dashboards die
+          jouw data omzetten in overzicht en actie.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Bespreek jouw dashboard →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>

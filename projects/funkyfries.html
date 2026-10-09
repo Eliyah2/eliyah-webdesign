@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Funky Fries — Project · Eliyah Webdesign</title>
+  <meta name="description" content="Case: moderne restaurantwebsite met unieke branding voor een hotspot in Roermond." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — Website &amp; branding · 2026</p>
+        <h1>Funky Fries</h1>
+        <p class="lead">
+          Een moderne restaurantwebsite met unieke branding voor een hotspot in Roermond.
+          De site moet net zo uitgesproken voelen als het eten zelf.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>Branding</li><li>Menukaart</li><li>Horeca</li><li>Mobiel-first</li>
+        </ul>
+
+        <img class="project-full" src="img/project3.jpg" width="938" height="870" decoding="async" alt="Funky Fries website met opvallende branding" />
+
+        <h2>De uitdaging</h2>
+        <p>
+          De zaak groeide sneller dan de online uitstraling. Op mobiel was de menukaart
+          lastig te lezen en de sfeer van de zaak kwam niet terug in het beeld.
+        </p>
+
+        <h2>Wat er is gebouwd</h2>
+        <ul class="ticks">
+          <li>Mobiel-first ontwerp: menu binnen twee tikken vindbaar</li>
+          <li>Branding met gedurfde typografie en een warm kleurenpalet</li>
+          <li>Menukaart die eenvoudig zelf aan te passen is</li>
+          <li>Snelle laadtijd, juist op mobiele verbindingen</li>
+          <li>Directe koppeling naar Instagram en locatie/route</li>
+        </ul>
+
+        <h2>Resultaat</h2>
+        <p>
+          Bezoekers vinden wat ze zoeken, bestellen makkelijker en de online uitstraling
+          past nu bij het gevoel in de zaak.
+        </p>
+
+        <h2>Ook een zaak met karakter?</h2>
+        <p>
+          Ik help horecaondernemers aan een website die net zo opvalt als hun zaak —
+          zonder dat er maanden aan voorafgaan.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Bespreek jouw website →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>

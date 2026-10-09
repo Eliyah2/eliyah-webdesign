@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Widgets — Project · Eliyah Webdesign</title>
+  <meta name="description" content="Case: interactieve UI-widgets met klok, weer-API en UV-index, inclusief volledige dark mode en componentbibliotheek." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <style>
+    /* var() met fallback: donker vóór style.css, thema-bewust daarna */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="../index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--ghost btn--sm" href="../index.html#projecten">← Alle projecten</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="shell">
+        <a class="back-link" href="../index.html#projecten">← Terug naar portfolio</a>
+        <p class="kicker">Case — UI-componenten · 2026</p>
+        <h1>Portfolio Widgets</h1>
+        <p class="lead">
+          Een set interactieve UI-widgets die laat zien hoe design en data samenkomen:
+          een live klok, weer-API, UV-index en een schakelaar tussen licht en donker thema.
+        </p>
+
+        <ul class="chips project-meta">
+          <li>API-koppeling</li><li>Dark mode</li><li>Componenten</li><li>Toegankelijk</li>
+        </ul>
+
+        <img class="project-full" src="img/project2.jpg" width="513" height="838" decoding="async" alt="Portfolio Widgets in licht thema" />
+
+        <h2>Wat er in zit</h2>
+        <ul class="ticks">
+          <li>Live klok en datum, opgebouwd zonder externe libraries</li>
+          <li>Weersverwachting via een API, met nette fallback als de verbinding hapert</li>
+          <li>UV-index die kleur en advies aanpast aan de waarde</li>
+          <li>Volledige dark mode met dezelfde componenten</li>
+        </ul>
+
+        <h2>Licht en donker, één systeem</h2>
+        <p>
+          Dezelfde componenten werken in beide thema's: kleur, contrast en schaduw
+          komen uit één set design-tokens. Daardoor blijft de interface consistent,
+          ongeacht de voorkeur van de bezoeker.
+        </p>
+
+        <img class="project-full" src="img/project2-detail.jpg" width="389" height="837" decoding="async" loading="lazy" alt="Portfolio Widgets in donker thema" />
+
+        <h2>Waarom dit project</h2>
+        <p>
+          Ik gebruik deze widgets als testlab: hier probeer ik nieuwe interacties,
+          animaties en API-koppelingen uit voordat ik ze in klantprojecten verwerk.
+        </p>
+        <a class="btn-primary" href="../index.html#contact">Zoiets voor jouw site? →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
