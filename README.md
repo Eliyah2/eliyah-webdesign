@@ -10,7 +10,8 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 - **Micro-interacties** — scroll-reveals, 3D-tilt, magnetische knoppen, custom cursor (alleen desktop)
 - **Volledig responsive** — van 320px tot breedbeeld, met een eigen mobiel menu
 - **Toegankelijk** — semantische HTML, toetsenbordnavigatie, focus-states en `prefers-reduced-motion`
-- **Snel** — geen externe libraries, lazy-loading afbeeldingen, geen overbodige requests
+- **Meetbaar (maar standaard uit)** — `analytics.js` telt de klikken op WhatsApp, "Kennismaken"
+  en het formulier; met provider `none` stuurt het niets en gebruikt het geen cookies
 
 ## Structuur
 
@@ -21,6 +22,7 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── 404.html                # Eigen foutpagina (absolute paden, want een 404 kan overal opduiken)
 ├── style.css               # Design system + alle componenten
 ├── script.js               # Interactie (thema, cursor, reveals, tellers, filter, formulier, WhatsApp)
+├── analytics.js            # Cookieloze doelmeting (staat uit tot je een provider kiest)
 ├── logo.svg                # Logo (ook favicon)
 ├── apple-touch-icon.png    # Icoon voor "zet op beginscherm" (180x180)
 ├── icon-512.png            # Icoon voor het webmanifest
@@ -89,9 +91,37 @@ heeft `tabindex="-1"` op de hoofdinhoud en verstuurt formulieren met
 `autocomplete` zodat browsers en wachtwoordmanagers kunnen invullen.
 
 **Over mij is bewust faceless.** De kaart "Over mij" gebruikt de initialen in de
-merkgradient in plaats van een foto, met daaronder de link naar Instagram
-(`@eliyah.0475`). Wil je later toch een portret toevoegen, dan staat in
-`style.css` bij `.about__avatar` precies welke twee regels je daarvoor aanzet.
+merkgradient in plaats van een foto. Wil je later toch een portret toevoegen,
+dan staat in `style.css` bij `.about__avatar` precies welke twee regels je
+daarvoor aanzet.
+
+**Social links.** Er staat nu geen socialaccount meer op de site. Komt er later
+één (bijvoorbeeld TikTok), zet die dan op dezelfde plek terug: in de footer van
+`index.html` bij `.footer__social`, en in de contactlijst bij `#contact`. Eén
+link, niet vier — een lege of half gevulde socialrij valt meer op dan geen rij.
+
+## Doelmeting (cookieloos)
+
+`analytics.js` telt de klikken die geld opleveren: WhatsApp, elke knop die naar
+`#contact` leidt (met een label als "Start met Business"), e-mail, de case-kaarten,
+en het formulier (start, fout, verzonden). Er worden géén cookies, geen
+bezoekers-ID's en geen formulierinhoud verstuurd — alleen de gebeurtenis zelf.
+
+**Het staat nu uit.** In `analytics.js` staat `provider: "none"`, en dan gaat er
+geen enkel verzoek het internet op. Aanzetten kan met een gratis, cookieloze
+dienst:
+
+```html
+<!-- in elke pagina, vóór analytics.js -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="JOUW-ID"></script>
+```
+
+Zet daarna in `analytics.js` `provider: "umami"`. Eigen verzamelpunt nodig?
+Dan `provider: "endpoint"` met je eigen URL.
+
+**Zelf controleren of het werkt:** open een pagina met `?meting=1` achter de URL.
+Rechtsonder verschijnt een paneel met elke gebeurtenis die afgaat. In de console
+geeft `eliyahGoals.summary()` hetzelfde in cijfers.
 
 ## Social preview, pictogrammen en crawlbasis
 
@@ -128,5 +158,4 @@ Ga daarna naar <http://localhost:8000>.
 ## Contact
 
 - E-mail: eliyahimpelmans9@gmail.com
-- Instagram: [@eliyah.0475](https://instagram.com/eliyah.0475)
 - Locatie: Roermond, Nederland
