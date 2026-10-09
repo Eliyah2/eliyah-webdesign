@@ -640,7 +640,7 @@
     if (!form) return;
 
     const status = $("#formStatus");
-    const email = "eliyahimpelmans9@gmail.com";
+    const email = "eliyahwebdesign@gmail.com";
 
     const setError = (field, isError) => {
       const wrapper = field.closest(".field");

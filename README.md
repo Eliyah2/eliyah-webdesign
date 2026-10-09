@@ -121,10 +121,16 @@ merkgradient in plaats van een foto. Wil je later toch een portret toevoegen,
 dan staat in `style.css` bij `.about__avatar` precies welke twee regels je
 daarvoor aanzet.
 
-**Social links.** Er staat nu geen socialaccount meer op de site. Komt er later
-één (bijvoorbeeld TikTok), zet die dan op dezelfde plek terug: in de footer van
-`index.html` bij `.footer__social`, en in de contactlijst bij `#contact`. Eén
-link, niet vier — een lege of half gevulde socialrij valt meer op dan geen rij.
+**Social links.** Instagram en TikTok (@eliyahwebdesign) staan op twee plekken:
+in de footer van `index.html` bij `.footer__social`, en in de contactlijst bij
+`#contact`. Ze staan ook in het JSON-LD-blok (`sameAs`), zodat Google het account
+aan het bedrijf koppelt. Komt er een account bij, zet die dan op alle drie de
+plekken — een half gevulde socialrij valt meer op dan geen rij.
+
+**E-mailadres.** Het adres staat op vier plekken: de contactlijst en de knop
+"Mail mij direct" in `index.html`, het JSON-LD-blok (`"email"`), en de
+`const email` in `script.js` (die het contactformulier naar je mailprogramma
+stuurt). Verandert het adres, pas het dan op alle vier aan.
 
 ## Doelmeting (cookieloos)
 
@@ -238,5 +244,5 @@ Ga daarna naar <http://localhost:8000>.
 
 ## Contact
 
-- E-mail: eliyahimpelmans9@gmail.com
+- E-mail: eliyahwebdesign@gmail.com
 - Locatie: Roermond, Nederland
