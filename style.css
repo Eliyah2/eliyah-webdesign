@@ -879,6 +879,27 @@ body.has-cursor summary { cursor: none; }
 }
 .hero__lead strong { color: var(--text); font-weight: 600; }
 
+/* Voor wie het is en wat het kost, direct onder de kop: dit hoort in dezelfde
+   blik als de belofte zelf. De prijs is een link naar de pakketten. */
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  font-size: clamp(0.92rem, 0.88rem + 0.2vw, 1rem);
+  color: var(--muted);
+}
+.hero__facts-dot { color: var(--line); }
+.hero__price {
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.1rem;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.hero__price strong { color: var(--text); font-weight: 700; }
+.hero__price:hover { color: var(--text); border-color: var(--accent); }
+
 .hero__cta {
   display: flex;
   flex-wrap: wrap;
@@ -1585,6 +1606,19 @@ body.page-project p { color: var(--text-soft); }
   flex-wrap: wrap;
   gap: 0.6rem;
   margin: 1.5rem 0 2rem;
+}
+
+/* Op een telefoon eerst de kern en daarna pas de uitleg: wat het is, voor wie,
+   wat het kost en waar je klikt horen alle vier in het eerste schermbeeld. De
+   introductie staat daaronder in plaats van erboven. */
+@media (max-width: 760px) {
+  .hero__inner { display: flex; flex-direction: column; }
+  .hero__inner > .eyebrow { order: 1; align-self: flex-start; }
+  .hero__inner > .hero__title { order: 2; }
+  .hero__inner > .hero__facts { order: 3; }
+  .hero__inner > .hero__cta { order: 4; margin-top: 1.6rem; }
+  .hero__inner > .hero__lead { order: 5; margin-top: 1.5rem; }
+  .hero__inner > .stats { order: 6; }
 }
 
 /* Oude classnamen blijven werken */
