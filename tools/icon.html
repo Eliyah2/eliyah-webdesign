@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<title>Pictogram-generator · Eliyah Webdesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" />
+<style>
+  /* Vierkant pictogram in de huisstijl. Wordt met een headless browser naar
+     PNG geschoten: ?s=180 voor apple-touch-icon, ?s=512 voor het webmanifest. */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #07070b; }
+  .ico {
+    width: var(--s, 180px); height: var(--s, 180px);
+    display: grid; place-content: center;
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: calc(var(--s, 180px) * 0.52);
+    color: #0a0a12;
+    background: linear-gradient(135deg, #8aa8ff 0%, #b98cff 55%, #ff9ecb 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="ico" id="ico">E</div>
+<script>
+  (function () {
+    var s = Number(new URLSearchParams(location.search).get("s")) || 180;
+    document.documentElement.style.setProperty("--s", s + "px");
+  })();
+</script>
+</body>
+</html>

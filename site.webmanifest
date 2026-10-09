@@ -1,0 +1,15 @@
+{
+  "name": "Eliyah Webdesign — websites op maat",
+  "short_name": "Eliyah",
+  "description": "Webdesign en maatwerk websites voor ondernemers: ontwerp, bouw en onderhoud.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07070b",
+  "theme_color": "#07070b",
+  "lang": "nl",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

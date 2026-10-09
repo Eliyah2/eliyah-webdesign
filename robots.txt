@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# De generator voor de social-previewkaarten hoeft niet in de index
+Disallow: /tools/
+
+Sitemap: https://eliyah2.github.io/eliyah-webdesign/sitemap.xml

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<title>OG-kaart generator · Eliyah Webdesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
+<style>
+  /* Zelfstandige kaart van exact 1200x630 die met een headless browser
+     naar PNG wordt geschoten (zie README → Social preview). */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #07070b;
+    color: #f4f3f1;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    padding: 78px 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  /* Achtergrond: dezelfde kleurwolken als de site, maar dan stilstaand */
+  .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; }
+  .orb--1 { width: 760px; height: 760px; left: -180px; top: -300px; background: radial-gradient(circle, #8aa8ff 0%, rgba(138, 168, 255, 0) 70%); }
+  .orb--2 { width: 700px; height: 700px; right: -160px; top: -220px; background: radial-gradient(circle, #b98cff 0%, rgba(185, 140, 255, 0) 70%); }
+  .orb--3 { width: 620px; height: 620px; right: 60px; bottom: -320px; background: radial-gradient(circle, #ff9ecb 0%, rgba(255, 158, 203, 0) 70%); opacity: 0.4; }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(120% 90% at 20% 0%, #000 0%, transparent 70%);
+  }
+  .top, .bottom { position: relative; z-index: 2; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand__mark {
+    width: 54px; height: 54px; border-radius: 16px;
+    display: grid; place-content: center;
+    font-weight: 800; font-size: 26px; color: #fff;
+    background: linear-gradient(135deg, #8aa8ff, #b98cff);
+  }
+  .brand__text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand__text strong { font-size: 25px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand__text em { font-size: 14px; font-style: normal; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: #8c8c9c; }
+  .kicker {
+    display: inline-block;
+    font-size: 17px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #9db2ff;
+    margin: 0 0 20px;
+  }
+  h1 {
+    position: relative; z-index: 2;
+    margin: 0;
+    max-width: 780px;
+    font-size: 68px;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  h1 em {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    background: linear-gradient(120deg, #8aa8ff 0%, #b98cff 50%, #ff9ecb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  h1.compact { font-size: 54px; }
+  .sub { position: relative; z-index: 2; margin: 24px 0 0; max-width: 640px; font-size: 25px; line-height: 1.4; color: #c9c9d3; }
+  .meta { position: relative; z-index: 2; display: flex; align-items: center; gap: 22px; font-size: 21px; color: #8c8c9c; }
+  .meta b { color: #f4f3f1; font-weight: 600; }
+  .meta .sep { width: 6px; height: 6px; border-radius: 50%; background: #4b4b5c; }
+  /* Rechterbeeld: het echte werk, in een frame */
+  .shot {
+    position: absolute; z-index: 1;
+    right: -40px; top: 110px;
+    width: 470px; height: 470px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.95);
+    background: #0b0b12;
+    transform: rotate(-3deg);
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  body.with-shot h1 { max-width: 620px; }
+  body.with-shot .sub { max-width: 560px; font-size: 23px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="orb orb--1"></span>
+    <span class="orb orb--2"></span>
+    <span class="orb orb--3"></span>
+    <span class="grid"></span>
+
+    <div class="shot" id="shot" hidden><img id="shotImg" src="" alt="" /></div>
+
+    <div class="top">
+      <div class="brand">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <p class="kicker" id="kicker">Case</p>
+      <h1 id="title">Titel</h1>
+      <p class="sub" id="sub"></p>
+    </div>
+
+    <div class="bottom meta">
+      <span><b id="metaBrand">Eliyah Webdesign</b></span>
+      <span class="sep"></span>
+      <span id="metaExtra">Roermond</span>
+    </div>
+  </div>
+
+<script>
+  // ?t=titel&k=kicker&s=subregel&img=pad&extra=label
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var dec = function (v, fallback) { return v ? decodeURIComponent(v) : fallback; };
+    var t = dec(q.get("t"), "Websites op maat");
+    var titleEl = document.getElementById("title");
+    // [woord] tussen blokhaken wordt cursief serif, net als op de site
+    titleEl.innerHTML = t.replace(/\[([^\]]+)\]/g, "<em>$1</em>");
+    if (t.length > 38) titleEl.classList.add("compact");
+    document.getElementById("kicker").textContent = dec(q.get("k"), "Case");
+    var sub = dec(q.get("s"), "");
+    if (sub) document.getElementById("sub").textContent = sub;
+    var img = dec(q.get("img"), "");
+    if (img) {
+      document.body.classList.add("with-shot");
+      document.getElementById("shotImg").src = img;
+      document.getElementById("shot").hidden = false;
+    }
+    document.getElementById("metaExtra").textContent = dec(q.get("extra"), "Roermond, NL");
+  })();
+</script>
+</body>
+</html>

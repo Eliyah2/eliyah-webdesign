@@ -5,13 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio Widgets — Project · Eliyah Webdesign</title>
   <meta name="description" content="Case: interactieve UI-widgets met klok, weer-API en UV-index, inclusief volledige dark mode en componentbibliotheek." />
+  <link rel="canonical" href="https://eliyah2.github.io/eliyah-webdesign/projects/widgets.html" />
+
+  <!-- Social preview (absolute URL's; platforms lossen relatieve paden niet op) -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Eliyah Webdesign" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:title" content="Portfolio Widgets — Project · Eliyah Webdesign" />
+  <meta property="og:description" content="Case: interactieve UI-widgets met klok, weer-API en UV-index, inclusief volledige dark mode en componentbibliotheek." />
+  <meta property="og:url" content="https://eliyah2.github.io/eliyah-webdesign/projects/widgets.html" />
+  <meta property="og:image" content="https://eliyah2.github.io/eliyah-webdesign/og/widgets.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Case Portfolio Widgets — klok, weer-API en UV-index in licht en donker" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Portfolio Widgets — Project · Eliyah Webdesign" />
+  <meta name="twitter:description" content="Interactieve UI-widgets met klok, weer-API en UV-index, in licht en donker thema." />
+  <meta name="twitter:image" content="https://eliyah2.github.io/eliyah-webdesign/og/widgets.jpg" />
   <meta name="theme-color" content="#07070b" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <link rel="manifest" href="../site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
   <style>
     /* var() met fallback: donker vóór style.css, thema-bewust daarna */
     html { background: var(--bg, #07070b); }
@@ -23,7 +42,7 @@
       -webkit-font-smoothing: antialiased;
     }
   </style>
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../style.css?v=2" />
   <script>
     (function () {
       try {
@@ -111,10 +130,14 @@
   <footer class="footer">
     <div class="shell footer__bottom">
       <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
-      <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+      <span class="footer__links">
+        <a href="https://instagram.com/eliyah.0475" class="footer__top" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" class="footer__top" data-whatsapp hidden>WhatsApp</a>
+        <a href="../index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+      </span>
     </div>
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="../script.js?v=2" defer></script>
 </body>
 </html>

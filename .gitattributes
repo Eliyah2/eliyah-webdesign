@@ -1,0 +1,12 @@
+# Regel-eindes normaliseren: geen CRLF-waarschuwingen meer bij elke commit
+* text=auto eol=lf
+
+# Binaire bestanden nooit als tekst behandelen
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff2 binary
+
+*.sh text eol=lf

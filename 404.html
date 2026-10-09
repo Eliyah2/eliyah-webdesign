@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagina niet gevonden · Eliyah Webdesign</title>
+  <meta name="description" content="Deze pagina bestaat niet (meer). Ga terug naar de homepage of bekijk het werk." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#08080c" />
+  <!-- Let op: absolute paden met de projectmap erin, omdat een 404 op elke
+       diepte kan opduiken. Op een eigen domein wordt dit /style.css. -->
+  <link rel="icon" href="/eliyah-webdesign/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/eliyah-webdesign/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <style>
+    /* Minimale eigen opmaak, zodat deze pagina ook leesbaar blijft als
+       style.css niet meekomt (een 404 kan door een verkeerd pad ontstaan). */
+    html { background: var(--bg, #07070b); }
+    html, body { margin: 0; }
+    body {
+      background: var(--bg, #07070b);
+      color: var(--text, #f4f3f1);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .vlag { max-width: 44rem; margin: 0 auto; padding: clamp(3rem, 12vh, 8rem) 1.5rem 4rem; }
+    .vlag h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin: 0.6rem 0 1.2rem; letter-spacing: -0.02em; }
+    .vlag em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; color: #a4b4ff; }
+    .vlag p { color: #c9c9d3; font-size: 1.05rem; line-height: 1.6; max-width: 38rem; }
+    .vlag .knoppen { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 2rem 0 3rem; }
+    .vlag .knoppen a { display: inline-flex; align-items: center; padding: 0.9rem 1.6rem; border-radius: 99px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.16); color: var(--text, #f4f3f1); }
+    .vlag .knoppen a.eerste { background: linear-gradient(120deg, #8aa8ff, #b98cff 55%, #ff9ecb); color: #0a0a12; border: none; }
+    .vlag h2 { font-size: 1.05rem; margin: 2rem 0 0.8rem; }
+    .vlag ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+    .vlag ul a { color: #c9c9d3; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
+  </style>
+  <link rel="stylesheet" href="/eliyah-webdesign/style.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="page-project">
+
+  <a class="skip-link" href="#top">Direct naar de inhoud</a>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <header class="nav is-stuck">
+    <div class="nav__inner">
+      <a class="brand" href="/eliyah-webdesign/index.html" aria-label="Eliyah Webdesign — home">
+        <span class="brand__mark">E</span>
+        <span class="brand__text"><strong>Eliyah</strong><em>Webdesign</em></span>
+      </a>
+      <div class="nav__actions">
+        <a class="btn btn--primary btn--sm magnetic" href="/eliyah-webdesign/index.html#contact">Kennismaken</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" tabindex="-1">
+    <section class="section">
+      <div class="shell vlag" style="max-width: 44rem;">
+        <p class="kicker">404 — pagina niet gevonden</p>
+        <h1 class="h2">
+          Deze pagina bestaat <em class="serif gradient">niet (meer)</em>
+        </h1>
+        <p class="lead">
+          Misschien is de link oud, of staat er een typefout in het adres.
+          Geen zorgen: hieronder staan de routes die wél werken.
+        </p>
+
+        <div class="hero__cta knoppen">
+          <a class="btn btn--primary magnetic eerste" href="/eliyah-webdesign/index.html">
+            Naar de homepage
+            <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
+          </a>
+          <a class="btn btn--ghost magnetic" href="/eliyah-webdesign/index.html#projecten">Bekijk het werk</a>
+          <a class="btn btn--ghost magnetic" href="/eliyah-webdesign/index.html#contact">Contact opnemen</a>
+        </div>
+
+        <h2 class="h3">Populaire pagina's</h2>
+        <ul class="ticks">
+          <li><a class="link-arrow" href="/eliyah-webdesign/projects/glanzza.html">Glanzza — boekingen zonder no-shows</a></li>
+          <li><a class="link-arrow" href="/eliyah-webdesign/projects/menuapp.html">Tafelbestelsysteem Las Tapas</a></li>
+          <li><a class="link-arrow" href="/eliyah-webdesign/projects/hairshop.html">John's Hairshop</a></li>
+          <li><a class="link-arrow" href="/eliyah-webdesign/index.html#pakketten">Pakketten en prijzen</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — Roermond</p>
+      <a href="/eliyah-webdesign/index.html" class="footer__top">Naar de homepage <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+
+  <script src="/eliyah-webdesign/script.js" defer></script>
+</body>
+</html>

@@ -17,7 +17,7 @@
 
   --text: #f4f3f1;
   --text-soft: #c9c9d3;
-  --muted: #8c8c9c;
+  --muted: #9696a6;
 
   --accent: #7c9cff;
   --accent-2: #b98cff;
@@ -59,13 +59,16 @@
 
   --text: #111119;
   --text-soft: #3d3d4a;
-  --muted: #6d6d7c;
+  /* Contrast op #f5f4f1: muted 5,7:1 · accent 5,7:1 · accent-2 5,4:1 · accent-3 4,8:1.
+     De oude waarden (4,62 / 4,08 / 4,24 / 3,12) zaten op of onder de AA-grens,
+     juist bij de kleine letters: kicker, footer, prijslabels en veldlabels. */
+  --muted: #5f5f6b;
 
-  --accent: #4f6bef;
-  --accent-2: #8b53e8;
-  --accent-3: #0f9c86;
-  --gradient: linear-gradient(120deg, #3d5cf0 0%, #8b53e8 50%, #e0559b 100%);
-  --glow: 0 0 0 1px rgba(12, 12, 20, 0.05), 0 24px 60px -24px rgba(79, 107, 239, 0.4);
+  --accent: #3f51d6;
+  --accent-2: #7a3fd6;
+  --accent-3: #0a6a58;
+  --gradient: linear-gradient(120deg, #2f4ce0 0%, #7a3fd6 50%, #c93f7e 100%);
+  --glow: 0 0 0 1px rgba(12, 12, 20, 0.05), 0 24px 60px -24px rgba(63, 81, 214, 0.4);
 
   --shadow-sm: 0 10px 30px -18px rgba(17, 17, 25, 0.35);
   --shadow: 0 30px 70px -34px rgba(17, 17, 25, 0.4);
@@ -74,6 +77,15 @@
   --grain-opacity: 0.035;
   color-scheme: light;
 }
+
+/* In het donkere thema is de merk-gradient licht, dus staat er zwarte tekst op.
+   In het lichte thema is diezelfde gradient donker: daar moet de tekst wit zijn,
+   anders zakt het contrast naar 3,0:1 (gemeten, onder de AA-grens van 4,5:1). */
+[data-theme="light"] .brand__mark,
+[data-theme="light"] .btn--primary,
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .filter.is-active,
+[data-theme="light"] .plan__flag { color: #fff; }
 
 /* Metrisch gelijke terugvalfonts. De systeemletter bekleedt exact dezelfde
    ruimte als Inter en Instrument Serif, zodat er niets verspringt op het moment
@@ -864,18 +876,44 @@ body.has-cursor summary { cursor: none; }
   padding: clamp(1.6rem, 3vw, 2.2rem);
   align-self: start;
 }
-.about__avatar {
-  width: 66px; height: 66px;
-  border-radius: 20px;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 1.3rem;
-  color: #0a0a12;
-  background: var(--gradient);
-  box-shadow: var(--glow);
-  margin-bottom: 1.1rem;
+/* Portret: echt gezicht in plaats van initialen — de kaart is de plek waar
+   een bezoeker besluit of hij jou vertrouwt. */
+.about__portrait {
+  margin: 0 0 1.25rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
+.about__portrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+}
+.about__ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+.about__ig svg {
+  width: 17px; height: 17px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+}
+.about__ig strong { color: var(--text); font-weight: 600; }
+.about__ig:hover { color: var(--accent); }
+.about__ig:hover strong { color: var(--accent); }
 .about__card h3 { font-size: 1.25rem; margin-bottom: 0.15rem; }
 .about__card > p { font-size: 0.92rem; }
 .about__meta {
@@ -1078,7 +1116,9 @@ body.has-cursor summary { cursor: none; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #fff;
-  background: rgba(10, 10, 18, 0.55);
+  /* Steviger dan 0,55: de badge ligt over een foto, en witte tekst moet ook op
+     een lichte schermafbeelding leesbaar blijven. */
+  background: rgba(10, 10, 18, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(10px);
 }
@@ -1438,6 +1478,13 @@ body.has-cursor summary { cursor: none; }
   color: var(--muted);
 }
 .footer__bottom p { margin: 0; }
+.footer__links {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 .footer__top { color: var(--text-soft); transition: color var(--dur) var(--ease); }
 .footer__top:hover { color: var(--accent); }
 
