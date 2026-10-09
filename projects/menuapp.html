@@ -25,12 +25,13 @@
   <meta name="theme-color" content="#07070b" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <!-- De lettertypen staan in de map fonts/ op deze site zelf: geen verbinding
+       met Google Fonts, dus sneller en zonder verzoek van de bezoeker aan Google.
+       De twee gezichten uit het eerste schermbeeld (Inter en de cursieve serif)
+       laden we vooraf. -->
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/inter-variabel-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/instrument-serif-italic-latin.woff2" crossorigin />
   <link rel="manifest" href="../site.webmanifest" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
   <style>
     /* var() met fallback: donker vóór style.css, thema-bewust daarna */
     html { background: var(--bg, #07070b); }

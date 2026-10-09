@@ -11,9 +11,12 @@
        root (/style.css). Dat is correct op Vercel en op een eigen domein. -->
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
+  <!-- De lettertypen staan in de map fonts/ op deze site zelf: geen verbinding
+       met Google Fonts, dus sneller en zonder verzoek van de bezoeker aan Google.
+       De twee gezichten uit het eerste schermbeeld (Inter en de cursieve serif)
+       laden we vooraf. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-variabel-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-latin.woff2" crossorigin />
   <style>
     /* Minimale eigen opmaak, zodat deze pagina ook leesbaar blijft als
        style.css niet meekomt (een 404 kan door een verkeerd pad ontstaan). */
@@ -127,7 +130,6 @@
         <ul class="ticks">
           <li><a class="link-arrow" href="/projects/glanzza.html">Glanzza — boekingen zonder no-shows</a></li>
           <li><a class="link-arrow" href="/projects/menuapp.html">Tafelbestelsysteem Las Tapas</a></li>
-          <li><a class="link-arrow" href="/projects/hairshop.html">John's Hairshop</a></li>
           <li><a class="link-arrow" href="/index.html#pakketten">Pakketten en prijzen</a></li>
         </ul>
       </div>

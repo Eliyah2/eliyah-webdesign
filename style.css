@@ -6,6 +6,57 @@
    4. Loader        8. Projectpagina's & responsive
    ============================================================ */
 
+/* @fonts:begin */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-regular-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/instrument-serif-regular-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-variabel-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("fonts/inter-variabel-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* @fonts:eind */
+
 /* ---------- 1. TOKENS ---------- */
 :root {
   --bg: #07070b;
@@ -338,7 +389,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   opacity: 0;
   transform: translate3d(0, 26px, 0);
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-  will-change: opacity, transform;
+  /* Geen will-change: dat maakte van elk van de tientallen sectieblokken een
+     eigen compositing-laag, wat de laagboom duur maakte bij het opbouwen. */
 }
 .reveal.is-visible {
   opacity: 1;
@@ -407,27 +459,28 @@ body.is-ready .loader {
 .ambient__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
   opacity: 0.55;
-  /* Eigen compositing-laag: het dure blurren hoeft dan niet per frame opnieuw */
+  /* Eigen compositing-laag: de beweging blijft zo op de GPU. Het blur-filter is
+     weg: de gradient loopt zelf al zacht uit naar transparant, dus blur(80px)
+     kostte alleen rekenwerk op een laag van bijna het hele scherm. */
   will-change: transform;
 }
 .ambient__orb--1 {
   width: 46vw; height: 46vw;
   top: -14vw; left: -8vw;
-  background: radial-gradient(circle at 30% 30%, rgba(124, 156, 255, 0.55), transparent 65%);
+  background: radial-gradient(circle at 30% 30%, rgba(124, 156, 255, 0.55), transparent 72%);
   animation: float1 22s ease-in-out infinite;
 }
 .ambient__orb--2 {
   width: 40vw; height: 40vw;
   top: 24vh; right: -12vw;
-  background: radial-gradient(circle at 60% 40%, rgba(185, 140, 255, 0.45), transparent 65%);
+  background: radial-gradient(circle at 60% 40%, rgba(185, 140, 255, 0.45), transparent 72%);
   animation: float2 26s ease-in-out infinite;
 }
 .ambient__orb--3 {
   width: 38vw; height: 38vw;
   bottom: -10vw; left: 23vw;
-  background: radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.22), transparent 65%);
+  background: radial-gradient(circle at 50% 50%, rgba(94, 234, 212, 0.22), transparent 72%);
   animation: float3 30s ease-in-out infinite;
 }
 [data-theme="light"] .ambient__orb { opacity: 0.34; }
@@ -447,7 +500,7 @@ body.is-ready .loader {
    permanent animerende laag van drie keer het scherm (scheelt merkbaar op zwakkere machines). */
 .ambient__grain {
   position: absolute;
-  inset: -50%;
+  inset: 0;
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -530,10 +583,13 @@ body.has-cursor summary { cursor: none; }
 .progress__bar {
   display: block;
   height: 100%;
-  width: 0;
+  width: 100%;
+  /* scaleX in plaats van width: geen lay-outwerk per scrollframe */
+  transform: scaleX(0);
+  transform-origin: left center;
   background: var(--gradient);
   box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 70%, transparent);
-  transition: width 0.1s linear;
+  transition: transform 0.1s linear;
 }
 
 .nav {
@@ -703,7 +759,6 @@ body.has-cursor summary { cursor: none; }
   overflow: hidden;
   isolation: isolate;
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
-  will-change: transform;
 }
 .btn > * { position: relative; z-index: 1; }
 .btn::after {
@@ -778,16 +833,25 @@ body.has-cursor summary { cursor: none; }
   margin-bottom: 1.6rem;
 }
 .pulse-dot {
+  position: relative;
   width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--accent-3);
-  box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-3) 70%, transparent);
-  animation: pulse 2.2s infinite;
 }
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent-3) 60%, transparent); }
-  70% { box-shadow: 0 0 0 12px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
+/* De ring groeit via transform en vervaagt; een animerende box-shadow zou de
+   pagina elke frame opnieuw laten schilderen. */
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--accent-3) 60%, transparent);
+  animation: pulseRing 2.2s cubic-bezier(0.25, 0.6, 0.3, 1) infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.65; }
+  70% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(2.5); opacity: 0; }
 }
 
 .hero__title {
@@ -1098,9 +1162,8 @@ body.has-cursor summary { cursor: none; }
   color: #fff;
   /* Steviger dan 0,55: de badge ligt over een foto, en witte tekst moet ook op
      een lichte schermafbeelding leesbaar blijven. */
-  background: rgba(10, 10, 18, 0.72);
+  background: rgba(10, 10, 18, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(10px);
 }
 .project__body { padding: 1.5rem clamp(1.2rem, 2.5vw, 1.8rem) 1.8rem; display: flex; flex-direction: column; flex: 1; }
 .project__top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }

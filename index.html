@@ -59,13 +59,13 @@
 
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <!-- De lettertypen staan in de map fonts/ op deze site zelf: geen verbinding
+       met Google Fonts, dus sneller en zonder verzoek van de bezoeker aan Google.
+       De twee gezichten uit de eerste schermbeeld (Inter en de cursieve serif)
+       laden we vooraf. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-variabel-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-latin.woff2" crossorigin />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Lettertypen niet-blokkerend: de pagina rendert direct, de webfonts schuiven na -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
 
   <!-- Kritieke CSS: geen witte flits, en de loader staat er meteen goed op -->
   <style>
@@ -162,8 +162,8 @@
   <!-- ============ NAVIGATIE ============ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a class="brand" href="#top" aria-label="Eliyah Webdesign — naar boven">
-        <span class="brand__mark">E</span>
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true">E</span>
         <span class="brand__text">
           <strong>Eliyah</strong>
           <em>Webdesign</em>
@@ -247,7 +247,7 @@
             <dd>Gemiddelde oplevertijd</dd>
           </div>
           <div class="stat">
-            <dt><span class="count" data-target="7">0</span></dt>
+            <dt><span class="count" data-target="5">0</span></dt>
             <dd>Projecten in dit portfolio</dd>
           </div>
           <div class="stat">
@@ -459,8 +459,10 @@
           <p class="kicker">04 — Geselecteerd werk</p>
           <h2 class="h2">Projecten waar ik <em class="serif gradient">trots</em> op ben</h2>
           <p class="section__lead">
-            Van boekingsplatform en mobiele app tot dashboard en horecaconcept — een
-            selectie uit mijn werk, met de echte beelden erbij.
+            Alles wat je hier ziet, heb ik zelf ontworpen en gebouwd: eigen projecten
+            en concepten, van boekingsplatform tot dashboard. Ik heb inmiddels ook een
+            eerste echt klantproject — een kapsalon in de regio. Dat zet ik er pas op
+            als de eigenaar daar toestemming voor geeft.
           </p>
         </header>
 
@@ -508,47 +510,11 @@
             </div>
           </a>
 
-          <a class="project reveal tilt" href="projects/hairshop.html" data-delay="120" data-cat="web">
-            <div class="project__media">
-              <img src="projects/img/hairshop-2.jpg" width="937" height="432" alt="Het team van John's Hairshop in de salon" loading="lazy" decoding="async" />
-              <span class="project__badge">Live</span>
-              <span class="project__index" aria-hidden="true">03</span>
-            </div>
-            <div class="project__body">
-              <div class="project__top">
-                <h3>John's Hairshop</h3>
-                <span class="project__year">2026</span>
-              </div>
-              <p>Website voor een kapsalon met dertig jaar ervaring in Venlo en Blerick: dienstverlening, tarieven en direct een afspraak maken.</p>
-              <ul class="chips"><li>Klantwerk</li><li>Afspraken</li><li>Lokale SEO</li></ul>
-              <p class="project__result"><span aria-hidden="true">✓</span> Live op Vercel, met dienstverlening en tarieven direct leesbaar</p>
-              <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
-            </div>
-          </a>
-
-          <a class="project reveal tilt" href="projects/funforest.html" data-delay="180" data-cat="app">
-            <div class="project__media project__media--logo">
-              <img src="projects/img/funforest-logo.png" width="400" height="400" alt="FunForest klimbos — logo van de seizoenkaart-app" loading="lazy" decoding="async" />
-              <span class="project__badge">App</span>
-              <span class="project__index" aria-hidden="true">04</span>
-            </div>
-            <div class="project__body">
-              <div class="project__top">
-                <h3>FunForest Seizoenskaart</h3>
-                <span class="project__year">2026</span>
-              </div>
-              <p>Mobiele app voor het klimbos: een digitale seizoenkaart met QR-check-in, bezoekenteller en reserveringen.</p>
-              <ul class="chips"><li>React Native</li><li>QR-check-in</li><li>Reserveringen</li></ul>
-              <p class="project__result"><span aria-hidden="true">✓</span> Het fysieke pasje vervangen door een digitale kaart met QR-check-in</p>
-              <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
-            </div>
-          </a>
-
-          <a class="project reveal tilt" href="projects/greenhouse.html" data-delay="240" data-cat="app">
+          <a class="project reveal tilt" href="projects/greenhouse.html" data-delay="120" data-cat="app">
             <div class="project__media">
               <img src="projects/img/project1.jpg" width="539" height="249" alt="Greenhouse Dashboard — schermontwerp met sensordata" loading="lazy" decoding="async" />
               <span class="project__badge">Webapp</span>
-              <span class="project__index" aria-hidden="true">05</span>
+              <span class="project__index" aria-hidden="true">03</span>
             </div>
             <div class="project__body">
               <div class="project__top">
@@ -562,11 +528,11 @@
             </div>
           </a>
 
-          <a class="project reveal tilt" href="projects/widgets.html" data-delay="300" data-cat="web app">
+          <a class="project reveal tilt" href="projects/widgets.html" data-delay="180" data-cat="web app">
             <div class="project__media">
               <img src="projects/img/project2.jpg" width="513" height="838" alt="Portfolio Widgets — interface in licht thema" loading="lazy" decoding="async" />
               <span class="project__badge">Website</span>
-              <span class="project__index" aria-hidden="true">06</span>
+              <span class="project__index" aria-hidden="true">04</span>
             </div>
             <div class="project__body">
               <div class="project__top">
@@ -580,11 +546,11 @@
             </div>
           </a>
 
-          <a class="project reveal tilt" href="projects/funkyfries.html" data-delay="360" data-cat="web brand">
+          <a class="project reveal tilt" href="projects/funkyfries.html" data-delay="240" data-cat="web brand">
             <div class="project__media">
               <img src="projects/img/project3.jpg" width="938" height="870" alt="Funky Fries — restaurantwebsite met opvallende branding" loading="lazy" decoding="async" />
               <span class="project__badge">Branding</span>
-              <span class="project__index" aria-hidden="true">07</span>
+              <span class="project__index" aria-hidden="true">05</span>
             </div>
             <div class="project__body">
               <div class="project__top">
@@ -955,7 +921,7 @@
         var l = document.getElementById("loader");
         if (l) l.classList.add("is-done");
         document.body.classList.add("is-ready");
-      }, 1500);
+      }, 1200);
     });
   </script>
 </body>

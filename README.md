@@ -28,7 +28,7 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── icon-512.png            # Icoon voor het webmanifest
 ├── site.webmanifest        # App-manifest (naam, kleuren, iconen)
 ├── robots.txt              # Crawlinstructies + verwijzing naar de sitemap
-├── sitemap.xml             # Alle acht pagina's met lastmod
+├── sitemap.xml             # De pagina's die gevonden mogen worden (zes)
 ├── og/                     # Social-previewkaarten van 1200x630 (index.jpg + per case)
 ├── tools/
 │   ├── og-card.html        # Generator-template voor de previewkaarten
@@ -37,8 +37,8 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 └── projects/
     ├── glanzza.html        # Case: boekingsplatform met Wero-aanbetaling
     ├── menuapp.html        # Case: tafelbestelsysteem Las Tapas
-    ├── hairshop.html       # Case: website John's Hairshop (live)
-    ├── funforest.html      # Case: FunForest Seizoenskaart (mobiele app)
+    ├── hairshop.html       # Case: website kapsalon — tijdelijk noindex, geen teamfoto meer
+    ├── funforest.html      # Case: seizoenkaart-app — tijdelijk noindex
     ├── greenhouse.html     # Case: kas-dashboard
     ├── widgets.html        # Case: UI-widgets
     ├── funkyfries.html     # Case: restaurantwebsite
@@ -52,11 +52,31 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 | --- | --- | --- |
 | [Glanzza](projects/glanzza.html) | Boekings- en no-show-tool: eigen boekingspagina per bedrijf, Wero-aanbetaling, centrale backend | Vanilla JS, Apps Script, Sheets |
 | [Tafelbestelsysteem Las Tapas](projects/menuapp.html) | QR-bestellen aan tafel, keukenscherm, uitgifte met goedkeuring en voorraadbeheer | Next.js, API-routes |
-| [John's Hairshop](projects/hairshop.html) | Website voor een kapsalon in Venlo en Blerick — live op Vercel | HTML/CSS, live |
-| [FunForest Seizoenskaart](projects/funforest.html) | Mobiele app met digitale seizoenkaart, QR-check-in en reserveringen | React Native (Expo), Supabase |
+| Kapsalon (nog geen toestemming) | Website voor een kapsalon in Venlo en Blerick — tijdelijk buiten het portfolio | HTML/CSS, live |
+| Seizoenskaart-app (nog geen toestemming) | Mobiele app met digitale seizoenkaart, QR-check-in en reserveringen | React Native (Expo), Supabase |
 | [Greenhouse Dashboard](projects/greenhouse.html) | Realtime monitoring en automatisering voor kasventilatie | Dashboard, realtime data |
 | [Portfolio Widgets](projects/widgets.html) | Interactieve UI-widgets met API-data en dark mode | Vanilla JS, API |
 | [Funky Fries](projects/funkyfries.html) | Restaurantwebsite met eigen branding | HTML/CSS, branding |
+
+## Tijdelijk buiten het portfolio: kapsalon en seizoenkaart-app
+
+Twee cases staan bewust **niet** meer op de homepage en niet meer in de sitemap:
+
+- **John's Hairshop** — de eigenaar moet nog toestemming geven voor naam en beeld.
+  De foto met het team is uit de pagina en uit `og/` gehaald; er staat nu een
+  interieurfoto. De pagina zelf blijft bestaan, maar met `noindex`.
+- **FunForest Seizoenskaart** — gemaakt voor het bedrijf van een familielid, nog
+  zonder toestemming om het te laten zien. De pagina blijft bestaan, met `noindex`.
+
+Weer terugzetten als de toestemming er is:
+
+1. `git checkout HEAD~1 -- projects/img/hairshop-2.jpg og/hairshop.jpg projects/hairshop.html projects/funforest.html`
+   (of zoek de juiste commit met `git log --oneline -- og/hairshop.jpg`)
+2. haal de regel `<meta name="robots" content="noindex, follow" />` uit die twee pagina's
+3. zet de twee `<a class="project …">`-kaarten terug in `index.html` en nummer de
+   kaarten opnieuw (01 t/m 07) — de filterknoppen werken automatisch mee
+4. zet de twee `<url>`-blokken terug in `sitemap.xml`
+5. werk de teller bij: `<span class="count" data-target="5">` → `7`
 
 ## Diensten & pakketten
 

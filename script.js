@@ -21,7 +21,8 @@
       if (loader) loader.classList.add("is-done");
     };
 
-    // De loader verdwijnt pas als de webfonts klaar zijn (of na 1,2s).
+    // De loader verdwijnt zodra de webfonts klaar zijn, maar wacht daar hooguit
+    // 0,6s op: een bezoeker mag nooit op een lettertype blijven wachten.
     // Zo ziet niemand de lettertypewissel — de pagina staat er in één keer goed.
     const afterLoad = () => {
       const jobs = [];
@@ -30,16 +31,16 @@
         jobs.push(document.fonts.load('italic 1rem "Instrument Serif"'));
       }
       const fonts = jobs.length ? Promise.all(jobs).catch(() => {}) : Promise.resolve();
-      const timeout = new Promise((resolve) => setTimeout(resolve, 1200));
-      Promise.race([fonts, timeout]).then(() => setTimeout(finish, 120));
+      const timeout = new Promise((resolve) => setTimeout(resolve, 600));
+      Promise.race([fonts, timeout]).then(() => setTimeout(finish, 80));
     };
 
     if (document.readyState === "complete") {
       afterLoad();
     } else {
       window.addEventListener("load", afterLoad);
-      // Vangnet: nooit langer dan 2,6s wachten op trage assets
-      setTimeout(finish, 2600);
+      // Vangnet: nooit langer dan 1,6s wachten op trage assets
+      setTimeout(finish, 1600);
     }
   }
 
@@ -198,9 +199,9 @@
     let onScreen = true;
     let lastFrame = 0;
 
-    // Het is een zachte gradient: intern op 42% resolutie tekenen scheelt
-    // ~80% vulwerk en is met het blote oog niet te zien.
-    const RENDER_SCALE = 0.42;
+    // Het is een zachte gradient: intern op 30% resolutie tekenen scheelt
+    // ruim 90% vulwerk en is met het blote oog niet te zien.
+    const RENDER_SCALE = 0.3;
 
     const resize = () => {
       const rect = host.getBoundingClientRect();
@@ -217,8 +218,8 @@
     const frame = (now) => {
       if (!running) return;
       requestAnimationFrame(frame);
-      // ~30 fps: ruim vloeiend voor langzaam drijvende wolken, zuinig met de processor
-      if (now - lastFrame < 33) return;
+      // ~24 fps: ruim vloeiend voor langzaam drijvende wolken, zuinig met de processor
+      if (now - lastFrame < 42) return;
       lastFrame = now;
 
       pointer.x += (pointer.tx - pointer.x) * 0.06;
@@ -250,7 +251,7 @@
     };
 
     const start = () => {
-      if (running) return;
+      if (running || !magTeken || !klaarMetLaden) return;
       running = true;
       lastFrame = 0;
       requestAnimationFrame(frame);
@@ -259,8 +260,35 @@
       running = false;
     };
 
+    // Bij "databesparing" geen doorlopende animatie: één stilstaand beeld is
+    // genoeg. En we beginnen pas na het laden, zodat dit tekenwerk niet met de
+    // eerste opbouw van de pagina concurreert.
+    const spaarzaam = !!(navigator.connection && navigator.connection.saveData);
+    const magTeken = !spaarzaam;
+    let klaarMetLaden = document.readyState === "complete";
+
     resize();
-    start();
+    if (spaarzaam) {
+      running = true;
+      frame(performance.now());
+      running = false;
+    } else if (klaarMetLaden) {
+      start();
+    } else {
+      window.addEventListener(
+        "load",
+        () => {
+          klaarMetLaden = true;
+          start();
+        },
+        { once: true }
+      );
+    }
+
+    // De hero kan na het laden van de webfonts net anders uitvallen. Zonder
+    // deze tweede meting blijft het doek op de oude maat staan (het tekenwerk
+    // zou dan net naast de hero vallen).
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => resize());
 
     let resizeTimer;
     window.addEventListener(
@@ -340,7 +368,8 @@
     const update = () => {
       const scrolled = window.scrollY || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - window.innerHeight;
-      if (bar) bar.style.width = (height > 0 ? (scrolled / height) * 100 : 0) + "%";
+      // scaleX in plaats van width: dit kost geen lay-out per scrollframe
+      if (bar) bar.style.transform = "scaleX(" + (height > 0 ? Math.min(scrolled / height, 1) : 0) + ")";
       if (nav) nav.classList.toggle("is-stuck", scrolled > 24);
       ticking = false;
     };

@@ -6,6 +6,10 @@
   <title>John's Hairshop — website voor een kapsalon · Eliyah Webdesign</title>
   <meta name="description" content="Case: de website voor John's Hairshop, kapsalon in Venlo en Blerick — dienstverlening, tarieven, nieuws en direct een afspraak maken." />
   <link rel="canonical" href="https://eliyah-webdesign.vercel.app/projects/hairshop.html" />
+  <!-- Tijdelijk niet in het portfolio: de eigenaar moet nog toestemming geven
+       voor het gebruiken van beeld en naam. Daarom geen index en geen
+       social-previewkaart met het team erop. -->
+  <meta name="robots" content="noindex, follow" />
 
   <!-- Social preview (absolute URL's; platforms lossen relatieve paden niet op) -->
   <meta property="og:type" content="article" />
@@ -14,23 +18,20 @@
   <meta property="og:title" content="John's Hairshop — website voor een kapsalon · Eliyah Webdesign" />
   <meta property="og:description" content="Case: de website voor John's Hairshop, kapsalon in Venlo en Blerick — dienstverlening, tarieven, nieuws en direct een afspraak maken." />
   <meta property="og:url" content="https://eliyah-webdesign.vercel.app/projects/hairshop.html" />
-  <meta property="og:image" content="https://eliyah-webdesign.vercel.app/og/hairshop.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Case John's Hairshop — website voor de kapsalon in Venlo en Blerick" />
+  <meta property="og:image:alt" content="Case: website voor een kapsalon in Venlo en Blerick" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="John's Hairshop — website voor een kapsalon" />
   <meta name="twitter:description" content="Dienstverlening, tarieven en direct een afspraak maken — live op Vercel." />
-  <meta name="twitter:image" content="https://eliyah-webdesign.vercel.app/og/hairshop.jpg" />
   <meta name="theme-color" content="#07070b" />
   <link rel="icon" href="../logo.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+  <!-- De lettertypen staan in de map fonts/ op deze site zelf: geen verbinding
+       met Google Fonts, dus sneller en zonder verzoek van de bezoeker aan Google.
+       De twee gezichten uit het eerste schermbeeld (Inter en de cursieve serif)
+       laden we vooraf. -->
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/inter-variabel-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/instrument-serif-italic-latin.woff2" crossorigin />
   <link rel="manifest" href="../site.webmanifest" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" /></noscript>
   <style>
     /* var() met fallback: donker vóór style.css, thema-bewust daarna */
     html { background: var(--bg, #07070b); }
@@ -92,7 +93,7 @@
           <li>Eenpager</li><li>Lokale vindbaarheid</li><li>Afspraak-knop</li><li>Live</li>
         </ul>
 
-        <img class="project-full" src="img/hairshop-2.jpg" width="937" height="432" decoding="async" alt="Het team van John's Hairshop in de salon" />
+        <img class="project-full" src="img/hairshop-1.jpg" width="617" height="803" decoding="async" alt="Het interieur van de salon met kappersstoelen en planten" />
 
         <h2>De uitdaging</h2>
         <p>
@@ -110,8 +111,6 @@
           <li>Nieuws uit de salon, zodat de site niet stilstaat</li>
           <li>Direct een afspraak maken als rode draad door de hele pagina</li>
         </ul>
-
-        <img class="project-full" src="img/hairshop-1.jpg" width="617" height="803" decoding="async" loading="lazy" alt="Interieur van de salon met kappersstoelen en planten" />
 
         <h2>Resultaat</h2>
         <p>
