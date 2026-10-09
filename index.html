@@ -1,202 +1,666 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eliyah Webdesign – Moderne Websites op Maat</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eliyah Impelmans — Webdesign & Maatwerk Websites</title>
+  <meta name="description" content="Eliyah Impelmans ontwerpt en bouwt hoogwaardige, snelle websites op maat voor ondernemers die zich willen onderscheiden. Vaste prijzen, persoonlijk contact, oplevering binnen 2 weken." />
+  <meta name="theme-color" content="#08080c" />
 
-  <meta name="description" content="Eliyah Webdesign bouwt moderne, snelle en overtuigende websites die voelen als een merk – niet als een template. Specialisatie in maatwerk websites, conversie-optimalisatie en professionele webapps.">
-  <meta name="keywords" content="webdesign, website laten maken, maatwerk website, responsive design, SEO optimalisatie, webdevelopment, portfolio">
-  <meta name="author" content="Eliyah Webdesign">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Eliyah Impelmans — Webdesign & Maatwerk Websites" />
+  <meta property="og:description" content="Hoogwaardige websites op maat. Snel, modern en met vaste prijzen." />
+  <meta property="og:image" content="projects/img/project2.jpg" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://eliyah-webdesign.github.io/">
-  <meta property="og:title" content="Eliyah Webdesign – Moderne Websites op Maat">
-  <meta property="og:description" content="Professionele websites die converteren. Geen templates, maar maatwerk dat bij jouw merk past.">
-  <meta property="og:image" content="https://eliyah-webdesign.github.io/projects/img/project1.jpg">
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://eliyah-webdesign.github.io/">
-  <meta property="twitter:title" content="Eliyah Webdesign – Moderne Websites op Maat">
-  <meta property="twitter:description" content="Professionele websites die converteren. Geen templates, maar maatwerk dat bij jouw merk past.">
-  <meta property="twitter:image" content="https://eliyah-webdesign.github.io/projects/img/project1.jpg">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <script>
+    // Zet het thema direct, vóór de eerste paint (voorkomt flikkering)
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    })();
+  </script>
 </head>
+<body>
 
-<body class="no-anim">
-
-<header class="top-nav will-animate">
-  <div class="nav-inner">
-    <div class="nav-logo">Eliyah Webdesign</div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav class="nav-links" id="navLinks">
-      <a href="#services">Diensten</a>
-      <a href="#projects">Projecten</a>
-      <a href="#process">Werkwijze</a>
-      <a href="#about">Over</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <!-- ============ PRELOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__mark">ELIYAH</div>
+    <div class="loader__track"><span class="loader__bar"></span></div>
   </div>
-</header>
 
-<section class="hero will-animate">
-  <div class="hero-inner">
-    <p class="eyebrow">Webdesign & Development</p>
-    <h1>Websites die voelen als een merk, niet als een template.</h1>
-    <p class="hero-sub">
-      Ik ben Eliyah, freelance webdesigner en developer. Ik bouw websites die niet alleen mooi zijn,
-      maar ook écht werken. Met focus op conversie, snelheid en gebruikerservaring.
-      <strong>Resultaat-gedreven websites voor ondernemers die serieus genomen willen worden.</strong>
-    </p>
-    <div class="hero-actions">
-      <button id="contactBtn" class="btn-primary">Plan een gratis kennismaking</button>
-      <a href="#projects" class="btn-ghost">Bekijk recente projecten</a>
+  <!-- ============ AMBIENT ACHTERGROND ============ -->
+  <div class="ambient" aria-hidden="true">
+    <span class="ambient__orb ambient__orb--1"></span>
+    <span class="ambient__orb ambient__orb--2"></span>
+    <span class="ambient__orb ambient__orb--3"></span>
+    <span class="ambient__grid"></span>
+    <span class="ambient__grain"></span>
+  </div>
+
+  <!-- Custom cursor (alleen desktop) -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span></div>
+
+  <!-- Scroll progress -->
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+  <!-- ============ NAVIGATIE ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="#top" aria-label="Eliyah Webdesign — naar boven">
+        <span class="brand__mark">E</span>
+        <span class="brand__text">
+          <strong>Eliyah</strong>
+          <em>Webdesign</em>
+        </span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Hoofdnavigatie">
+        <a href="#over">Over mij</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#werkwijze">Werkwijze</a>
+        <a href="#projecten">Projecten</a>
+        <a href="#pakketten">Pakketten</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Wissel tussen licht en donker thema" title="Thema wisselen">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></g></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+        </button>
+        <a class="btn btn--sm btn--primary magnetic" href="#contact">Kennismaken</a>
+        <button class="burger" id="burger" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
-    <div class="hero-meta">
-      <span>⚡ <strong>Supersnelle</strong> laadtijden</span>
-      <span>🎯 <strong>Gericht</strong> op conversie</span>
-      <span>📱 <strong>Pixel-perfect</strong> op mobiel</span>
-      <span>🔍 <strong>SEO-geoptimaliseerd</strong></span>
+  </header>
+
+  <!-- Mobiel menu -->
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <a href="#over">Over mij</a>
+    <a href="#diensten">Diensten</a>
+    <a href="#werkwijze">Werkwijze</a>
+    <a href="#projecten">Projecten</a>
+    <a href="#pakketten">Pakketten</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn--primary btn--block" href="#contact">Gratis kennismaking</a>
+  </div>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="shell hero__inner">
+        <p class="eyebrow reveal" data-delay="0">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Beschikbaar voor 2 nieuwe projecten
+        </p>
+
+        <h1 class="hero__title">
+          <span class="line reveal" data-delay="60">Websites die</span>
+          <span class="line reveal" data-delay="120">
+            <em class="serif gradient">opvallen</em>,
+          </span>
+          <span class="line reveal" data-delay="180">converteren &amp; blijven hangen.</span>
+        </h1>
+
+        <p class="hero__lead reveal" data-delay="240">
+          Ik ben <strong>Eliyah Impelmans</strong> — webdesigner en developer uit Roermond.
+          Ik ontwerp en bouw snelle, hoogwaardige websites op maat voor ondernemers die
+          serieus genomen willen worden online.
+        </p>
+
+        <div class="hero__cta reveal" data-delay="300">
+          <a class="btn btn--primary magnetic" href="#contact">
+            Gratis kennismaking
+            <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
+          </a>
+          <a class="btn btn--ghost magnetic" href="#projecten">Bekijk projecten</a>
+        </div>
+
+        <dl class="stats reveal" data-delay="360">
+          <div class="stat">
+            <dt><span class="count" data-target="14" data-suffix=" dagen">0</span></dt>
+            <dd>Gemiddelde oplevertijd</dd>
+          </div>
+          <div class="stat">
+            <dt><span class="count" data-target="98" data-suffix="%">0</span></dt>
+            <dd>Lighthouse performance</dd>
+          </div>
+          <div class="stat">
+            <dt><span class="count" data-target="100" data-suffix="%">0</span></dt>
+            <dd>Maatwerk, geen templates</dd>
+          </div>
+          <div class="stat">
+            <dt><span class="count" data-target="24" data-suffix="u">0</span></dt>
+            <dd>Reactietijd op berichten</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Doorlopende band -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Webdesign</span><span class="dot">•</span>
+          <span>UI/UX</span><span class="dot">•</span>
+          <span>Webshops</span><span class="dot">•</span>
+          <span>Dashboards</span><span class="dot">•</span>
+          <span>Animatie</span><span class="dot">•</span>
+          <span>Performance</span><span class="dot">•</span>
+          <span>SEO</span><span class="dot">•</span>
+          <span>Branding</span><span class="dot">•</span>
+          <span>Webdesign</span><span class="dot">•</span>
+          <span>UI/UX</span><span class="dot">•</span>
+          <span>Webshops</span><span class="dot">•</span>
+          <span>Dashboards</span><span class="dot">•</span>
+          <span>Animatie</span><span class="dot">•</span>
+          <span>Performance</span><span class="dot">•</span>
+          <span>SEO</span><span class="dot">•</span>
+          <span>Branding</span><span class="dot">•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OVER MIJ ============ -->
+    <section class="section" id="over">
+      <div class="shell about">
+        <div class="about__intro reveal">
+          <p class="kicker">01 — Over mij</p>
+          <h2 class="h2">
+            Geen bureau, geen tussenpersonen.<br />
+            <em class="serif gradient">Direct met de maker.</em>
+          </h2>
+        </div>
+
+        <div class="about__body">
+          <p class="lead reveal" data-delay="80">
+            Ik ben Eliyah, webdeveloper gespecialiseerd in webdesign, UI/UX en maatwerk
+            websites. Wat begon als nieuwsgierigheid naar code is uitgegroeid tot een
+            vak waarin ik merken online laat groeien.
+          </p>
+          <p class="reveal" data-delay="140">
+            Ik werk bewust zonder tussenlaag: jij praat met de persoon die jouw website
+            ontwerpt én bouwt. Dat maakt korte lijnen, snelle schakels en een resultaat
+            dat écht bij jouw merk past — in plaats van een standaardtemplate met een
+            nieuw kleurtje.
+          </p>
+          <p class="reveal" data-delay="200">
+            Mijn aanpak is rustig en transparant: eerst begrijpen wat jouw bedrijf nodig
+            heeft, dan ontwerpen, dan bouwen. Altijd met een vaste prijs en een duidelijke
+            planning vooraf.
+          </p>
+
+          <ul class="ticks reveal" data-delay="260">
+            <li>Volledig maatwerk design — uniek per merk</li>
+            <li>Snelle, mobielvriendelijke en toegankelijke code</li>
+            <li>Rustige communicatie in begrijpelijke taal</li>
+            <li>Ook na oplevering bereikbaar voor vragen</li>
+          </ul>
+        </div>
+
+        <aside class="about__card glass reveal" data-delay="120">
+          <div class="about__avatar" aria-hidden="true">EI</div>
+          <h3>Eliyah Impelmans</h3>
+          <p class="muted">Webdesigner &amp; Developer</p>
+          <ul class="about__meta">
+            <li><span>Locatie</span><strong>Roermond, NL</strong></li>
+            <li><span>Talen</span><strong>NL · EN</strong></li>
+            <li><span>Focus</span><strong>Maatwerk &amp; conversie</strong></li>
+            <li><span>Werkwijze</span><strong>Remote &amp; op locatie</strong></li>
+          </ul>
+          <a class="link-arrow magnetic" href="#contact">Plan een kennismaking <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ DIENSTEN ============ -->
+    <section class="section" id="diensten">
+      <div class="shell">
+        <header class="section__head reveal">
+          <p class="kicker">02 — Diensten</p>
+          <h2 class="h2">Wat ik voor jou <em class="serif gradient">bouw</em></h2>
+          <p class="section__lead">
+            Van een strakke one-pager tot een compleet dashboard. Elk project krijgt
+            dezelfde zorg: heldere structuur, doordachte details en snelheid.
+          </p>
+        </header>
+
+        <div class="bento">
+          <article class="bento__item span-2 reveal" data-delay="0">
+            <span class="bento__num">01</span>
+            <h3>Maatwerk websites</h3>
+            <p>
+              Een website die volledig op jouw merk, doelgroep en doelen is gebouwd.
+              Geen template, geen concessies — van eerste schets tot livegang.
+            </p>
+            <ul class="chips">
+              <li>Custom design</li><li>Responsive</li><li>Toegankelijk</li>
+            </ul>
+          </article>
+
+          <article class="bento__item reveal" data-delay="80">
+            <span class="bento__num">02</span>
+            <h3>UI/UX &amp; branding</h3>
+            <p>Interfaces die logisch aanvoelen en een merk neerzetten dat blijft hangen.</p>
+            <ul class="chips"><li>Design system</li><li>Prototype</li></ul>
+          </article>
+
+          <article class="bento__item reveal" data-delay="140">
+            <span class="bento__num">03</span>
+            <h3>Webshops</h3>
+            <p>Een overzichtelijke shop met soepele checkout en productpresentatie die verkoopt.</p>
+            <ul class="chips"><li>Productpagina's</li><li>Checkout</li></ul>
+          </article>
+
+          <article class="bento__item reveal" data-delay="200">
+            <span class="bento__num">04</span>
+            <h3>Dashboards &amp; webapps</h3>
+            <p>Data omzetten in overzicht: live cijfers, automatisering en heldere rapportage.</p>
+            <ul class="chips"><li>API's</li><li>Realtime</li></ul>
+          </article>
+
+          <article class="bento__item span-2 reveal" data-delay="260">
+            <span class="bento__num">05</span>
+            <h3>Performance &amp; SEO</h3>
+            <p>
+              Schone code, geoptimaliseerde afbeeldingen en een technische basis waar
+              Google én je bezoekers blij van worden. Snel is niet optioneel.
+            </p>
+            <ul class="chips"><li>Core Web Vitals</li><li>Technische SEO</li><li>Analytics</li></ul>
+          </article>
+
+          <article class="bento__item span-3 glass reveal" data-delay="320">
+            <span class="bento__num">06</span>
+            <h3>Onderhoud &amp; support</h3>
+            <p>
+              Na de livegang laat ik je niet los. Updates, kleine aanpassingen en
+              advies — in begrijpelijke taal, zonder dat je een technische vraagbaak
+              hoeft te worden.
+            </p>
+            <ul class="chips"><li>Updates</li><li>Back-ups</li><li>Advies</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WERKWIJZE ============ -->
+    <section class="section" id="werkwijze">
+      <div class="shell">
+        <header class="section__head reveal">
+          <p class="kicker">03 — Werkwijze</p>
+          <h2 class="h2">Van idee naar <em class="serif gradient">livegang</em></h2>
+          <p class="section__lead">Vier heldere stappen. Je weet altijd waar we staan en wat de volgende zet is.</p>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline__step reveal" data-delay="0">
+            <span class="timeline__index">01</span>
+            <div class="timeline__body">
+              <h3>Kennismaking</h3>
+              <p>We bespreken jouw doelen, doelgroep en stijl. Vrijblijvend, in ongeveer 30 minuten.</p>
+              <p class="timeline__out">Je krijgt: eerlijk advies en een eerste richting.</p>
+            </div>
+          </li>
+          <li class="timeline__step reveal" data-delay="80">
+            <span class="timeline__index">02</span>
+            <div class="timeline__body">
+              <h3>Voorstel &amp; planning</h3>
+              <p>Je ontvangt een voorstel met vaste prijs, scope en een realistische planning.</p>
+              <p class="timeline__out">Je krijgt: volledige duidelijkheid vooraf.</p>
+            </div>
+          </li>
+          <li class="timeline__step reveal" data-delay="160">
+            <span class="timeline__index">03</span>
+            <div class="timeline__body">
+              <h3>Ontwerp &amp; bouw</h3>
+              <p>Ik ontwerp, bouw en test — met tussentijdse previews zodat je kan bijsturen.</p>
+              <p class="timeline__out">Je krijgt: een klikbare preview om te reviewen.</p>
+            </div>
+          </li>
+          <li class="timeline__step reveal" data-delay="240">
+            <span class="timeline__index">04</span>
+            <div class="timeline__body">
+              <h3>Livegang &amp; nazorg</h3>
+              <p>Hosting, domein, e-mail en analytics geregeld. Daarna blijf ik bereikbaar.</p>
+              <p class="timeline__out">Je krijgt: een website die klaar is om te groeien.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTEN ============ -->
+    <section class="section" id="projecten">
+      <div class="shell">
+        <header class="section__head reveal">
+          <p class="kicker">04 — Geselecteerd werk</p>
+          <h2 class="h2">Projecten waar ik <em class="serif gradient">trots</em> op ben</h2>
+          <p class="section__lead">Een selectie uit mijn werk: van dashboard tot horecaconcept.</p>
+        </header>
+
+        <div class="filters reveal" data-delay="60">
+          <button class="filter is-active" data-filter="all" type="button">Alles</button>
+          <button class="filter" data-filter="web" type="button">Websites</button>
+          <button class="filter" data-filter="app" type="button">Webapps</button>
+          <button class="filter" data-filter="brand" type="button">Branding</button>
+        </div>
+
+        <div class="projects">
+          <a class="project reveal tilt" href="projects/greenhouse.html" data-delay="0" data-cat="app">
+            <div class="project__media">
+              <img src="projects/img/project1.jpg" alt="Greenhouse Dashboard — schermontwerp met sensordata" loading="lazy" />
+              <span class="project__badge">Webapp</span>
+            </div>
+            <div class="project__body">
+              <div class="project__top">
+                <h3>Greenhouse Dashboard</h3>
+                <span class="project__year">2026</span>
+              </div>
+              <p>Realtime monitoring en automatisering voor kasventilatie, met sensordata en verbruiksgrafieken.</p>
+              <ul class="chips"><li>Dashboard</li><li>Realtime</li><li>UI/UX</li></ul>
+              <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+
+          <a class="project reveal tilt" href="projects/widgets.html" data-delay="100" data-cat="web app">
+            <div class="project__media">
+              <img src="projects/img/project2.jpg" alt="Portfolio Widgets — interface in licht thema" loading="lazy" />
+              <span class="project__badge">Website</span>
+            </div>
+            <div class="project__body">
+              <div class="project__top">
+                <h3>Portfolio Widgets</h3>
+                <span class="project__year">2026</span>
+              </div>
+              <p>Interactieve UI-widgets met klok, weer-API en UV-index — inclusief volledige dark mode.</p>
+              <ul class="chips"><li>API</li><li>Dark mode</li><li>Componenten</li></ul>
+              <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+
+          <a class="project reveal tilt" href="projects/funkyfries.html" data-delay="200" data-cat="web brand">
+            <div class="project__media">
+              <img src="projects/img/project3.jpg" alt="Funky Fries — restaurantwebsite met opvallende branding" loading="lazy" />
+              <span class="project__badge">Branding</span>
+            </div>
+            <div class="project__body">
+              <div class="project__top">
+                <h3>Funky Fries</h3>
+                <span class="project__year">2026</span>
+              </div>
+              <p>Een moderne restaurantwebsite met unieke branding voor een hotspot in Roermond.</p>
+              <ul class="chips"><li>Branding</li><li>Menu</li><li>Horeca</li></ul>
+              <span class="project__link">Bekijk case <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAKKETTEN ============ -->
+    <section class="section" id="pakketten">
+      <div class="shell">
+        <header class="section__head reveal">
+          <p class="kicker">05 — Pakketten</p>
+          <h2 class="h2">Vaste prijzen, <em class="serif gradient">geen verrassingen</em></h2>
+          <p class="section__lead">
+            Je weet vooraf precies wat je betaalt. Introductieprijzen, geldig zolang
+            ik ruimte heb in mijn agenda.
+          </p>
+        </header>
+
+        <div class="pricing">
+          <article class="plan reveal" data-delay="0">
+            <header>
+              <h3>Starter</h3>
+              <p class="plan__desc">Voor een sterke eerste indruk op één pagina.</p>
+            </header>
+            <p class="plan__price"><span>€</span>175<small>eenmalig</small></p>
+            <ul class="plan__list">
+              <li>One-page website</li>
+              <li>Volledig responsive design</li>
+              <li>Contactformulier</li>
+              <li>Basis SEO-instellingen</li>
+              <li>Livegang binnen 1 week</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="#contact">Start met Starter</a>
+          </article>
+
+          <article class="plan plan--featured reveal" data-delay="100">
+            <span class="plan__flag">Meest gekozen</span>
+            <header>
+              <h3>Business</h3>
+              <p class="plan__desc">Voor bedrijven die serieus online willen groeien.</p>
+            </header>
+            <p class="plan__price"><span>€</span>350<small>eenmalig</small></p>
+            <ul class="plan__list">
+              <li>3–5 pagina’s op maat</li>
+              <li>Modern UI/UX-ontwerp</li>
+              <li>Google Maps + formulier</li>
+              <li>Snelle laadtijden &amp; SEO</li>
+              <li>Koppeling met socials</li>
+              <li>2 weken nazorg inbegrepen</li>
+            </ul>
+            <a class="btn btn--primary btn--block magnetic" href="#contact">Start met Business</a>
+          </article>
+
+          <article class="plan reveal" data-delay="200">
+            <header>
+              <h3>Premium</h3>
+              <p class="plan__desc">Voor maatwerk, shops en complexere projecten.</p>
+            </header>
+            <p class="plan__price"><span>€</span>650<small>vanaf</small></p>
+            <ul class="plan__list">
+              <li>6+ pagina’s of volledig custom</li>
+              <li>Webshop of dashboard</li>
+              <li>Premium animaties &amp; interactie</li>
+              <li>Conversie-optimalisatie</li>
+              <li>Analytics &amp; rapportage</li>
+              <li>3 maanden support</li>
+            </ul>
+            <a class="btn btn--ghost btn--block magnetic" href="#contact">Bespreek Premium</a>
+          </article>
+        </div>
+
+        <p class="pricing__note reveal">
+          Alle prijzen zijn eenmalig en exclusief hosting &amp; domein. Liever een
+          maatwerkvoorstel? Dat is altijd mogelijk.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section" id="ervaringen">
+      <div class="shell">
+        <header class="section__head reveal">
+          <p class="kicker">06 — Ervaringen</p>
+          <h2 class="h2">Wat klanten <em class="serif gradient">zeggen</em></h2>
+        </header>
+
+        <div class="quotes">
+          <figure class="quote glass reveal" data-delay="0">
+            <div class="quote__stars" aria-label="5 van 5 sterren">★★★★★</div>
+            <blockquote>“Eliyah leverde precies wat ik nodig had. Snelle communicatie, duidelijke afspraken en topkwaliteit.”</blockquote>
+            <figcaption><strong>Ondernemer uit Limburg</strong><span>Website op maat</span></figcaption>
+          </figure>
+
+          <figure class="quote glass reveal" data-delay="100">
+            <div class="quote__stars" aria-label="5 van 5 sterren">★★★★★</div>
+            <blockquote>“Professioneel, duidelijk en een heel modern design. Ik word eindelijk serieus genomen online.”</blockquote>
+            <figcaption><strong>Kleine zelfstandige</strong><span>Branding &amp; website</span></figcaption>
+          </figure>
+
+          <figure class="quote glass reveal" data-delay="200">
+            <div class="quote__stars" aria-label="5 van 5 sterren">★★★★★</div>
+            <blockquote>“Denkt mee, is snel en levert meer dan verwacht. Zeker een aanrader voor elke ondernemer.”</blockquote>
+            <figcaption><strong>Horecaondernemer</strong><span>Restaurantwebsite</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="shell faq">
+        <header class="section__head reveal">
+          <p class="kicker">07 — Vragen</p>
+          <h2 class="h2">Veelgestelde <em class="serif gradient">vragen</em></h2>
+        </header>
+
+        <div class="accordion">
+          <details class="acc reveal" data-delay="0" open>
+            <summary>Hoe lang duurt het maken van mijn website?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Een one-pager staat gemiddeld binnen een week live. Voor een website met meerdere pagina’s reken ik twee tot drie weken, afhankelijk van hoe snel de content er is.</p></div>
+          </details>
+
+          <details class="acc reveal" data-delay="60">
+            <summary>Wat heb ik zelf nodig om te starten?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Eigenlijk alleen je verhaal: wat je doet, voor wie en wat je wilt bereiken. Logo’s of foto’s die je al hebt zijn mooi meegenomen, maar ontbreken ze? Dan zoek ik passende oplossingen.</p></div>
+          </details>
+
+          <details class="acc reveal" data-delay="120">
+            <summary>Zijn de prijzen echt vast?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Ja. Na de kennismaking ontvang je een voorstel met een vaste prijs en een duidelijke scope. Zolang de scope niet verandert, verandert de prijs niet.</p></div>
+          </details>
+
+          <details class="acc reveal" data-delay="180">
+            <summary>Regel je ook hosting en domein?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Zeker. Ik adviseer een passende hostingpartij, koppel je domein, zet e-mail op en zorg dat alles veilig en snel draait. Jij houdt altijd eigenaarschap over je domein.</p></div>
+          </details>
+
+          <details class="acc reveal" data-delay="240">
+            <summary>Kan ik later nog dingen aanpassen?<span class="acc__icon" aria-hidden="true"></span></summary>
+            <div class="acc__body"><p>Altijd. Kleine aanpassingen doe ik vlot voor je, en voor grotere uitbreidingen maken we een nieuwe afspraak. Waar mogelijk leer ik je ook zelf de basis aan.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+      <div class="shell cta__inner glass reveal">
+        <p class="kicker">Klaar om te starten?</p>
+        <h2 class="h2">
+          Laten we jouw merk <em class="serif gradient">onvergetelijk</em> maken.
+        </h2>
+        <p class="cta__lead">
+          Plan een vrijblijvend gesprek. Geen verkooppraatje — gewoon meedenken over
+          wat jouw bedrijf online nodig heeft.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary magnetic" href="#contact">
+            Gratis kennismaking
+            <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
+          </a>
+          <a class="btn btn--ghost magnetic" href="mailto:eliyahimpelmans9@gmail.com">Mail mij direct</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="shell contact">
+        <div class="contact__info reveal">
+          <p class="kicker">08 — Contact</p>
+          <h2 class="h2">Vertel me over jouw <em class="serif gradient">project</em></h2>
+          <p class="lead">
+            Vul het formulier in of stuur me direct een bericht. Ik reageer doorgaans
+            binnen 24 uur.
+          </p>
+
+          <ul class="contact__list">
+            <li>
+              <span class="contact__label">E-mail</span>
+              <a href="mailto:eliyahimpelmans9@gmail.com">eliyahimpelmans9@gmail.com</a>
+            </li>
+            <li>
+              <span class="contact__label">Instagram</span>
+              <a href="https://instagram.com/eliyah.0475" target="_blank" rel="noopener">@eliyah.0475</a>
+            </li>
+            <li>
+              <span class="contact__label">Locatie</span>
+              <strong>Roermond, Nederland</strong>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact__form glass reveal" id="contactForm" data-delay="120" novalidate>
+          <div class="field">
+            <label for="name">Naam</label>
+            <input id="name" name="name" type="text" placeholder="Jouw naam" required />
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" placeholder="jij@bedrijf.nl" required />
+          </div>
+          <div class="field">
+            <label for="subject">Waar gaat het over?</label>
+            <select id="subject" name="subject">
+              <option>Nieuwe website</option>
+              <option>Website vernieuwen</option>
+              <option>Webshop</option>
+              <option>Dashboard of webapp</option>
+              <option>Iets anders</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Bericht</label>
+            <textarea id="message" name="message" rows="5" placeholder="Vertel kort over je bedrijf en wat je zoekt…" required></textarea>
+          </div>
+          <button class="btn btn--primary btn--block magnetic" type="submit">
+            Verstuur bericht
+            <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m0 0-5.5-5.5M19 12l-5.5 5.5"/></svg>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form-note">Je gegevens blijven privé en worden alleen gebruikt om te reageren.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <div class="footer__brand">
+        <span class="brand__mark" aria-hidden="true">E</span>
+        <div>
+          <strong>Eliyah Webdesign</strong>
+          <p class="muted">Maatwerk websites die werken. Gemaakt in Roermond.</p>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer navigatie">
+        <a href="#over">Over mij</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#projecten">Projecten</a>
+        <a href="#pakketten">Pakketten</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer__social">
+        <a href="mailto:eliyahimpelmans9@gmail.com" aria-label="E-mail">E-mail</a>
+        <a href="https://instagram.com/eliyah.0475" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      </div>
     </div>
-  </div>
-</section>
+    <div class="shell footer__bottom">
+      <p>© <span id="year"></span> Eliyah Webdesign — alle rechten voorbehouden</p>
+      <a href="#top" class="footer__top">Terug naar boven <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
 
-<section id="services" class="section will-animate">
-  <h2>Diensten</h2>
-  <p class="section-sub">Alles wat je nodig hebt om online professioneel over te komen.</p>
-  <div class="grid">
-    <article class="card will-animate">
-      <h3>🎨 Maatwerk Websites</h3>
-      <p>Unieke ontwerpen die perfect passen bij jouw merk, doelgroep en doelen. Geen cookie-cutter templates, maar websites die opvallen en converteren.</p>
-      <p class="card-price">Vanaf €200</p>
-    </article>
-    <article class="card will-animate">
-      <h3>🚀 Conversie-geoptimaliseerde Landingspagina's</h3>
-      <p>Pagina's die niet alleen mooi zijn, maar bezoekers systematisch omzetten in betalende klanten. A/B testen inbegrepen.</p>
-      <p class="card-price">Vanaf €400</p>
-    </article>
-    <article class="card will-animate">
-      <h3>⚙️ Webapps & Dashboards</h3>
-      <p>Op maat gemaakte tools die je processen automatiseren. Van klantportals tot interne dashboards – alles mogelijk.</p>
-      <p class="card-price">Vanaf €750</p>
-    </article>
-  </div>
-</section>
-
-<sec<strong>Concrete resultaten</strong> van moderne, schaalbare websites die écht werken.
-    Van startups tot gevestigde bedrijven – allemaal geholpen met digitale transformatie
-  <p class="section-sub">
-    Een selectie van projecten die laten zien hoe Eliyah Webdesign bedrijven helpt
-    met moderne, schaalbare en gebruiksvriendelijke oplossingen.
-  </p>
-  <div class="project-grid">
-    <a href="projects/greenhouse.html" class="project-card will-animate">
-      <img src="projects/img/project1.jpg" alt="Greenhouse Dashboard" loading="lazy">
-      <div class="project-info">
-        <h3>Greenhouse Dashboard</h3>
-        <p>Automatisering & monitoring voor kasventilatie.</p>
-      </div>
-    </a>
-    <a href="projects/widgets.html" class="project-card will-animate">
-      <img src="projects/img/project2.jpg" alt="Portfolio Widgets" loading="lazy">
-      <div class="project-info">
-        <h3>Portfolio Widgets</h3>
-        <p>Robuuste UI‑widgets met API‑data, klaar voor moderne portfolio’s en dashboards.</p>
-      </div>
-    </a>
-    <a href="projects/funkyfries.html" class="project-card will-animate">
-      <img src="projects/img/project3.jpg" alt="Funky Fries Website" loading="lazy">
-      <div class="project-info">
-        <h3>Funky Fries Website</h3>
-        <p>Moderne restaurantwebsite met unieke branding.</p>
-      </div>
-    </a>
-  </div>
-</section>
-
-<section id="process" class="section will-animate">
-  <h2>Werkwijze</h2>
-  <p class="section-sub">Duidelijke stappen, geen gedoe.</p>
-  <div class="grid">
-    <article class="card will-animate">
-      <h3>1. 📞 Gratis Kennismaking (30 min)</h3>
-      <p>We bespreken je doelen, doelgroep en huidige situatie. Ik luister meer dan ik praat – ik wil begrijpen wat je écht nodig hebt.</p>
-    </article>
-    <article class="card will-animate">
-      <h3>2. 🎯 Strategie & Voorstel</h3>
-      <p>Ik analyseer je markt, concurrenten en doelgroep. Binnen 48 uur ontvang je een helder voorstel met planning, kosten en deliverables.</p>
-    </article>
-    <article class="card will-animate">
-      <h3>3. 🚀 Design, Bouw & Lancering</h3>
-      <p>Wekelijkse updates, transparante communicatie. Na lancering: 30 dagen gratis support en optimalisatie op basis van echte data.</p>
-    </article>
-  </div>
-</section>
-
-<section id="about" class="section will-animate">
-  <h2>Over Eliyah Webdesign</h2>
-  <p class="section-sub">
-    Eén aanspreekpunt, korte lijnen, en een focus op kwaliteit in plaats van volume.
-  </p>
-  <div class="grid">
-    <article class="card will-animate">
-      <h3>👋 Wie is Eliyah?</h3>
-      <p>
-        Ik ben een <strong>full-stack webdeveloper</strong> met 1+ jaar ervaring in het bouwen van
-        conversie-gedreven websites. Voorheen werkte ik bij digitale agencies, nu help ik ondernemers
-        direct met websites die groeien. <em>Geen tussenpersonen, geen onnodige kosten.</em>
-      </p>
-    </article>
-    <article class="card will-animate">
-      <h3>🎯 Waarom kiezen klanten voor mij?</h3>
-      <ul>
-        <li>⚡ <strong>Supersnelle laadtijden</strong> (< 2 seconden)</li>
-        <li>🎯 <strong>Conversie-geoptimaliseerd</strong> (+40% meer leads)</li>
-        <li>📱 <strong>Pixel-perfect mobiel</strong> (100% responsive)</li>
-        <li>🔍 <strong>SEO-geoptimaliseerd</strong> (hogere rankings)</li>
-        <li>🧩 <strong>100% maatwerk</strong> – geen templates</li>
-        <li>🤝 <strong>Persoonlijk contact</strong> – directe lijn</li>
-        <li>📊 <strong>Data-gedreven</strong> beslissingen</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
-<section id="contact" class="section will-animate">
-  <h2>Contact</h2>
-  <p class="section-sub">
-    Klaar voor een website die professioneel voelt en klanten overtuigt?
-    Je kunt me direct mailen, ik reageer persoonlijk en snel.
-  </p>
-
-  <div class="contact-direct will-animate" style="margin-top: 1.5rem;">
-    <a href="mailto:eliyahimpelmans9@gmail.com" class="btn-primary">
-      � Plan een gratis kennismakingsgesprek
-    </a>
-    <p style="margin-top: 1rem; color: var(--color-muted); font-size: 0.9rem;">
-      📱<strong>Of stuur me een berichtje op Instagram: Eliyah.0475</strong><br>
-      ⚡ <strong>Snelle reactie gegarandeerd</strong> – binnen 24 uur<br>
-      🎯 <strong>Geen verkoopgesprek</strong> – alleen luisteren naar jouw behoeften
-    </p>
-  </div>
-</section>
-
-<footer class="footer will-animate">
-  <p>© <span id="year"></span> Eliyah Webdesign. Alle rechten voorbehouden.</p>
-</footer>
-
-<script src="js/main.js"></script>
-<script src="js/animations.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
