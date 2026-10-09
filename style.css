@@ -82,6 +82,7 @@
    In het lichte thema is diezelfde gradient donker: daar moet de tekst wit zijn,
    anders zakt het contrast naar 3,0:1 (gemeten, onder de AA-grens van 4,5:1). */
 [data-theme="light"] .brand__mark,
+[data-theme="light"] .about__avatar,
 [data-theme="light"] .btn--primary,
 [data-theme="light"] .btn-primary,
 [data-theme="light"] .filter.is-active,
@@ -876,23 +877,22 @@ body.has-cursor summary { cursor: none; }
   padding: clamp(1.6rem, 3vw, 2.2rem);
   align-self: start;
 }
-/* Portret: echt gezicht in plaats van initialen — de kaart is de plek waar
-   een bezoeker besluit of hij jou vertrouwt. */
-.about__portrait {
-  margin: 0 0 1.25rem;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-.about__portrait img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 50% 30%;
-  display: block;
+/* De kaart blijft bewust zonder foto: initialen in de merkgradient.
+   Wil je later toch een portret, vervang dan deze div door
+   <figure class="about__portrait"><img ...></figure> en zet hier
+   .about__portrait { border-radius: var(--radius); overflow: hidden; }
+   .about__portrait img { width: 100%; aspect-ratio: 4/5; object-fit: cover; } */
+.about__avatar {
+  width: 66px; height: 66px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #0a0a12;
+  background: var(--gradient);
+  box-shadow: var(--glow);
+  margin-bottom: 1.1rem;
 }
 .about__ig {
   display: inline-flex;

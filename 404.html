@@ -27,14 +27,16 @@
     }
     .vlag { max-width: 44rem; margin: 0 auto; padding: clamp(3rem, 12vh, 8rem) 1.5rem 4rem; }
     .vlag h1 { font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.1; margin: 0.6rem 0 1.2rem; letter-spacing: -0.02em; }
-    .vlag em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; color: #a4b4ff; }
-    .vlag p { color: #c9c9d3; font-size: 1.05rem; line-height: 1.6; max-width: 38rem; }
+    /* Kleuren via de tokens van de site, zodat deze pagina ook in het lichte
+       thema leesbaar blijft als style.css niet meekomt. */
+    .vlag em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; color: var(--accent, #a4b4ff); }
+    .vlag p { color: var(--text-soft, #c9c9d3); font-size: 1.05rem; line-height: 1.6; max-width: 38rem; }
     .vlag .knoppen { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 2rem 0 3rem; }
-    .vlag .knoppen a { display: inline-flex; align-items: center; padding: 0.9rem 1.6rem; border-radius: 99px; text-decoration: none; font-weight: 600; border: 1px solid rgba(255,255,255,0.16); color: var(--text, #f4f3f1); }
+    .vlag .knoppen a { display: inline-flex; align-items: center; padding: 0.9rem 1.6rem; border-radius: 99px; text-decoration: none; font-weight: 600; border: 1px solid var(--line, rgba(255,255,255,0.16)); color: var(--text, #f4f3f1); }
     .vlag .knoppen a.eerste { background: linear-gradient(120deg, #8aa8ff, #b98cff 55%, #ff9ecb); color: #0a0a12; border: none; }
     .vlag h2 { font-size: 1.05rem; margin: 2rem 0 0.8rem; }
     .vlag ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-    .vlag ul a { color: #c9c9d3; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
+    .vlag ul a { color: var(--text-soft, #c9c9d3); text-decoration: none; border-bottom: 1px solid var(--line-soft, rgba(255,255,255,0.18)); }
   </style>
   <link rel="stylesheet" href="/eliyah-webdesign/style.css" />
   <script>

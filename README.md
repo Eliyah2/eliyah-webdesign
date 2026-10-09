@@ -88,10 +88,10 @@ meer dan een beschrijving.
 heeft `tabindex="-1"` op de hoofdinhoud en verstuurt formulieren met
 `autocomplete` zodat browsers en wachtwoordmanagers kunnen invullen.
 
-**Portret vervangen.** In de kaart "Over mij" staat `projects/img/eliyah-portret.webp`
-(met een `.jpg` als terugvaloptie). Wil je een andere foto, maak dan een
-4:5-uitsnede van 900x1125 en schrijf die onder dezelfde twee bestandsnamen —
-dan blijft de rest van de site kloppen.
+**Over mij is bewust faceless.** De kaart "Over mij" gebruikt de initialen in de
+merkgradient in plaats van een foto, met daaronder de link naar Instagram
+(`@eliyah.0475`). Wil je later toch een portret toevoegen, dan staat in
+`style.css` bij `.about__avatar` precies welke twee regels je daarvoor aanzet.
 
 ## Social preview, pictogrammen en crawlbasis
 
