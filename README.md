@@ -37,8 +37,6 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 └── projects/
     ├── glanzza.html        # Case: boekingsplatform met Wero-aanbetaling
     ├── menuapp.html        # Case: tafelbestelsysteem Las Tapas
-    ├── hairshop.html       # Case: website kapsalon — tijdelijk noindex, geen teamfoto meer
-    ├── funforest.html      # Case: seizoenkaart-app — tijdelijk noindex
     ├── greenhouse.html     # Case: kas-dashboard
     ├── widgets.html        # Case: UI-widgets
     ├── funkyfries.html     # Case: restaurantwebsite
@@ -52,31 +50,39 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 | --- | --- | --- |
 | [Glanzza](projects/glanzza.html) | Boekings- en no-show-tool: eigen boekingspagina per bedrijf, Wero-aanbetaling, centrale backend | Vanilla JS, Apps Script, Sheets |
 | [Tafelbestelsysteem Las Tapas](projects/menuapp.html) | QR-bestellen aan tafel, keukenscherm, uitgifte met goedkeuring en voorraadbeheer | Next.js, API-routes |
-| Kapsalon (nog geen toestemming) | Website voor een kapsalon in Venlo en Blerick — tijdelijk buiten het portfolio | HTML/CSS, live |
-| Seizoenskaart-app (nog geen toestemming) | Mobiele app met digitale seizoenkaart, QR-check-in en reserveringen | React Native (Expo), Supabase |
 | [Greenhouse Dashboard](projects/greenhouse.html) | Realtime monitoring en automatisering voor kasventilatie | Dashboard, realtime data |
 | [Portfolio Widgets](projects/widgets.html) | Interactieve UI-widgets met API-data en dark mode | Vanilla JS, API |
 | [Funky Fries](projects/funkyfries.html) | Restaurantwebsite met eigen branding | HTML/CSS, branding |
 
-## Tijdelijk buiten het portfolio: kapsalon en seizoenkaart-app
+## Twee cases staan tijdelijk niet in de site
 
-Twee cases staan bewust **niet** meer op de homepage en niet meer in de sitemap:
+De kapsalon en de seizoenkaart-app zijn **helemaal** uit de site en uit deze
+repository gehaald: voor beide moet eerst toestemming gevraagd worden. Er staat
+dus niets meer van op de homepage, in de sitemap, in `og/` of in `projects/`, en
+de foto met het team is er eerder al uitgehaald.
 
-- **John's Hairshop** — de eigenaar moet nog toestemming geven voor naam en beeld.
-  De foto met het team is uit de pagina en uit `og/` gehaald; er staat nu een
-  interieurfoto. De pagina zelf blijft bestaan, maar met `noindex`.
-- **FunForest Seizoenskaart** — gemaakt voor het bedrijf van een familielid, nog
-  zonder toestemming om het te laten zien. De pagina blijft bestaan, met `noindex`.
+Alles is terug te halen uit de git-geschiedenis — dit zijn de twee commits met de
+laatste volledige versies:
 
-Weer terugzetten als de toestemming er is:
+```bash
+# de twee casepagina's met hun beelden (zoals ze waren vóór het weghalen)
+git checkout 4e502c3 -- projects/hairshop.html projects/funforest.html \
+  projects/img/hairshop-1.jpg projects/img/funforest-logo.png \
+  projects/img/funforest-splash.webp og/funforest.jpg
 
-1. `git checkout HEAD~1 -- projects/img/hairshop-2.jpg og/hairshop.jpg projects/hairshop.html projects/funforest.html`
-   (of zoek de juiste commit met `git log --oneline -- og/hairshop.jpg`)
-2. haal de regel `<meta name="robots" content="noindex, follow" />` uit die twee pagina's
-3. zet de twee `<a class="project …">`-kaarten terug in `index.html` en nummer de
+# de teamfoto en de social-previewkaart van de kapsalon (zaten in een eerdere versie)
+git checkout cb1e39e -- projects/img/hairshop-2.jpg og/hairshop.jpg
+```
+
+Daarna nog vijf dingen om ze echt terug te zetten:
+
+1. haal de regel `<meta name="robots" content="noindex, follow" />` uit beide pagina's
+2. zet de twee `<a class="project …">`-kaarten terug in `index.html` en nummer de
    kaarten opnieuw (01 t/m 07) — de filterknoppen werken automatisch mee
-4. zet de twee `<url>`-blokken terug in `sitemap.xml`
-5. werk de teller bij: `<span class="count" data-target="5">` → `7`
+3. zet de twee `<url>`-blokken terug in `sitemap.xml`
+4. werk de teller bij: `<span class="count" data-target="5">` → `7`
+5. maak de social-previewkaart opnieuw (zie *Social preview* hieronder), zodat het
+   beeld dat platforms tonen klopt
 
 ## Diensten & pakketten
 
