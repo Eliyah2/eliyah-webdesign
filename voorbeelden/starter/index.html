@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Steiger &amp; Zoon — bouw &amp; renovatie in Roermond · voorbeeld</title>
+<meta name="description" content="Voorbeeld van een one-pager (Starter-pakket): bouwbedrijf Steiger & Zoon met diensten, projecten en een prijsaanvraag op één pagina." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#12110f" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f0a02a'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='19' font-weight='800' fill='%2317140d' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preload" as="font" type="font/woff2" href="../../fonts/inter-variabel-latin.woff2" crossorigin />
+<style>
+  /* Eén bestand, één pagina: dat is precies wat het Starter-pakket oplevert.
+     Lettertypen staan op deze site zelf (../../fonts), dus geen verzoek aan Google. */
+  @font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+    src: url("../../fonts/inter-variabel-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Inter"; font-style: normal; font-weight: 100 900; font-display: swap;
+    src: url("../../fonts/inter-variabel-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+  @font-face { font-family: "Inter Fallback"; src: local("Segoe UI"), local("Arial"), local("Helvetica Neue"), local("Liberation Sans"); size-adjust: 107%; ascent-override: 91%; descent-override: 22.8%; line-gap-override: 0%; }
+
+  :root {
+    --bg: #12110f;
+    --bg-2: #191713;
+    --card: #1e1c17;
+    --line: rgba(255, 244, 226, 0.12);
+    --text: #f6f2e9;
+    --soft: #cdc6b8;
+    --muted: #9a9384;
+    --amber: #f0a02a;
+    --amber-soft: rgba(240, 160, 42, 0.14);
+    --font: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --shell: 1140px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+  .shell { width: 100%; max-width: var(--shell); margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.5rem); }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; z-index: 50; background: var(--amber); color: #12110f; padding: 0.6rem 1rem; border-radius: 8px; font-weight: 600; }
+
+  /* Balk die vertelt dat dit een voorbeeld is — en de weg terug naar de echte site */
+  .demo {
+    background: var(--amber);
+    color: #17140d;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .demo__in { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; justify-content: center; padding: 0.5rem 1.2rem; text-align: center; }
+  .demo__in a { color: #17140d; }
+
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 1rem; min-height: 68px; }
+  .merk { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+  .merk__mark {
+    width: 38px; height: 38px; border-radius: 10px; display: grid; place-content: center;
+    background: linear-gradient(140deg, var(--amber), #c9761a);
+    color: #17140d; font-weight: 800; font-size: 0.95rem; letter-spacing: -0.02em;
+  }
+  .merk__tekst { display: flex; flex-direction: column; line-height: 1.1; }
+  .merk__tekst strong { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+  .merk__tekst span { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  nav.hoofd { margin-left: auto; display: flex; align-items: center; gap: 1.4rem; }
+  nav.hoofd a { text-decoration: none; color: var(--soft); font-size: 0.92rem; font-weight: 500; }
+  nav.hoofd a:hover { color: var(--text); }
+  @media (max-width: 860px) { nav.hoofd { display: none; } }
+  .knop {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.85rem 1.5rem; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .knop:hover { transform: translateY(-2px); }
+  .knop--vol { background: var(--amber); color: #17140d; }
+  .knop--lijn { border-color: var(--line); color: var(--text); }
+  .knop--klein { padding: 0.6rem 1.1rem; font-size: 0.88rem; }
+
+  section { padding: clamp(3.2rem, 9vw, 6rem) 0; }
+  .kop { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin: 0 0 0.9rem; }
+  h1 { font-size: clamp(2.1rem, 1.2rem + 4.2vw, 4rem); line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 1.2rem; font-weight: 800; }
+  h2 { font-size: clamp(1.6rem, 1.1rem + 2vw, 2.5rem); line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 0.8rem; font-weight: 700; }
+  h3 { font-size: 1.12rem; margin: 0 0 0.45rem; font-weight: 650; }
+  p { margin: 0 0 1rem; color: var(--soft); }
+  .lead { font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.2rem); max-width: 46ch; }
+
+  .hero { padding-top: clamp(2.4rem, 6vw, 4rem); }
+  .hero__binnen { display: grid; gap: clamp(1.8rem, 4vw, 3rem); grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; }
+  @media (max-width: 900px) { .hero__binnen { grid-template-columns: 1fr; } }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.6rem 0 1.4rem; }
+  .trust { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; list-style: none; margin: 0; padding: 0; font-size: 0.88rem; color: var(--muted); }
+  .trust li { display: flex; align-items: center; gap: 0.45rem; }
+  .trust li::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--amber); }
+  /* "Foto" zonder foto: een vak met structuur, zodat het ontwerp niet afhangt van beeldmateriaal */
+  .beeld {
+    border-radius: 18px; border: 1px solid var(--line); min-height: 260px;
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0 12px, transparent 12px 26px),
+      linear-gradient(150deg, #2a2620, #16140f 70%);
+    display: flex; align-items: flex-end; padding: 1.1rem; position: relative; overflow: hidden;
+  }
+  .beeld::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(80% 60% at 80% 10%, var(--amber-soft), transparent 70%);
+  }
+  .beeld span { position: relative; z-index: 1; font-size: 0.82rem; color: var(--soft); }
+
+  .raster { display: grid; gap: 1rem; }
+  .raster--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+  .raster--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+  .kaart { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.4rem; }
+  .kaart__nr { font-size: 0.78rem; font-weight: 700; color: var(--amber); letter-spacing: 0.12em; }
+  .kaart p { margin: 0; font-size: 0.94rem; }
+  .werk { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--card); }
+  .werk__beeld { height: 160px; background: repeating-linear-gradient(70deg, rgba(240,160,42,0.13) 0 10px, transparent 10px 24px), linear-gradient(160deg, #262218, #17150f); }
+  .werk__tekst { padding: 1.1rem 1.2rem 1.3rem; }
+  .werk__meta { font-size: 0.8rem; color: var(--muted); margin: 0 0 0.35rem; }
+  .stappen { counter-reset: s; list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .stappen li { border-top: 1px solid var(--line); padding-top: 1rem; display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.6rem; }
+  .stappen li::before { counter-increment: s; content: "0" counter(s); color: var(--amber); font-weight: 700; font-size: 0.9rem; }
+
+  form { display: grid; gap: 0.9rem; }
+  .veld { display: grid; gap: 0.35rem; }
+  label { font-size: 0.86rem; font-weight: 600; color: var(--soft); }
+  input, select, textarea {
+    font: inherit; font-size: 0.95rem; color: var(--text); background: var(--bg-2);
+    border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem 0.9rem; width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--amber); outline: none; }
+  textarea { min-height: 120px; resize: vertical; }
+  .fout { color: #ffb4a2; font-size: 0.82rem; min-height: 1.1rem; }
+  .melding { margin: 0; padding: 0.9rem 1rem; border-radius: 10px; background: var(--amber-soft); border: 1px solid var(--line); color: var(--text); font-size: 0.92rem; }
+
+  footer.site { border-top: 1px solid var(--line); padding: 2.2rem 0; margin-top: 1rem; }
+  .voet { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; justify-content: space-between; font-size: 0.86rem; color: var(--muted); }
+  .voet a { color: var(--soft); }
+  .fictie { font-size: 0.8rem; color: var(--muted); margin-top: 0.8rem; }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+
+<div class="demo">
+  <div class="demo__in">
+    <span>Voorbeeld van het <strong>Starter-pakket</strong> (€495) — Steiger &amp; Zoon is een fictief bedrijf</span>
+    <a href="../index.html">← Alle drie de voorbeelden</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell bar">
+    <a class="merk" href="#top">
+      <span class="merk__mark">S&amp;Z</span>
+      <span class="merk__tekst"><strong>Steiger &amp; Zoon</strong><span>Bouw &amp; renovatie</span></span>
+    </a>
+    <nav class="hoofd" aria-label="Hoofdmenu">
+      <a href="#diensten">Diensten</a>
+      <a href="#werk">Werk</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="knop knop--vol knop--klein" href="#contact">Prijs aanvragen</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="inhoud">
+    <div class="shell hero__binnen">
+      <div>
+        <p class="kop">Aanbouw · verbouw · badkamerrenovatie</p>
+        <h1>Verbouwen zonder verrassingen. Vaste prijs, eigen vakmensen.</h1>
+        <p class="lead">
+          Steiger &amp; Zoon verbouwt huizen en bedrijfspanden in Roermond, Maasniel,
+          Melick en Herkenbosch. Eén aanspreekpunt, een duidelijke planning en een
+          prijs die je vooraf kent.
+        </p>
+        <div class="hero__cta">
+          <a class="knop knop--vol" href="#contact">Vraag een prijs aan</a>
+          <a class="knop knop--lijn" href="#werk">Bekijk recent werk</a>
+        </div>
+        <ul class="trust">
+          <li>15 jaar ervaring</li>
+          <li>Eigen ploeg, geen onderaannemers</li>
+          <li>Vaste prijs vóór de start</li>
+          <li>Reactie binnen één werkdag</li>
+        </ul>
+      </div>
+      <div class="beeld" role="img" aria-label="Impressie van een aanbouw met stalen pui">
+        <span>Aanbouw met stalen pui · Maasniel (2025)</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="diensten" aria-labelledby="diensten-kop">
+    <div class="shell">
+      <p class="kop">Wat we doen</p>
+      <h2 id="diensten-kop">Vier dingen, en die doen we goed</h2>
+      <div class="raster raster--2" style="margin-top:1.8rem">
+        <article class="kaart"><p class="kaart__nr">01</p><h3>Aanbouw en uitbouw</h3><p>Meer ruimte zonder te verhuizen: van fundering tot dakkapel, inclusief vergunning en tekeningen.</p></article>
+        <article class="kaart"><p class="kaart__nr">02</p><h3>Badkamerrenovatie</h3><p>Complete badkamer in tien werkdagen, met vaste prijs per opstelling en een vaste tegelkeuze.</p></article>
+        <article class="kaart"><p class="kaart__nr">03</p><h3>Verbouwing en verbetering</h3><p>Muren weg, keuken verplaatsen, isoleren: de bestaande woning beter laten werken.</p></article>
+        <article class="kaart"><p class="kaart__nr">04</p><h3>Timmerwerk op maat</h3><p>Kastenwanden, trappen en kozijnen uit eigen werkplaats, in de maat van jouw huis.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="werk" aria-labelledby="werk-kop">
+    <div class="shell">
+      <p class="kop">Recent werk</p>
+      <h2 id="werk-kop">Drie projecten uit de laatste twee jaar</h2>
+      <div class="raster raster--3" style="margin-top:1.8rem">
+        <article class="werk">
+          <div class="werk__beeld" role="img" aria-label="Aanbouw met glazen pui"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Aanbouw · Maasniel · 2025</p>
+            <h3>22 m² erbij, zonder de tuin te verliezen</h3>
+            <p>Van 6 naar 10 weken bouwtijd, met de pui op het zuiden en een groen dak.</p>
+          </div>
+        </article>
+        <article class="werk">
+          <div class="werk__beeld" role="img" aria-label="Badkamer met inloopdouche"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Badkamer · Roermond · 2024</p>
+            <h3>Inloopdouche in een huis uit 1932</h3>
+            <p>Complete renovatie in negen werkdagen, inclusief leidingwerk en vloerverwarming.</p>
+          </div>
+        </article>
+        <article class="werk">
+          <div class="werk__beeld" role="img" aria-label="Kastenwand op maat in een woonkamer"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Timmerwerk · Melick · 2024</p>
+            <h3>Kastenwand van 4,8 meter rond een schouw</h3>
+            <p>Eikenfineer, verborgen deuren en een nis voor de televisie.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="werkwijze" aria-labelledby="werkwijze-kop">
+    <div class="shell" style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+      <div>
+        <p class="kop">Werkwijze</p>
+        <h2 id="werkwijze-kop">Drie stappen, geen kleine lettertjes</h2>
+        <p>Je weet bij elke stap waar je staat en wat het kost. Meer dan drie stappen hebben we nooit nodig gehad.</p>
+      </div>
+      <ol class="stappen">
+        <li><div><h3>Opname aan huis</h3><p>We komen langs, meten op en bespreken wat je wilt. Duurt een uur, kost niets.</p></div></li>
+        <li><div><h3>Vaste prijs en planning</h3><p>Binnen vijf werkdagen heb je een voorstel met de prijs per onderdeel en de startdatum.</p></div></li>
+        <li><div><h3>Bouwen en opleveren</h3><p>Eén voorman houdt de planning bij. Wij ruimen op, jij krijgt een sleuteloplevering.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-kop">
+    <div class="shell" style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+      <div>
+        <p class="kop">Contact</p>
+        <h2 id="contact-kop">Vertel wat je van plan bent</h2>
+        <p>
+          Een paar regels zijn genoeg: wat voor ruimte het is, wat je wilt en wanneer
+          het klaar moet zijn. Je hoort binnen één werkdag van ons — meestal sneller.
+        </p>
+        <p>
+          Liever bellen? Dat kan op <strong>0475 – 00 00 00</strong>, maandag tot en met
+          vrijdag van 7.30 tot 17.00 uur.
+        </p>
+      </div>
+      <form id="aanvraag" novalidate>
+        <div class="veld">
+          <label for="naam">Naam</label>
+          <input id="naam" name="naam" type="text" autocomplete="name" required />
+          <p class="fout" id="fout-naam" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="tel">Telefoonnummer</label>
+          <input id="tel" name="tel" type="tel" autocomplete="tel" required />
+          <p class="fout" id="fout-tel" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="soort">Soort werk</label>
+          <select id="soort" name="soort">
+            <option>Aanbouw of uitbouw</option>
+            <option>Badkamerrenovatie</option>
+            <option>Verbouwing</option>
+            <option>Timmerwerk op maat</option>
+            <option>Iets anders</option>
+          </select>
+        </div>
+        <div class="veld">
+          <label for="omschrijving">Wat wil je laten doen?</label>
+          <textarea id="omschrijving" name="omschrijving" required></textarea>
+          <p class="fout" id="fout-omschrijving" role="alert"></p>
+        </div>
+        <button class="knop knop--vol" type="submit">Aanvraag versturen</button>
+        <p class="fout" id="fout-algemeen" role="alert"></p>
+        <p class="melding" id="gelukt" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <div class="voet">
+      <span>© 2026 Steiger &amp; Zoon — Roermond</span>
+      <span><a href="#contact">Prijs aanvragen</a> · <a href="#diensten">Diensten</a> · <a href="#werk">Werk</a></span>
+    </div>
+    <p class="fictie">
+      Steiger &amp; Zoon is een fictief bedrijf, gebouwd als voorbeeld van het
+      Starter-pakket door <a href="../../index.html#pakketten">Eliyah Webdesign</a>.
+      Formulieren versturen in deze demo niets.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Formulier met nette controle: precies het soort detail dat een bezoeker vertrouwen geeft.
+  (function () {
+    var form = document.getElementById("aanvraag");
+    if (!form) return;
+    var velden = [
+      { id: "naam", fout: "fout-naam", test: function (v) { return v.trim().length >= 2; }, melding: "Vul je naam in." },
+      { id: "tel", fout: "fout-tel", test: function (v) { return /^[0-9 ()+\-]{9,}$/.test(v.trim()); }, melding: "Vul een telefoonnummer in met minimaal 9 cijfers." },
+      { id: "omschrijving", fout: "fout-omschrijving", test: function (v) { return v.trim().length >= 10; }, melding: "Vertel in een paar woorden wat je wilt laten doen." }
+    ];
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var goed = true;
+      velden.forEach(function (v) {
+        var el = document.getElementById(v.id);
+        var vak = document.getElementById(v.fout);
+        var ok = v.test(el.value);
+        vak.textContent = ok ? "" : v.melding;
+        el.setAttribute("aria-invalid", ok ? "false" : "true");
+        if (!ok && goed) { el.focus(); goed = false; }
+      });
+      var gelukt = document.getElementById("gelukt");
+      document.getElementById("fout-algemeen").textContent = "";
+      if (goed) {
+        gelukt.hidden = false;
+        gelukt.textContent = "Bedankt — in deze demo verstuurt het formulier niets. In de echte site komt hier de bevestiging en gaat de aanvraag naar je mailbox.";
+        form.reset();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

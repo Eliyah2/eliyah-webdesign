@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Steiger &amp; Zoon · voorbeeld</title>
+<meta name="description" content="Vraag een prijs aan of plan een opname aan huis. Binnen één werkdag antwoord, telefonisch bereikbaar van maandag tot vrijdag." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#f7f4ee" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f5c3f'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='19' font-weight='800' fill='%23ffffff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preload" as="font" type="font/woff2" href="../../fonts/inter-variabel-latin.woff2" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+
+<div class="demo">
+  <div class="demo__in">
+    <span>Voorbeeld van het <strong>Business-pakket</strong> (€895) — Steiger &amp; Zoon is een fictief bedrijf</span>
+    <a href="../index.html">← Alle drie de voorbeelden</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell bar">
+    <a class="merk" href="index.html">
+      <span class="merk__mark">S</span>
+      <span class="merk__tekst"><strong>Steiger &amp; Zoon</strong><span>Bouw &amp; renovatie</span></span>
+    </a>
+    <nav class="hoofd" aria-label="Hoofdmenu">
+      <a href="index.html">Home</a>
+      <a href="diensten.html">Diensten</a>
+      <a href="projecten.html">Projecten</a>
+      <a href="over.html">Over ons</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="knop knop--vol knop--klein" href="#formulier">Prijs aanvragen</a>
+  </div>
+</header>
+
+<main id="inhoud">
+  <section>
+    <div class="shell">
+      <p class="kop">Contact</p>
+      <h1 style="max-width:20ch">Vertel wat je van plan bent</h1>
+      <p class="lead">
+        Hoe meer we vooraf weten, hoe scherper de prijs. Foto's van de ruimte mag je
+        later sturen; eerst even het verhaal.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="shell twee">
+      <div>
+        <h2 style="margin-bottom:0.8rem">Direct contact</h2>
+        <p>
+          <strong>Telefoon</strong><br />
+          <a href="tel:+310475000000">0475 – 00 00 00</a><br />
+          maandag tot vrijdag, 7.30 – 17.00 uur
+        </p>
+        <p>
+          <strong>Werkplaats</strong><br />
+          In Roermond, bezoek op afspraak<br />
+          (in dit voorbeeld bewust zonder echt adres)
+        </p>
+        <p>
+          <strong>Reactietijd</strong><br />
+          Binnen één werkdag, meestal dezelfde dag.
+        </p>
+
+        <div class="kaart" style="margin-top:1.6rem">
+          <h3 style="margin-bottom:0.4rem">Wat helpt bij je aanvraag</h3>
+          <ul style="margin:0;padding-left:1.1rem;color:var(--soft)">
+            <li>Om welk soort werk het gaat</li>
+            <li>Ongeveer hoe groot de ruimte is</li>
+            <li>Wanneer je zou willen starten</li>
+            <li>Of er al tekeningen of een vergunning zijn</li>
+          </ul>
+        </div>
+      </div>
+
+      <form id="formulier" novalidate>
+        <div class="veld">
+          <label for="naam">Naam</label>
+          <input id="naam" name="naam" type="text" autocomplete="name" required />
+          <p class="fout" id="fout-naam" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="email">E-mailadres</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+          <p class="fout" id="fout-email" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="tel">Telefoonnummer</label>
+          <input id="tel" name="tel" type="tel" autocomplete="tel" required />
+          <p class="fout" id="fout-tel" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="postcode">Postcode van het adres</label>
+          <input id="postcode" name="postcode" type="text" inputmode="text" placeholder="6041 AB" autocomplete="postal-code" required />
+          <p class="fout" id="fout-postcode" role="alert"></p>
+        </div>
+        <div class="veld">
+          <label for="soort">Soort werk</label>
+          <select id="soort" name="soort">
+            <option>Aanbouw of uitbouw</option>
+            <option>Badkamerrenovatie</option>
+            <option>Verbouwing</option>
+            <option>Timmerwerk op maat</option>
+            <option>Onderhoud of kleine klus</option>
+            <option>Weet ik nog niet</option>
+          </select>
+        </div>
+        <div class="veld">
+          <label for="start">Wanneer zou je willen starten?</label>
+          <select id="start" name="start">
+            <option>Zo snel mogelijk</option>
+            <option>Binnen drie maanden</option>
+            <option>Dit jaar nog</option>
+            <option>Volgend jaar</option>
+            <option>Oriënterend</option>
+          </select>
+        </div>
+        <div class="veld">
+          <label for="omschrijving">Wat wil je laten doen?</label>
+          <textarea id="omschrijving" name="omschrijving" placeholder="Bijvoorbeeld: onze badkamer is dertig jaar oud en we willen een inloopdouche in plaats van een bad." required></textarea>
+          <p class="fout" id="fout-omschrijving" role="alert"></p>
+        </div>
+        <button class="knop knop--vol" type="submit">Aanvraag versturen</button>
+        <p class="fout" id="fout-algemeen" role="alert"></p>
+        <p class="melding" id="gelukt" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <div class="voet">
+      <span>© 2026 Steiger &amp; Zoon · Werkplaats in Roermond</span>
+      <nav aria-label="Voetmenu">
+        <a href="index.html">Home</a>
+        <a href="diensten.html">Diensten</a>
+        <a href="projecten.html">Projecten</a>
+        <a href="over.html">Over ons</a>
+      </nav>
+    </div>
+    <p class="fictie">
+      Steiger &amp; Zoon is een fictief bedrijf, gebouwd als voorbeeld van het
+      Business-pakket door <a href="../../index.html#pakketten">Eliyah Webdesign</a>.
+      Dit formulier verstuurt in de demo niets en er staat bewust geen echt adres op.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Uitgebreidere controle dan bij het Starter-voorbeeld: dit is het verschil dat
+  // een bezoeker merkt. Fouten staan onder het veld en het eerste foute veld krijgt focus.
+  (function () {
+    var form = document.getElementById("formulier");
+    if (!form) return;
+    var velden = [
+      { id: "naam", fout: "fout-naam", test: function (v) { return v.trim().length >= 2; }, melding: "Vul je naam in." },
+      { id: "email", fout: "fout-email", test: function (v) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.trim()); }, melding: "Dit e-mailadres lijkt niet te kloppen." },
+      { id: "tel", fout: "fout-tel", test: function (v) { return /^[0-9 ()+\-]{9,}$/.test(v.trim()); }, melding: "Vul een telefoonnummer met minimaal 9 cijfers in." },
+      { id: "postcode", fout: "fout-postcode", test: function (v) { return /^[1-9][0-9]{3}\s?[a-z]{2}$/i.test(v.trim()); }, melding: "Vul een Nederlandse postcode in, bijvoorbeeld 6041 AB." },
+      { id: "omschrijving", fout: "fout-omschrijving", test: function (v) { return v.trim().length >= 15; }, melding: "Vertel in een paar zinnen wat je wilt laten doen." }
+    ];
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var eersteFout = null;
+      velden.forEach(function (v) {
+        var el = document.getElementById(v.id);
+        var vak = document.getElementById(v.fout);
+        var ok = v.test(el.value);
+        vak.textContent = ok ? "" : v.melding;
+        el.setAttribute("aria-invalid", ok ? "false" : "true");
+        if (!ok && !eersteFout) eersteFout = el;
+      });
+      var gelukt = document.getElementById("gelukt");
+      var algemeen = document.getElementById("fout-algemeen");
+      if (eersteFout) {
+        gelukt.hidden = true;
+        algemeen.textContent = "Er staan nog " + velden.filter(function (v) { return document.getElementById(v.fout).textContent; }).length + " velden open. Loop ze hierboven even na.";
+        eersteFout.focus();
+        return;
+      }
+      algemeen.textContent = "";
+      gelukt.hidden = false;
+      gelukt.textContent = "Bedankt! In deze demo verstuurt het formulier niets. In de echte site komt de aanvraag in je mailbox en krijgt de bezoeker een bevestiging per e-mail.";
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>

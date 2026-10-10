@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Klantportaal — Steiger &amp; Zoon · voorbeeld</title>
+<meta name="description" content="Voorbeeld van het klantportaal: voortgang, documenten, berichten en facturen van een lopend project op één plek." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#070b0f" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234fd1c0'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='19' font-weight='800' fill='%2304211e' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preload" as="font" type="font/woff2" href="../../fonts/inter-variabel-latin.woff2" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="demo">
+  <div class="demo__in">
+    <span>Voorbeeld van het <strong>Premium-pakket</strong> — het klantportaal zoals een klant het ziet (met voorbeeldgegevens)</span>
+    <a href="../index.html">← Alle drie de voorbeelden</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell bar">
+    <a class="merk" href="index.html">
+      <span class="merk__mark">S</span>
+      <span class="merk__tekst"><strong>Steiger &amp; Zoon</strong><span>Bouw &amp; interieur</span></span>
+    </a>
+    <nav class="hoofd" aria-label="Hoofdmenu">
+      <a href="index.html">Home</a>
+      <a href="index.html#configurator">Rekenhulp</a>
+      <a href="index.html#werk">Werk</a>
+      <a href="portaal.html" aria-current="page">Klantportaal</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <span class="knop knop--klein" style="cursor:default">Ingelogd als familie Hendrix</span>
+  </div>
+</header>
+
+<main id="inhoud">
+  <section style="padding-bottom:0">
+    <div class="shell">
+      <p class="kop">Klantportaal</p>
+      <h1 style="max-width:26ch;font-size:clamp(1.8rem,1.2rem+2.4vw,2.9rem)">Aanbouw Maasniel — jouw project</h1>
+      <p class="lead">
+        Alles over het project op één plek. De planning wordt bijgewerkt door de voorman,
+        documenten komen automatisch in de lijst en facturen staan er zodra ze zijn verstuurd.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top:2rem">
+    <div class="shell portaal">
+      <div class="tabs" role="tablist" aria-label="Onderdelen van het portaal">
+        <button type="button" role="tab" id="tab-project" aria-controls="vlak-project" aria-selected="true">Project en planning</button>
+        <button type="button" role="tab" id="tab-documenten" aria-controls="vlak-documenten" aria-selected="false">Documenten</button>
+        <button type="button" role="tab" id="tab-berichten" aria-controls="vlak-berichten" aria-selected="false">Berichten</button>
+        <button type="button" role="tab" id="tab-facturen" aria-controls="vlak-facturen" aria-selected="false">Facturen</button>
+      </div>
+
+      <div class="glas paneel__vlak" id="vlak-project" role="tabpanel" aria-labelledby="tab-project" tabindex="0">
+        <h2 style="font-size:1.5rem;margin-bottom:0.4rem">Aanbouw van 22 m² met groen dak</h2>
+        <p style="margin-bottom:0.2rem">Gestart op 12 mei 2026 · verwachte oplevering 3 juli 2026</p>
+        <p style="margin:0;color:var(--muted);font-size:0.9rem">Voortgang 62% — vorige update: vrijdag 19 juni</p>
+        <div class="voortgang"><span style="width:62%"></span></div>
+
+        <ul class="fases">
+          <li><span class="vink" aria-hidden="true">✓</span><b>Fundering en vloer</b><em>afgerond 26 mei</em></li>
+          <li><span class="vink" aria-hidden="true">✓</span><b>Ruwbouw en dak</b><em>afgerond 14 juni</em></li>
+          <li><span class="bezig" aria-hidden="true">◆</span><b>Pui plaatsen en isoleren</b><em>loopt nu, klaar rond 26 juni</em></li>
+          <li><span class="wacht" aria-hidden="true">○</span><b>Stucwerk en vloerverwarming</b><em>start 29 juni</em></li>
+          <li><span class="wacht" aria-hidden="true">○</span><b>Oplevering en puntenlijst</b><em>3 juli</em></li>
+        </ul>
+
+        <div style="display:grid;gap:0.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));margin-top:1.4rem">
+          <div class="stat"><span>Vaste prijs</span><b>€ 41.500</b></div>
+          <div class="stat"><span>Betaald</span><b>€ 24.900</b></div>
+          <div class="stat"><span>Contactpersoon</span><b>Rens Steiger</b></div>
+          <div class="stat"><span>Garantie</span><b>2 jaar</b></div>
+        </div>
+      </div>
+
+      <div class="glas paneel__vlak" id="vlak-documenten" role="tabpanel" aria-labelledby="tab-documenten" tabindex="0" hidden>
+        <h2 style="font-size:1.5rem;margin-bottom:1rem">Documenten</h2>
+        <ul class="documenten">
+          <li><span>Technische tekening aanbouw <span>PDF · 2,4 MB · 14 mei</span></span><button class="knop knop--klein" type="button" data-demo>Downloaden</button></li>
+          <li><span>Constructieberekening <span>PDF · 1,1 MB · 8 mei</span></span><button class="knop knop--klein" type="button" data-demo>Downloaden</button></li>
+          <li><span>Vergunning gemeente Roermond <span>PDF · 780 kB · 2 mei</span></span><button class="knop knop--klein" type="button" data-demo>Downloaden</button></li>
+          <li><span>Materialenkeuze en kleuren <span>PDF · 1,8 MB · 16 mei</span></span><button class="knop knop--klein" type="button" data-demo>Downloaden</button></li>
+          <li><span>Planning definitief <span>XLSX · 96 kB · 19 juni</span></span><button class="knop knop--klein" type="button" data-demo>Downloaden</button></li>
+        </ul>
+        <p class="fout" id="demo-document" role="status" hidden></p>
+      </div>
+
+      <div class="glas paneel__vlak" id="vlak-berichten" role="tabpanel" aria-labelledby="tab-berichten" tabindex="0" hidden>
+        <h2 style="font-size:1.5rem;margin-bottom:1rem">Berichten</h2>
+        <div class="bericht"><b>Rens Steiger · voorman</b>De pui komt aankomende dinsdag. De glaszetter is er om 7.30 uur, dus de auto die voor de oprit staat kan het beste maandagavond verplaatst worden.</div>
+        <div class="bericht bericht--klant"><b>Familie Hendrix</b>Dank voor de waarschuwing — de auto staat maandagavond achter.</div>
+        <div class="bericht"><b>Rens Steiger · voorman</b>Mooi. Woensdag verwacht ik de isolatie af te ronden; vrijdag krijg je de update en de foto's in het portaal.</div>
+        <form class="mini" id="bericht-form">
+          <label class="skip" for="bericht-invoer">Nieuw bericht</label>
+          <input id="bericht-invoer" type="text" placeholder="Typ een bericht aan de voorman" style="flex:1 1 16rem" required />
+          <button class="knop knop--vol knop--klein" type="submit">Versturen</button>
+        </form>
+        <p class="fout" id="demo-bericht" role="status" hidden></p>
+        <div id="berichtenlijst"></div>
+      </div>
+
+      <div class="glas paneel__vlak" id="vlak-facturen" role="tabpanel" aria-labelledby="tab-facturen" tabindex="0" hidden>
+        <h2 style="font-size:1.5rem;margin-bottom:1rem">Facturen</h2>
+        <ul class="documenten">
+          <li><span>Aanbetaling 30% · 2026-0311 <span>Betaald op 6 mei</span></span><b>€ 12.450</b></li>
+          <li><span>Termijn 2 bij start ruwbouw · 2026-0338 <span>Betaald op 2 juni</span></span><b>€ 12.450</b></li>
+          <li><span>Termijn 3 bij plaatsen pui · 2026-0369 <span>Open, betaaltermijn 14 dagen</span></span><b>€ 8.300</b></li>
+          <li><span>Eindafrekening <span>Na oplevering, verwacht 3 juli</span></span><b>€ 8.300</b></li>
+        </ul>
+        <div class="stat" style="margin-top:1rem"><span>Totaal gefactureerd</span><b>€ 41.500</b></div>
+        <div class="stat"><span>Openstaand</span><b>€ 16.600</b></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <div class="voet">
+      <span>© 2026 Steiger &amp; Zoon · Werkplaats in Roermond</span>
+      <nav aria-label="Voetmenu">
+        <a href="index.html">Home</a>
+        <a href="index.html#configurator">Rekenhulp</a>
+        <a href="index.html#werk">Werk</a>
+      </nav>
+    </div>
+    <p class="fictie">
+      Steiger &amp; Zoon is een fictief bedrijf, gebouwd als voorbeeld van het
+      Premium-pakket door <a href="../../index.html#pakketten">Eliyah Webdesign</a>.
+      Dit portaal werkt in de demo zonder server: verstuurde berichten en downloads
+      zijn voorbeeldacties en er wordt niets opgeslagen.
+    </p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

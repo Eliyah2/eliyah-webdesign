@@ -1313,6 +1313,29 @@ body.has-cursor summary { cursor: none; }
   transform: rotate(42deg);
 }
 .plan .btn { margin-top: auto; }
+/* Kop boven de opleverpunten en de maandelijkse hostingregel per pakket.
+   De negatieve marge trekt het kopje dichter naar de lijst dan de flexruimte. */
+.plan__incl {
+  margin: 0 0 -0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.plan__host {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line-soft);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+.plan__demo { margin: 0; font-size: 0.88rem; }
+.plan__demo a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.plan__demo a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.plan__host strong { color: var(--text); font-weight: 600; }
+.plan--featured .plan__host strong { color: var(--accent); }
 
 .plan--featured {
   /* Terugval voor browsers zonder color-mix: de kaart blijft dan gewoon leesbaar. */

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Steiger &amp; Zoon — maatwerk in bouw en interieur · voorbeeld</title>
+<meta name="description" content="Voorbeeld van het Premium-pakket: een site met rekenhulp die live een prijsindicatie geeft en een klantportaal waarin de klant de voortgang volgt." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#070b0f" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234fd1c0'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='19' font-weight='800' fill='%2304211e' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preload" as="font" type="font/woff2" href="../../fonts/inter-variabel-latin.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="../../fonts/instrument-serif-italic-latin.woff2" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="demo">
+  <div class="demo__in">
+    <span>Voorbeeld van het <strong>Premium-pakket</strong> (vanaf €1.750) — alles van Business, plus deze rekenhulp en het klantportaal</span>
+    <a href="../index.html">← Alle drie de voorbeelden</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="shell bar">
+    <a class="merk" href="index.html">
+      <span class="merk__mark">S</span>
+      <span class="merk__tekst"><strong>Steiger &amp; Zoon</strong><span>Bouw &amp; interieur</span></span>
+    </a>
+    <nav class="hoofd" aria-label="Hoofdmenu">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="#configurator">Rekenhulp</a>
+      <a href="#werk">Werk</a>
+      <a href="portaal.html">Klantportaal</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="knop knop--vol knop--klein" href="#configurator">Bereken je project</a>
+  </div>
+</header>
+
+<main id="inhoud">
+  <section class="hero">
+    <div class="shell hero__binnen">
+      <div>
+        <p class="kop">Maatwerk · Roermond en omgeving</p>
+        <h1>Van eerste schets tot <em>sleuteloverdracht</em>, in één systeem.</h1>
+        <p class="lead">
+          Steiger &amp; Zoon bouwt verbouwingen, aanbouwen en interieurs op maat. Uniek
+          aan hoe wij werken: je ziet je eigen project in een online portaal — de
+          planning, de documenten, de foto's van de bouw en elke factuur op één plek.
+        </p>
+        <div class="hero__cta">
+          <a class="knop knop--vol" href="#configurator">Bereken je project</a>
+          <a class="knop" href="portaal.html">Bekijk het klantportaal</a>
+        </div>
+      </div>
+      <div class="glas paneel">
+        <h3>Een project in cijfers</h3>
+        <div class="stat"><span>Looptijd</span><b>8 weken</b></div>
+        <div class="stat"><span>Mensen op de klus</span><b>4 vast</b></div>
+        <div class="stat"><span>Updates in het portaal</span><b>Elke vrijdag</b></div>
+        <div class="stat"><span>Garantie op eigen werk</span><b>2 jaar</b></div>
+        <div class="stat"><span>Vaste prijs na opname</span><b>Ja, per fase</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="configurator">
+    <div class="shell">
+      <p class="kop">Rekenhulp</p>
+      <h2>Bereken in tien seconden waar je ongeveer staat</h2>
+      <p class="lead" style="margin-bottom:2rem">
+        Dit is het onderdeel dat een gewone website niet heeft. In plaats van “vraag een
+        offerte aan” en vervolgens drie dagen wachten, ziet een bezoeker direct een
+        bandbreedte — en stuurt daarna een aanvraag die al is ingevuld.
+      </p>
+
+      <div class="config">
+        <div class="glas paneel">
+          <div class="keuzes">
+            <fieldset>
+              <legend>Wat wil je laten doen?</legend>
+              <div class="chips" id="soort-knoppen" role="group" aria-label="Soort werk">
+                <button type="button" data-soort="aanbouw" aria-pressed="true">Aanbouw of uitbouw</button>
+                <button type="button" data-soort="badkamer" aria-pressed="false">Badkamer</button>
+                <button type="button" data-soort="verbouwing" aria-pressed="false">Verbouwing</button>
+                <button type="button" data-soort="interieur" aria-pressed="false">Interieur op maat</button>
+              </div>
+            </fieldset>
+
+            <div class="schuif">
+              <label for="meters">Omvang: <output id="meters-uit" for="meters">22 m²</output></label>
+              <input id="meters" type="range" min="8" max="90" step="1" value="22" />
+            </div>
+
+            <fieldset>
+              <legend>Afwerking</legend>
+              <div class="chips" id="afwerking-knoppen" role="group" aria-label="Afwerkingsniveau">
+                <button type="button" data-afwerking="basis" aria-pressed="false">Basis</button>
+                <button type="button" data-afwerking="comfort" aria-pressed="true">Comfort</button>
+                <button type="button" data-afwerking="luxe" aria-pressed="false">Luxe</button>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Extra's</legend>
+              <div class="chips" id="extra-knoppen" role="group" aria-label="Extra werkzaamheden">
+                <button type="button" data-extra="1500" data-label="Constructieberekening en vergunning" aria-pressed="false">Vergunning +1.500</button>
+                <button type="button" data-extra="900" data-label="Vaste opleverdatum met boeteclausule" aria-pressed="false">Vaste datum +900</button>
+                <button type="button" data-extra="2400" data-label="Meubelwerk op maat" aria-pressed="false">Meubelwerk +2.400</button>
+                <button type="button" data-extra="1250" data-label="Voorbereiding voor domotica" aria-pressed="false">Domotica +1.250</button>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="glas uitkomst" aria-live="polite">
+          <p class="kop" style="margin:0">Indicatie</p>
+          <p class="bedrag" id="bedrag">€ 0 <small>exclusief btw</small></p>
+          <p style="margin:0" id="doorloop">—</p>
+          <ul id="opsomming"></ul>
+          <p class="reken" id="rekenuitleg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="werk">
+    <div class="shell">
+      <p class="kop">Uitgelicht werk</p>
+      <h2>Drie projecten uit de werkplaats</h2>
+      <div class="raster raster--3" style="margin-top:2rem">
+        <article class="werk">
+          <div class="werk__beeld" role="img" aria-label="Impressie van een aanbouw met glazen pui"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Aanbouw · Maasniel · 2025</p>
+            <h3>22 m² met groen dak</h3>
+            <p>Stalen pui op het zuiden, vloerverwarming op de aanbouw en in het portaal elke vrijdag een update.</p>
+          </div>
+        </article>
+        <article class="werk">
+          <div class="werk__beeld werk__beeld--2" role="img" aria-label="Impressie van een interieur met maatwerk kastenwand"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Interieur · Roermond · 2025</p>
+            <h3>Woonkamer met kastenwand van 6 meter</h3>
+            <p>Eikenfineer, verborgen deuren en een verlichte nis — getekend in 3D voordat er iets werd gezaagd.</p>
+          </div>
+        </article>
+        <article class="werk">
+          <div class="werk__beeld werk__beeld--3" role="img" aria-label="Impressie van een badkamer op maat"></div>
+          <div class="werk__tekst">
+            <p class="werk__meta">Badkamer · Melick · 2024</p>
+            <h3>Badkamer met daglicht</h3>
+            <p>Lichtstraat, tegelwerk in één vlak en een inloopdouche van 1,4 meter breed.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="portaal-uitleg">
+    <div class="shell" style="display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));align-items:center">
+      <div>
+        <p class="kop">Klantportaal</p>
+        <h2>De klant hoeft nooit te vragen hoe het staat</h2>
+        <p>
+          Elke klant krijgt een eigen inlog. Daarin staat de planning met wat klaar is en
+          wat komt, alle documenten die zijn gemaakt, de berichten met de voorman en de
+          facturen. Dat scheelt ons tientallen telefoontjes per project.
+        </p>
+        <a class="knop knop--vol" href="portaal.html">Open het voorbeeldportaal</a>
+      </div>
+      <ul class="tijdlijn">
+        <li><div><h3>Opname en 3D-schets</h3><p>Binnen tien werkdagen zie je je eigen ruimte in 3D, met de materialen erin.</p></div></li>
+        <li><div><h3>Vaste prijs in fases</h3><p>Per fase een bedrag, zodat je kunt schuiven in wat nu en wat later gebeurt.</p></div></li>
+        <li><div><h3>Bouwen met wekelijkse update</h3><p>Foto's, planning en aandachtspunten komen in het portaal, niet in losse appjes.</p></div></li>
+        <li><div><h3>Oplevering en nazorg</h3><p>Puntenlijst, garantiebewijs en de nazorgafspraken staan in hetzelfde portaal.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="shell glas paneel" style="display:grid;gap:1.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));align-items:center">
+      <div>
+        <h2 style="margin-bottom:0.6rem">Zullen we beginnen met een gesprek?</h2>
+        <p style="margin:0">
+          Vertel wat je van plan bent, dan nemen we binnen één werkdag contact op.
+          Telefonisch bereikbaar op <strong>0475 – 00 00 00</strong>, maandag tot vrijdag
+          van 7.30 tot 17.00 uur.
+        </p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:flex-end">
+        <a class="knop knop--vol" href="#configurator">Eerst zelf rekenen</a>
+        <a class="knop" href="portaal.html">Portaal bekijken</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="shell">
+    <div class="voet">
+      <span>© 2026 Steiger &amp; Zoon · Werkplaats in Roermond</span>
+      <nav aria-label="Voetmenu">
+        <a href="index.html">Home</a>
+        <a href="#configurator">Rekenhulp</a>
+        <a href="#werk">Werk</a>
+        <a href="portaal.html">Klantportaal</a>
+      </nav>
+    </div>
+    <p class="fictie">
+      Steiger &amp; Zoon is een fictief bedrijf, gebouwd als voorbeeld van het
+      Premium-pakket door <a href="../../index.html#pakketten">Eliyah Webdesign</a>.
+      De rekenhulp rekent met voorbeeldbedragen en er is geen echt telefoonnummer.
+    </p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

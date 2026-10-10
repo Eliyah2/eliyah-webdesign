@@ -28,12 +28,17 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ├── icon-512.png            # Icoon voor het webmanifest
 ├── site.webmanifest        # App-manifest (naam, kleuren, iconen)
 ├── robots.txt              # Crawlinstructies + verwijzing naar de sitemap
-├── sitemap.xml             # De pagina's die gevonden mogen worden (zes)
+├── sitemap.xml             # De pagina's die gevonden mogen worden (zeven)
 ├── og/                     # Social-previewkaarten van 1200x630 (index.jpg + per case)
 ├── tools/
 │   ├── og-card.html        # Generator-template voor de previewkaarten
 │   └── icon.html           # Generator-template voor de pictogrammen
 ├── meting/                 # Verzamelpunt + dashboard van de doelmeting (geen website)
+├── voorbeelden/            # Drie uitgewerkte voorbeelden: dezelfde fictieve zaak op
+│   ├── index.html          #   drie niveaus, met bij elk niveau wat je krijgt
+│   ├── starter/            #   one-pager als één bestand (€495)
+│   ├── business/           #   vijf pagina's met eigen stylesheet (€895)
+│   └── premium/            #   maatwerk met rekenhulp en klantportaal (vanaf €1.750)
 └── projects/
     ├── glanzza.html        # Case: boekingsplatform met Wero-aanbetaling
     ├── menuapp.html        # Case: tafelbestelsysteem Las Tapas
@@ -95,6 +100,12 @@ Daarna nog vijf dingen om ze echt terug te zetten:
 Onderhoudspakketten zijn maandelijks opzegbaar: updates, back-ups, monitoring
 en support. Losse aanpassing zonder pakket: €65 per uur.
 
+**Hosting, domein en SSL: vanaf €12 per maand**, optioneel en maandelijks opzegbaar —
+zelf regelen bij een eigen partij kan ook. Dit staat los van de eenmalige pakketprijs
+én van een onderhoudspakket. Bij een webshop of dashboard kan de hosting zwaarder
+uitvallen; dat wordt vooraf doorgegeven, nooit achteraf aangerekend. Op elk
+pakketkaartje op de homepage staat deze regel, zodat niemand denkt dat hosten gratis is.
+
 > **Waarom deze prijzen (oktober 2026).** Ze komen uit marktonderzoek, niet uit
 > de lucht. Marktbeeld 2026: one-pager €400–1.000, website van 5 pagina's
 > €550–2.000, maatwerk vanaf €1.200–1.500, regiobureaus in Limburg **vanaf
@@ -110,6 +121,32 @@ en support. Losse aanpassing zonder pakket: €65 per uur.
 > Prijzen aanpassen? Het zijn losse getallen op één plek per pakket in
 > `index.html` — plus de `makesOffer`-prijzen in de gestructureerde data bovenaan
 > diezelfde pagina, de regel in het eerste schermbeeld en deze tabel hier.
+
+## Voorbeelden per pakket
+
+`voorbeelden/` bevat drie echte, werkende sites voor dezelfde fictieve zaak
+(Steiger & Zoon, bouw & renovatie in Roermond), zodat een bezoeker ziet wat €495,
+€895 en €1.750+ opleveren. Ze zijn gelinkt vanaf de pakketkaarten op de homepage
+en vanaf `voorbeelden/index.html`.
+
+| Niveau | Map | Wat het laat zien |
+| --- | --- | --- |
+| Starter €495 | `voorbeelden/starter/` | Eén bestand, één pagina, eenvoudig formulier |
+| Business €895 | `voorbeelden/business/` | Vijf pagina's, gedeelde stylesheet, filter en uitgebreid formulier |
+| Premium vanaf €1.750 | `voorbeelden/premium/` | Rekenhulp die live rekent, klantportaal met tabbladen |
+
+Spelregels die je niet moet vergeten:
+
+- De bedrijven en personen zijn **fictief**, en elke pagina zegt dat zelf — inclusief
+  de balk bovenin met de weg terug naar het echte portfolio.
+- Er staan **geen echte telefoonnummers, adressen of e-mailadressen** in. Formulieren
+  versturen niets en zeggen dat ook. Het telefoonnummer staat als `0475 – 00 00 00`.
+- De voorbeeldpagina's hebben `noindex, follow`: ze mogen via de links gevonden
+  worden, maar horen niet als zelfstandige sites in Google.
+  `voorbeelden/index.html` staat wél in de sitemap.
+- De lettertypen komen uit `fonts/` via `../../fonts/…`, dus geen verzoek aan Google.
+- De bedragen in de voorbeelden (projectprijzen, uurtarief, rekenhulp) zijn
+  voorbeeldgegevens en geen aanbod.
 
 ## Aanpassen
 
