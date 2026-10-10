@@ -88,17 +88,28 @@ Daarna nog vijf dingen om ze echt terug te zetten:
 
 | Eenmalig | Prijs | Maandelijks onderhoud | Prijs |
 | --- | --- | --- | --- |
-| Starter — one-pager | €175 | Zorg Basis | €29 p/m |
-| Business — 3–5 pagina's | €350 | Zorg Groei | €59 p/m |
-| Premium — maatwerk, shop of dashboard | vanaf €650 | Zorg Zorgeloos | €99 p/m |
+| Starter — one-pager | €495 | Zorg Basis | €39 p/m |
+| Business — 3–5 pagina's | €895 | Zorg Groei | €79 p/m |
+| Premium — maatwerk, shop of dashboard | vanaf €1.750 | Zorg Zorgeloos | €129 p/m |
 
 Onderhoudspakketten zijn maandelijks opzegbaar: updates, back-ups, monitoring
-en support. Losse aanpassing zonder pakket: €45 per uur.
+en support. Losse aanpassing zonder pakket: €65 per uur.
 
-> Let op: de pakketprijzen liggen onder wat in de markt gebruikelijk is
-> (freelancer-uurtarief rond €75–84, websites bij kleine bureaus vanaf €750).
-> De prijzen zijn bewust nog niet aangepast — dat is een keuze die Eliyah zelf
-> moet maken, niet iets wat de code hoort te verzinnen.
+> **Waarom deze prijzen (oktober 2026).** Ze komen uit marktonderzoek, niet uit
+> de lucht. Marktbeeld 2026: one-pager €400–1.000, website van 5 pagina's
+> €550–2.000, maatwerk vanaf €1.200–1.500, regiobureaus in Limburg **vanaf
+> €1.750** (meestal €1.750–3.000), freelancer-uurtarief €75–150 (gemiddeld €84)
+> en hosting plus onderhoud €35–56 per maand.
+>
+> De pakketten zitten bewust **onder** het regiobureau en ruim **boven** de
+> "te goedkoop om te vertrouwen"-zone waar Starter en Business eerst stonden.
+> Business is de beste koop van de drie: bij drie pakketten kiest de meerderheid
+> het middenpakket zodra er een duurdere optie naast staat, dus daar hoort het
+> volume en de "Meest gekozen"-vlag.
+>
+> Prijzen aanpassen? Het zijn losse getallen op één plek per pakket in
+> `index.html` — plus de `makesOffer`-prijzen in de gestructureerde data bovenaan
+> diezelfde pagina, de regel in het eerste schermbeeld en deze tabel hier.
 
 ## Aanpassen
 
