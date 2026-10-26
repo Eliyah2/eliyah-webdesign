@@ -50,7 +50,9 @@
 @font-face {
   font-family: "Inter";
   font-style: normal;
-  font-weight: 100 900;
+  /* Alleen de gewichten die deze site gebruikt (400–800): dat scheelt 17 kB per
+     pagina. Zwaardere of lichtere gewichten komen in de opmaak niet voor. */
+  font-weight: 400 800;
   font-display: swap;
   src: url("fonts/inter-variabel-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -137,12 +139,14 @@
 /* In het donkere thema is de merk-gradient licht, dus staat er zwarte tekst op.
    In het lichte thema is diezelfde gradient donker: daar moet de tekst wit zijn,
    anders zakt het contrast naar 3,0:1 (gemeten, onder de AA-grens van 4,5:1). */
+/* Licht thema: de merk-gradient is daar donker, dus witte letters erop. */
 [data-theme="light"] .brand__mark,
 [data-theme="light"] .about__avatar,
 [data-theme="light"] .btn--primary,
 [data-theme="light"] .btn-primary,
 [data-theme="light"] .filter.is-active,
-[data-theme="light"] .plan__flag { color: #fff; }
+[data-theme="light"] .plan__flag,
+[data-theme="light"] .reken__chips button[aria-pressed="true"] { color: #fff; }
 
 /* Metrisch gelijke terugvalfonts. De systeemletter bekleedt exact dezelfde
    ruimte als Inter en Instrument Serif, zodat er niets verspringt op het moment
@@ -626,8 +630,9 @@ body.has-cursor summary { cursor: none; }
   gap: 1.5rem;
 }
 
-.brand { display: inline-flex; align-items: center; gap: 0.7rem; }
+.brand { display: inline-flex; align-items: center; gap: 0.7rem; min-width: 0; }
 .brand__mark {
+  flex: none;
   width: 38px; height: 38px;
   display: grid;
   place-items: center;
@@ -638,7 +643,7 @@ body.has-cursor summary { cursor: none; }
   font-size: 1.05rem;
   box-shadow: var(--glow);
 }
-.brand__text { display: grid; line-height: 1.1; }
+.brand__text { display: grid; line-height: 1.1; min-width: 0; }
 .brand__text strong { font-size: 0.98rem; letter-spacing: -0.01em; }
 .brand__text em {
   font-style: normal;
@@ -646,6 +651,13 @@ body.has-cursor summary { cursor: none; }
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted);
+}
+/* laat de logo-tekst inkrimpen zodat de knop rechts nooit buiten beeld valt */
+.brand__text strong,
+.brand__text em {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav__links {
@@ -877,7 +889,9 @@ body.has-cursor summary { cursor: none; }
   font-size: clamp(1.05rem, 1rem + 0.45vw, 1.28rem);
   color: var(--text-soft);
 }
-.hero__lead strong { color: var(--text); font-weight: 600; }
+.hero__lead strong,
+.plan__host strong,
+.reken__host strong { color: var(--text); font-weight: 600; }
 
 /* Voor wie het is en wat het kost, direct onder de kop: dit hoort in dezelfde
    blik als de belofte zelf. De prijs is een link naar de pakketten. */
@@ -1049,6 +1063,14 @@ body.has-cursor summary { cursor: none; }
 }
 .bento__item.span-2 { grid-column: span 2; }
 .bento__item.span-3 { grid-column: 1 / -1; padding: clamp(1.8rem, 4vw, 2.8rem); }
+
+/* span 2 werkt alleen als er twee kolommen naast elkaar passen (vanaf ongeveer
+   580px). Daaronder staat de grid op één kolom en dwingt span-2 een tweede,
+   nauwe kolomnet die naast het scherm valt — op een breedte van 320px liep een
+   kaart daar tot zestien pixels buiten het venster. Eén kolom is het geval toch al. */
+@media (max-width: 579px) {
+  .bento__item.span-2 { grid-column: auto; }
+}
 
 /* Werkwijze */
 .timeline {
@@ -1334,7 +1356,6 @@ body.has-cursor summary { cursor: none; }
 .plan__demo { margin: 0; font-size: 0.88rem; }
 .plan__demo a { color: var(--accent); text-decoration: none; font-weight: 600; }
 .plan__demo a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.plan__host strong { color: var(--text); font-weight: 600; }
 .plan--featured .plan__host strong { color: var(--accent); }
 
 .plan--featured {
@@ -1376,6 +1397,192 @@ body.has-cursor summary { cursor: none; }
   font-size: 0.88rem;
   color: var(--muted);
   text-align: center;
+}
+
+/* Rekenhulp: keuzes links, indicatie rechts. Alles wat met rekenen te maken
+   heeft zit in dit ene blok, zodat het los te lezen is. */
+.reken {
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: start;
+}
+.reken__keuzes {
+  display: grid;
+  gap: 1.7rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+}
+.reken__veld { border: 0; padding: 0; margin: 0; min-width: 0; }
+.reken__veld legend {
+  padding: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.reken__chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.85rem; }
+.reken__chips button {
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.6rem 1.05rem;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.reken__chips button:hover {
+  color: var(--text);
+  border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+}
+.reken__chips button[aria-pressed="true"] {
+  border-color: transparent;
+  background: var(--gradient);
+  /* Donker op de lichte merk-gradient: 12:1 contrast op de lichtste kleur. */
+  color: #0a0a12;
+  font-weight: 600;
+}
+.reken__schuif { display: grid; gap: 0.7rem; }
+.reken__schuif label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.reken__schuif output {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text);
+}
+.reken__schuif input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 26px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.reken__schuif input[type="range"]::-webkit-slider-runnable-track,
+.reken__schuif input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.reken__schuif input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: var(--gradient);
+  border: 2px solid var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+.reken__schuif input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.reken__schuif input[type="range"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 99px;
+}
+.reken__hint,
+.reken__vast {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.reken__uitkomst {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+.reken__bedrag {
+  margin: 0;
+  font-size: clamp(1.7rem, 1.1rem + 1.9vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+.reken__doorloop { margin: 0; color: var(--text-soft); font-size: 0.95rem; }
+.reken__host {
+  margin: 0;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--line-soft);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+.reken__lijst {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+.reken__lijst li { position: relative; padding-left: 1.15rem; }
+.reken__lijst li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.48em;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.reken__advies {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+.reken__advies strong { color: var(--text); }
+.reken__advies a { color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.reken__advies a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.reken__uitleg { margin: 0; font-size: 0.8rem; line-height: 1.5; color: var(--muted); }
+.reken__uitkomst .btn { margin-top: 0.25rem; }
+
+@media (max-width: 900px) {
+  .reken { grid-template-columns: 1fr; }
+  .reken__uitkomst { position: static; }
+}
+
+/* De balk telt nu acht links naast het merk en de knoppen. Met standaardafstand
+   is dat vanaf ongeveer 1184px genoeg ruimte; tussen 1060 en 1200 pixels staat
+   de balk daarom iets compacter — anders liep "Kennismaken" buiten beeld.
+   Boven 1200px en in het mobiele menu (onder 1060px) verandert er niets aan de
+   opmaak. */
+@media (min-width: 1060px) and (max-width: 1199px) {
+  .nav__links { gap: 0.1rem; }
+  .nav__links a { padding: 0.5rem 0.5rem; font-size: 0.85rem; }
 }
 
 /* Quotes */
@@ -1682,10 +1889,16 @@ body.page-project p { color: var(--text-soft); }
   .footer__inner { grid-template-columns: minmax(0, 1.4fr) auto auto; align-items: start; }
 }
 
-@media (min-width: 980px) {
+/* Vanaf 1060 pixels is er ruimte voor de links in de balk zelf. Tot die breedte
+   is de balk te krap (gemeten: bij 1000px viel "Kennismaken" buiten beeld,
+   ook al met acht links), dus daar neemt het menu het over. */
+@media (min-width: 1060px) {
   .nav__links { display: flex; }
   .burger { display: none; }
   .mobile-menu { display: none !important; }
+}
+
+@media (min-width: 980px) {
   .about { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
   .about__intro { grid-column: 1 / -1; }
   .about__card { position: sticky; top: calc(var(--nav-h) + 2rem); }
@@ -1697,9 +1910,12 @@ body.page-project p { color: var(--text-soft); }
   .timeline__step { grid-template-columns: 5rem 1fr; }
 }
 
+@media (max-width: 1059px) {
+  .nav__links { display: none; }
+}
+
 @media (max-width: 979px) {
   :root { --nav-h: 66px; }
-  .nav__links { display: none; }
   .hero { padding-top: calc(var(--nav-h) + 3rem); }
 }
 

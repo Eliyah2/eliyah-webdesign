@@ -252,6 +252,10 @@
 
     const start = () => {
       if (running || !magTeken || !klaarMetLaden) return;
+      // Pas hier meten en het doek aanmaken: dat kost een twintigtal milliseconden
+      // en hoort niet in de weg te staan van de eerste weergave van de pagina.
+      // Tot dit moment is er toch niets te zien op het doek.
+      resize();
       running = true;
       lastFrame = 0;
       requestAnimationFrame(frame);
@@ -261,34 +265,28 @@
     };
 
     // Bij "databesparing" geen doorlopende animatie: één stilstaand beeld is
-    // genoeg. En we beginnen pas na het laden, zodat dit tekenwerk niet met de
-    // eerste opbouw van de pagina concurreert.
+    // genoeg. Hoe dan ook beginnen we pas na het laden, zodat dit tekenwerk
+    // niet met de eerste opbouw van de pagina concurreert.
     const spaarzaam = !!(navigator.connection && navigator.connection.saveData);
     const magTeken = !spaarzaam;
     let klaarMetLaden = document.readyState === "complete";
 
-    resize();
-    if (spaarzaam) {
+    const bijLaden = () => {
+      klaarMetLaden = true;
+      if (magTeken) return start();
+      resize();
       running = true;
       frame(performance.now());
       running = false;
-    } else if (klaarMetLaden) {
-      start();
-    } else {
-      window.addEventListener(
-        "load",
-        () => {
-          klaarMetLaden = true;
-          start();
-        },
-        { once: true }
-      );
-    }
+    };
+
+    if (klaarMetLaden) bijLaden();
+    else window.addEventListener("load", bijLaden, { once: true });
 
     // De hero kan na het laden van de webfonts net anders uitvallen. Zonder
     // deze tweede meting blijft het doek op de oude maat staan (het tekenwerk
-    // zou dan net naast de hero vallen).
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => resize());
+    // zou dan net naast de hero vallen). Vóór het laden meet start() zelf al.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => klaarMetLaden && resize());
 
     let resizeTimer;
     window.addEventListener(
@@ -690,7 +688,274 @@
     });
   }
 
-  /* ---------- 14. WhatsApp ---------- */
+  /* ---------- Hulpjes: scrollen en een aanvraag voorinvullen ---------- */
+  // Eén scrollfunctie voor de hele site (zelfde offset als het menu), en één
+  // functie die het contactformulier alvast vult. De rekenhulp en de
+  // pakketknoppen gebruiken allebei die laatste.
+  const scrollNaar = (el) => {
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  // Doorgeven aan de eigen doelmeting als die er is (analytics.js).
+  function doel(naam, props) {
+    if (window.eliyahGoals && typeof window.eliyahGoals.track === "function") {
+      window.eliyahGoals.track(naam, props);
+    }
+  }
+
+  // Zet de keuze klaar in het formulier, zodat de bezoeker alleen nog zijn naam
+  // en e-mail hoeft in te vullen.
+  function vulAanvraag(tekst, onderwerp) {
+    const bericht = $("#message");
+    const keuze = $("#subject");
+    const status = $("#formStatus");
+
+    if (onderwerp && keuze && $$("option", keuze).some((o) => o.value === onderwerp)) {
+      keuze.value = onderwerp;
+    }
+
+    if (bericht) {
+      bericht.value = tekst;
+      const veld = bericht.closest(".field");
+      if (veld) veld.classList.remove("has-error");
+    }
+
+    if (status) {
+      status.textContent =
+        "De keuze staat er al in. Vul je naam en e-mail aan en verstuur — dan krijg je binnen 24 uur antwoord.";
+      status.classList.remove("is-error");
+    }
+
+    scrollNaar($("#contact"));
+
+    const naam = $("#name");
+    if (naam) setTimeout(() => naam.focus({ preventScroll: true }), reduceMotion ? 0 : 500);
+  }
+
+  /* ---------- 14. Rekenhulp ---------- */
+  // Prijsindicatie op de homepage. De bedragen komen uit de pakketten hierboven
+  // (€495 / €895 / vanaf €1.750): een kale keuze geeft exact de pakketprijs, komt
+  // er iets bij, dan wordt het een bandbreedte met de rekenuitleg eronder. Zo
+  // ontstaat er geen tweede prijslijst naast de pakketten.
+  const REKEN = {
+    soorten: {
+      onepager: { basis: 495, pakket: "Starter", inbegrepen: 1, perPagina: 120, weken: 1, eenheid: "pagina", meervoud: "pagina's", label: "One-pager" },
+      website: { basis: 895, pakket: "Business", inbegrepen: 5, perPagina: 110, weken: 2, eenheid: "pagina", meervoud: "pagina's", label: "Website met meerdere pagina's" },
+      webshop: { basis: 1750, pakket: "Premium", inbegrepen: 8, perPagina: 95, weken: 4, eenheid: "pagina", meervoud: "pagina's", label: "Webshop" },
+      webapp: { basis: 1750, pakket: "Premium", inbegrepen: 6, perPagina: 145, weken: 5, eenheid: "scherm", meervoud: "schermen", label: "Dashboard of webapp" },
+    },
+    inhoud: {
+      zelf: { extra: 0, label: "Ik lever teksten en beeld zelf aan" },
+      mee: { extra: 350, label: "Samen meeschrijven en beeld regelen" },
+      compleet: { extra: 750, label: "Compleet uit handen: teksten, fotografie en huisstijl" },
+    },
+    onderwerp: { onepager: "Nieuwe website", website: "Nieuwe website", webshop: "Webshop", webapp: "Dashboard of webapp" },
+  };
+
+  function initRekenhulp() {
+    const sectie = $("#rekenhulp");
+    const groep = $("#reken-soort");
+    const schuif = $("#reken-omvang");
+    const bedragEl = $("#reken-bedrag");
+    if (!sectie || !groep || !schuif || !bedragEl) return;
+
+    const doorloopEl = $("#reken-doorloop");
+    const lijstEl = $("#reken-lijst");
+    const adviesEl = $("#reken-advies");
+    const uitlegEl = $("#reken-uitleg");
+    const omvangUit = $("#reken-omvang-uit");
+    const omvangHint = $("#reken-omvang-hint");
+    const vulKnop = $("#reken-vul");
+
+    // Zelfde notatie als in de pakketten: €895, €1.750 — geen spatie, geen decimalen.
+    const geld = (bedrag) => "€" + Math.round(bedrag).toLocaleString("nl-NL");
+
+    const staat = { soort: "website", inhoud: "zelf", omvang: 5, extras: [] };
+    let gemeten = false;
+
+    function meet() {
+      if (gemeten) return;
+      gemeten = true;
+      doel("rekenhulp_gebruik", { section: "rekenhulp" });
+    }
+
+    function zetSoort(naam) {
+      staat.soort = naam;
+      $$("button", groep).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.soort === naam)));
+      // Een one-pager is één pagina. Schuift de bezoeker verder, dan is het per
+      // definitie een website met meerdere pagina's; andersom zet de schuif
+      // terug naar de eerste pagina.
+      if (naam === "onepager" && staat.omvang > 1) staat.omvang = 1;
+      else if (naam !== "onepager" && staat.omvang < 2) staat.omvang = Math.max(2, REKEN.soorten[naam].inbegrepen);
+      schuif.value = String(staat.omvang);
+    }
+
+    function kiesGroep(sel, sleutel) {
+      const el = $(sel);
+      if (!el) return;
+      el.addEventListener("click", (e) => {
+        const knop = e.target.closest("button");
+        if (!knop) return;
+        meet();
+        if (sleutel === "extra") {
+          const aan = knop.getAttribute("aria-pressed") !== "true";
+          knop.setAttribute("aria-pressed", String(aan));
+          if (aan) staat.extras.push({ bedrag: Number(knop.dataset.extra), label: knop.dataset.label });
+          else staat.extras = staat.extras.filter((x) => x.label !== knop.dataset.label);
+        } else if (sleutel === "soort") {
+          zetSoort(knop.dataset.soort);
+        } else {
+          $$("button", el).forEach((b) => b.setAttribute("aria-pressed", "false"));
+          knop.setAttribute("aria-pressed", "true");
+          staat[sleutel] = knop.dataset[sleutel];
+        }
+        reken();
+      });
+    }
+
+    function reken() {
+      const soort = REKEN.soorten[staat.soort];
+      const inhoud = REKEN.inhoud[staat.inhoud];
+      const extraPaginas = Math.max(0, staat.omvang - soort.inbegrepen);
+      const extraBedrag = staat.extras.reduce((som, x) => som + x.bedrag, 0);
+      const midden = soort.basis + extraPaginas * soort.perPagina + inhoud.extra + extraBedrag;
+      // Kaal = precies een pakket: dan tonen we die prijs en geen bandbreedte.
+      const kaal = staat.inhoud === "zelf" && extraPaginas === 0 && staat.extras.length === 0;
+      const eenheid = staat.omvang === 1 ? soort.eenheid : soort.meervoud;
+
+      const laag = Math.round((midden * 0.92) / 25) * 25;
+      const hoog = Math.round((midden * 1.08) / 25) * 25;
+      bedragEl.textContent = kaal ? geld(soort.basis) : geld(laag) + " – " + geld(hoog);
+
+      if (doorloopEl) {
+        const weken = soort.weken + extraPaginas * 0.2 + staat.extras.length * 0.4;
+        const afgerond = Math.round(weken * 2) / 2;
+        doorloopEl.textContent =
+          "Doorlooptijd: ongeveer " +
+          (afgerond === 1 ? "1 week" : afgerond.toString().replace(".", ",") + " weken") +
+          " van start tot livegang";
+      }
+
+      if (omvangUit) omvangUit.textContent = staat.omvang + " " + eenheid;
+
+      if (omvangHint) {
+        const inbegrepen = soort.inbegrepen === 1 ? "1 " + soort.eenheid : soort.inbegrepen + " " + soort.meervoud;
+        omvangHint.textContent =
+          "In " + geld(soort.basis) + " " + (soort.inbegrepen === 1 ? "zit" : "zitten") + " " + inbegrepen + "." +
+          (extraPaginas > 0 ? " Elke " + soort.eenheid + " daarboven kost " + geld(soort.perPagina) + "." : "");
+      }
+
+      if (lijstEl) {
+        const regels = [soort.label + " · " + staat.omvang + " " + eenheid, "Inhoud: " + inhoud.label];
+        staat.extras.forEach((x) => regels.push(x.label + " · " + geld(x.bedrag)));
+        lijstEl.innerHTML = regels.map((r) => "<li>" + r + "</li>").join("");
+      }
+
+      if (adviesEl) {
+        const link = ' <a href="#pakketten">Zie wat erin zit</a>';
+        if (kaal) {
+          const vanaf = soort.pakket === "Premium";
+          adviesEl.innerHTML =
+            "Dit is " + (vanaf ? "de onderkant van het <strong>Premium-pakket</strong>: vanaf " : "precies het <strong>" + soort.pakket + "-pakket</strong>: ") +
+            geld(soort.basis) + " eenmalig, hosting erbuiten." + link;
+        } else if (midden < 900) {
+          adviesEl.innerHTML = "Dit blijft in de buurt van het <strong>Starter-pakket</strong> (€495 eenmalig); met deze keuzes kom ik op de indicatie hierboven." + link;
+        } else if (midden < 1600) {
+          adviesEl.innerHTML = "Dit past bij het <strong>Business-pakket</strong> (€895 eenmalig) plus wat je hier aanvinkt." + link;
+        } else if (midden < 3500) {
+          adviesEl.innerHTML = "Dit wordt <strong>Premium</strong>: maatwerk vanaf €1.750, inclusief analytics en drie maanden support." + link;
+        } else {
+          adviesEl.innerHTML = "Dit gaat voorbij de pakketten — daarvoor maak ik een <strong>maatwerkvoorstel</strong> met één vaste prijs per fase.";
+        }
+      }
+
+      if (uitlegEl) {
+        uitlegEl.textContent =
+          "Zo kom ik eraan: " + geld(soort.basis) + " basis" +
+          (extraPaginas > 0 ? " + " + geld(extraPaginas * soort.perPagina) + " voor " + extraPaginas + " extra " + (extraPaginas === 1 ? soort.eenheid : soort.meervoud) : "") +
+          (inhoud.extra > 0 ? " + " + geld(inhoud.extra) + " voor de inhoud" : "") +
+          (extraBedrag > 0 ? " + " + geld(extraBedrag) + " extra's" : "") +
+          ". De vaste prijs volgt na de kennismaking.";
+      }
+    }
+
+    function berichtTekst() {
+      const soort = REKEN.soorten[staat.soort];
+      const inhoud = REKEN.inhoud[staat.inhoud];
+      const eenheid = staat.omvang === 1 ? soort.eenheid : soort.meervoud;
+      return [
+        "Ik heb de rekenhulp op je site ingevuld:",
+        "",
+        "• Soort: " + soort.label,
+        "• Omvang: " + staat.omvang + " " + eenheid,
+        "• Inhoud: " + inhoud.label,
+        "• Extra's: " + (staat.extras.length ? staat.extras.map((x) => x.label).join(", ") : "geen"),
+        "• Indicatie: " + bedragEl.textContent,
+        "• " + (doorloopEl ? doorloopEl.textContent : ""),
+        "",
+        "Wat wordt hiervan de vaste prijs? Dan hoor ik het graag.",
+      ].join("\n");
+    }
+
+    kiesGroep("#reken-soort", "soort");
+    kiesGroep("#reken-inhoud", "inhoud");
+    kiesGroep("#reken-extra", "extra");
+
+    schuif.addEventListener("input", () => {
+      meet();
+      staat.omvang = Number(schuif.value);
+      if (staat.soort === "onepager" && staat.omvang > 1) zetSoort("website");
+      reken();
+    });
+
+    if (vulKnop) {
+      vulKnop.addEventListener("click", () => {
+        meet();
+        vulAanvraag(berichtTekst(), REKEN.onderwerp[staat.soort]);
+        doel("rekenhulp_aanvraag", { label: REKEN.soorten[staat.soort].label, bedrag: bedragEl.textContent });
+      });
+    }
+
+    // De adviesregel wordt bij elke keuze opnieuw opgebouwd. Daarom hangt de klik
+    // op de hele sectie en niet op dat ene linkje.
+    sectie.addEventListener("click", (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+      const doelEl = document.getElementById(link.getAttribute("href").slice(1));
+      if (!doelEl) return;
+      e.preventDefault();
+      scrollNaar(doelEl);
+    });
+
+    reken();
+  }
+
+  /* ---------- 15. Pakketknoppen ---------- */
+  // Wie op "Start met Business" klikt, vindt het formulier al ingevuld. Dat
+  // scheelt de bezoeker typen en mij een wedervraag.
+  const PLANNEN = {
+    Starter: { onderwerp: "Nieuwe website", tekst: "Ik wil graag starten met het Starter-pakket: een one-page website van €495 eenmalig." },
+    Business: { onderwerp: "Nieuwe website", tekst: "Ik heb interesse in het Business-pakket: een website van 3 tot 5 pagina's van €895 eenmalig." },
+    Premium: { tekst: "Ik wil het Premium-pakket bespreken: maatwerk vanaf €1.750 — zes of meer pagina's, een webshop of een dashboard." },
+    "Zorg Basis": { tekst: "Ik wil graag het onderhoudspakket Zorg Basis (€39 per maand). Mijn website staat op: " },
+    "Zorg Groei": { tekst: "Ik wil graag het onderhoudspakket Zorg Groei (€79 per maand). Mijn website staat op: " },
+    "Zorg Zorgeloos": { tekst: "Ik wil graag het onderhoudspakket Zorg Zorgeloos (€129 per maand). Mijn website staat op: " },
+  };
+
+  function initPakketKnoppen() {
+    $$("[data-plan]").forEach((knop) => {
+      const plan = PLANNEN[knop.dataset.plan];
+      if (!plan) return;
+      knop.addEventListener("click", () => {
+        vulAanvraag(plan.tekst + "\n\nWat is de volgende stap?", plan.onderwerp);
+        doel("pakket_aanvraag", { label: knop.dataset.plan });
+      });
+    });
+  }
+
+  /* ---------- 16. WhatsApp ---------- */
   // Zet hier één keer het nummer neer (landcode zonder +, dus 31612345678).
   // Staat het leeg, dan blijven de WhatsApp-knoppen verborgen in plaats van
   // dat er een dode link op de site staat.
@@ -720,26 +985,16 @@
     if (wrap) wrap.hidden = false;
   }
 
-  /* ---------- 15. Overige ---------- */
+  /* ---------- 17. Overige ---------- */
+  // Het vloeiend scrollen naar een sectie deed hier eerder JavaScript: een eigen
+  // klok op elke ankerjaart, met een vaste sprong van negentig pixels. Dat is
+  // dubbel werk: de browser doet hetzelfde zelf met `scroll-behavior: smooth` en
+  // `scroll-padding-top` in style.css. Die twee regels blijven de enige plek waar
+  // de sprong geregeld wordt; programma-scrollen (rekenhulp, pakketknoppen) gaat
+  // via scrollNaar() hierboven.
   function initMisc() {
     const year = $("#year");
     if (year) year.textContent = new Date().getFullYear();
-
-    // Vloeiend scrollen met correcte offset (oudere browsers zonder scroll-padding)
-    $$('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const id = link.getAttribute("href");
-        if (id === "#" || id.length < 2) return;
-        const target = document.getElementById(id.slice(1));
-        if (!target) return;
-        // De skip-link laten we aan de browser: die zet ook de focus meteen goed.
-        if (link.classList.contains("skip-link")) return;
-        e.preventDefault();
-        const top = target.getBoundingClientRect().top + window.scrollY - 90;
-        window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
-        history.replaceState(null, "", id);
-      });
-    });
   }
 
   /* ---------- Start ---------- */
@@ -760,6 +1015,8 @@
     initFilters();
     initAccordion();
     initForm();
+    initRekenhulp();
+    initPakketKnoppen();
     initWhatsApp();
     initMisc();
   }

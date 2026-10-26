@@ -18,10 +18,10 @@ Gebouwd met vanilla HTML, CSS en JavaScript — geen frameworks, geen build-stap
 ```
 .
 ├── index.html              # Homepage (hero, over mij, diensten, werkwijze, projecten,
-│                           # pakketten, onderhoudspakketten, ervaringen, FAQ, contact)
+│                           # pakketten, rekenhulp, onderhoudspakketten, ervaringen, FAQ, contact)
 ├── 404.html                # Eigen foutpagina (absolute paden, want een 404 kan overal opduiken)
 ├── style.css               # Design system + alle componenten
-├── script.js               # Interactie (thema, cursor, reveals, tellers, filter, formulier, WhatsApp)
+├── script.js               # Interactie (thema, cursor, reveals, tellers, filter, rekenhulp, formulier, WhatsApp)
 ├── analytics.js            # Cookieloze doelmeting (stuurt naar het eigen verzamelpunt)
 ├── logo.svg                # Logo (ook favicon)
 ├── apple-touch-icon.png    # Icoon voor "zet op beginscherm" (180x180)
@@ -148,7 +148,36 @@ Spelregels die je niet moet vergeten:
 - De bedragen in de voorbeelden (projectprijzen, uurtarief, rekenhulp) zijn
   voorbeeldgegevens en geen aanbod.
 
+## Rekenhulp op de homepage
+
+Direct onder de pakketten staat de rekenhulp (`#rekenhulp`): de bezoeker kiest
+soort website, omvang, wie de inhoud doet en extra's, en ziet meteen een bedrag.
+Klikt hij daarna op **"Zet dit in mijn aanvraag"**, dan staat die keuze al in het
+contactformulier — onderwerp én bericht, met de hele som erbij — en springt de
+pagina naar het formulier met de cursor in het naamveld. De knoppen per pakket
+("Start met Business") vullen hetzelfde formulier met een passende tekst.
+
+**Geen tweede prijslijst.** De bedragen komen uit de pakketten: een kale keuze
+geeft exact €495 (Starter) of €895 (Business), en zodra er iets bijkomt wordt het
+een bandbreedte van −8% tot +8% met de volledige som eronder in de rekenuitleg.
+Alle getallen staan op één plek: `const REKEN` boven `initRekenhulp()` in
+`script.js`. Pas je een pakketprijs aan, pas die daar dan ook aan — anders zegt de
+rekenhulp iets anders dan de kaart erboven.
+
+Wat de rekenhulp **niet** doet: versturen. Er gaat geen enkel verzoek uit; het
+formulier opent zoals altijd je eigen mailprogramma. De uitkomst is een indicatie —
+de vaste prijs volgt na de kennismaking, net als in de FAQ staat.
+
 ## Aanpassen
+
+**Menu of links in de balk.** Vanaf 1060 pixels staan de links in de navigatiebalk.
+De huidige acht links passen daar met standaardafstand pas vanaf ongeveer 1184
+pixels naast het merk en de knoppen; tussen 1060 en 1200 staat de balk daarom iets
+compacter. Onder 1060 pixels neemt het mobiele menu het over (dat was eerder 980
+pixels, maar daar liep "Kennismaken" buiten beeld). Komt er een link bij, zet die
+dan in beide lijsten in `index.html` (`#navLinks` én `#mobileMenu`) plus in de
+voetnavigatie, en controleer daarna opnieuw op 1060, 1100 en 1200 pixels — de
+media-query voor de compacter balk staat in `style.css` bij de navigatie.
 
 **WhatsApp aanzetten.** Zet je nummer één keer in `script.js` bij
 `WHATSAPP_NUMBER` (landcode zonder `+` of `00`, bijvoorbeeld `31612345678`).
@@ -197,6 +226,9 @@ bezoekersgegevens:
 | Klik op een knop naar het formulier | `kennismaken_click` | met label ("Start met Business") en sectie ("pakketten") |
 | WhatsApp, e-mail, bellen | `whatsapp_click`, `email_click`, `call_click` | welk kanaal klanten kiezen |
 | Case openen | `case_open` | welke case het meest wordt bekeken |
+| Rekenhulp gebruikt | `rekenhulp_gebruik` | of bezoekers de rekenhulp aanraken |
+| Rekenhulp → aanvraag | `rekenhulp_aanvraag` (met het bedrag) | hoe vaak de rekenhulp tot een ingevulde aanvraag leidt |
+| Pakketknop → aanvraag | `pakket_aanvraag` (met de pakketnaam) | welk pakket mensen aanklikken |
 | Formulier | `form_start`, `form_submit`, `form_error` | waar het formulier afhaakt |
 | Hoe ver men leest | `scroll_25/50/75/100` | waar bezoekers afhaken |
 | Secties gezien | `section_view` | welk deel van de homepage aandacht krijgt |
